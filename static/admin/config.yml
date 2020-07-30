@@ -1,0 +1,27 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - label: Videos
+    name: videos
+    folder: videos
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: description, label: Description, widget: markdown }
+      - { name: url, label: Url}
+  # FIRST GALLERY IMAGE TEST
+  - label: "Gallery Image"
+    name: gallery
+    folder: gallery
+    create: true
+    identifier_field: imageTitle
+    widget: "list"
+    fields:
+      - { label: Image, name: image, widget: image }
+      - { label: "Image Title", name: imageTitle, widget: string }
+  

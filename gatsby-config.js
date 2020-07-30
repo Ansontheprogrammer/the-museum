@@ -1,0 +1,110 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
+module.exports = {
+  siteMetadata: {
+    title: "The Museum",
+    author: "AE Inc",
+    siteUrl: "https://zootythebarber.com",
+  },
+  plugins: [
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-netlify-cms`,
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-stripe",
+    `gatsby-transformer-remark`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "Zooty the Barber",
+        short_name: "Zooty",
+        start_url: "/",
+        background_color: "#fff",
+        theme_color: "#fff``",
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: "standalone",
+        icon: "src/images/zooty-logo.svg", // This path is relative to the root of the site.
+        // An optional attribute which provides support for CORS check.
+        // If you do not provide a crossOrigin option, it will skip CORS for manifest.
+        // Any invalid keyword or empty string defaults to `anonymous`
+        crossOrigin: `use-credentials`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `events`,
+        path: `${__dirname}/videos`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `gallery`,
+        path: `${__dirname}/gallery`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+      {
+        resolve: "gatsby-source-shopify",
+        options: {
+          // The domain name of your Shopify shop. This is required.
+          // Example: 'gatsby-source-shopify-test-shop' if your Shopify address is
+          // 'gatsby-source-shopify-test-shop.myshopify.com'.
+          // If you are running your shop on a custom domain, you need to use that
+          // as the shop name, without a trailing slash, for example:
+          // shopName: "gatsby-shop.com",
+          shopName: "salehogs",
+    
+          // An API access token to your Shopify shop. This is required.
+          // You can generate an access token in the "Manage private apps" section
+          // of your shop's Apps settings. In the Storefront API section, be sure
+          // to select "Allow this app to access your storefront data using the
+          // Storefront API".
+          // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
+          accessToken: "1f631cab70fb5bc6d016dd12c6fe7986",
+    
+          // Set the API version you want to use. For a list of available API versions,
+          // see: https://help.shopify.com/en/api/storefront-api/reference/queryroot
+          // Defaults to 2019-07
+          apiVersion: "2020-01",
+    
+          // Set verbose to true to display a verbose output on `npm run develop`
+          // or `npm run build`. This prints which nodes are being fetched and how
+          // much time was required to fetch and process the data.
+          // Defaults to true.
+          verbose: true,
+    
+          // Number of records to fetch on each request when building the cache
+          // at startup. If your application encounters timeout errors during
+          // startup, try decreasing this number.
+          paginationSize: 250,
+    
+          // List of collections you want to fetch.
+          // Possible values are: 'shop' and 'content'.
+          // Defaults to ['shop', 'content'].
+          includeCollections: ["shop", "content"],
+        },
+      },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: "myNodes",
+        imagePath: "imageUrl",
+        // OPTIONAL: Name you want to give new image field on the node.
+        // Defaults to 'localImage'.
+        name: "allItemImages",
+      },
+    },
+  ],
+}

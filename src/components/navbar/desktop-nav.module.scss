@@ -1,0 +1,35 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 6vw;
+  width: 100%;
+  background: none;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  background: #2f2f2f ;
+
+  a:not(.logo) {
+    color: #fff;
+    font-weight: lighter;
+    padding: 25px;
+    margin: 0 10px;
+    display: inline-block;
+  }
+
+  &--with-background {
+    background: #2f2f2f;
+  }
+}
+
+.active {
+  border-bottom: 2px solid #2980b9;
+}
+
+@media only screen and (max-width: 900px) {
+  .nav,
+  .nav-background {
+    display: none;
+  }
+}
