@@ -26,7 +26,7 @@ const Videos = () => {
   )
 }
 const GalleryPage = () => (
-  <Layout>
+  <Layout designNumber={4}>
     <Gallery />
     <div className='off-section'>
       <h1 className='section-header spacing'>Our Barbers</h1>

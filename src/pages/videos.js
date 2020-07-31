@@ -4,7 +4,7 @@ import Events from "../components/videos/videos"
 import PageLayout from "../components/layout/page-layout"
 
 const VideosPage = () => (
-  <Layout>
+  <Layout designNumber={1}>
     <PageLayout title="Our Videos">
         <Events />
     </PageLayout>

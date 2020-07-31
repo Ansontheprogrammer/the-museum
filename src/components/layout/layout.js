@@ -1,9 +1,23 @@
 import React from "react"
 import MobileNav from "../navbar/mobile-nav"
 import DesktopNav from "../navbar/desktop-nav"
-import FloatingBookButton from '../floating-book-button/floating-book-button'
-
 import "./layout.scss"
+
+const generateDesign = (numberOfDesigns) => {
+  const designJSX = [];
+  for(let i=0; i <= numberOfDesigns - 1; i++){
+    designJSX.push((
+      <>
+      <span className='circle first'/>
+      <span className='circle'/>
+      <span className='circle'/>
+      <span className='circle last'/>
+      {numberOfDesigns === 1 ? <div /> : <span className='line' /> }
+      </>
+    ))
+  }
+  return designJSX.map(jsx => jsx)
+}
 
 const Layout = props => {
   return (
@@ -11,12 +25,7 @@ const Layout = props => {
     <div className='desktop-layout'>
       <DesktopNav />
       <div className='side-page-design'>
-        <span className='circle first'/>
-        <span className='circle'/>
-        <span className='circle'/>
-        <span className='circle last'/>
-        <span className='line' />
-
+        {generateDesign(props.designNumber)}
       </div>
       <div className='desktop-children'>
         {props.children}
