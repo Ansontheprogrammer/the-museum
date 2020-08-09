@@ -8,6 +8,14 @@
 
 }
 
+.cart-container {
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  padding: 75px;
+}
+
 @media only screen and (max-width: 950px) {
   .productWrapper {
     grid-template-columns: none;

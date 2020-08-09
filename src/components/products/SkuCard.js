@@ -1,7 +1,6 @@
 import React from "react"
 import "./Card.styles.scss"
-import config from '../../../config/config'
-import StripeCheckout from './StripeCheckout'
+import {CartContext} from './cart.context'
 
 const formatPrice = (amount, currency) => {
   let price = amount
@@ -67,10 +66,10 @@ const SkuCard = class extends React.Component {
           </p>
           {Object.keys(product._variants).length > 1 && (
             <div className='variations'>
-              {Object.keys(product._variants).map(attribute => {
+              {Object.keys(product._variants).map((attribute, index) => {
                 return (
                   <>
-                <select className='shop-selection' onChange={this.toggleSelectedVariation(attribute).bind(this)}>
+                <select key={index} className='shop-selection' onChange={this.toggleSelectedVariation(attribute).bind(this)}>
                   <option defaultValue disabled>{attribute}</option>
                   {product._variants[attribute].map(option => {
                       return (
@@ -85,9 +84,10 @@ const SkuCard = class extends React.Component {
                 )
               })}
               
-              {product.variants.map(variation => {
+              {product.variants.map((variation, index) => {
                 return <div
                     className="variation-image"
+                    key={index}
                     style={{
                       backgroundImage: `url(${variation.image})`,
                     }}
@@ -97,8 +97,12 @@ const SkuCard = class extends React.Component {
           </div>
         )}
         </div>
-        
-        <StripeCheckout productName={this.props.product.title} productDescription={this.generateProductDescription()} amount={this.props.product._price}/>
+        <CartContext.Consumer>
+          { cart => {
+            return (
+          <button onClick={cart.addToCart(product)}>Add To Cart</button>
+          )}}
+        </CartContext.Consumer>
       </div>
     )
   }

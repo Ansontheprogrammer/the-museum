@@ -1,15 +1,16 @@
-import React, { Component } from "react"
+import React, { Component, useState } from "react"
 import { graphql, StaticQuery } from "gatsby"
 import SkuCard from "./SkuCard"
-
 import "./ProductWrapper.styles.scss"
-import config from "../../../config/config"
+
 
 class Skus extends Component {
   state = {
     stripe: null,
   }
-  componentDidMount() {
+
+  constructor(props){
+    super(props);
   }
 
   render() {

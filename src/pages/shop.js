@@ -4,7 +4,7 @@ import PageLayout from "../components/layout/page-layout"
 import Products from "../components/products/Skus"
 
 const Shop = () => (
-  <Layout designNumber={1}>
+  <Layout designNumber={1} addCart={true}>
     <PageLayout title="Our Products">
       <Products />
     </PageLayout>
