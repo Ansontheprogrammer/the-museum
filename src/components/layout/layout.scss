@@ -20,7 +20,9 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
+div {
+  margin:0
+}
 h1,
 h2,
 h3,
@@ -42,19 +44,7 @@ a {
   color: #999;
 }
 
-textarea,
-input[type="text"],
-input[type="password"] {
-  font-family: "Lato";
-  color: #fff;
-  font-size: 18px;
-  display: block;
-  border: none;
-  padding: 10px;
-  background: #333;
-  max-width: 500px;
-  width: 100%;
-}
+
 
 .btn,
 button {
@@ -273,4 +263,16 @@ button {
   .spacing {
     margin-bottom: 5vh;
   }
+}
+
+.sidebar-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 25px;
+  color: #fff;
+  background-color: #4a4a4a;
 }

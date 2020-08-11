@@ -31,6 +31,8 @@ class BarberCard extends Component {
       <div>
         <Segment>
           <img src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
+          {/* <img src={''}/>
+          <p>Barber description</p> */}
         </Segment>
       </div>
     )

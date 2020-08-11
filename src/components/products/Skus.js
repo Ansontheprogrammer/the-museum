@@ -80,7 +80,7 @@ class Skus extends Component {
               product.node._variants = mapVariations(product.node)
               return (
                 <div className="variations">
-                  <SkuCard key={i} product={product.node}/>
+                  <SkuCard key={i} product={product.node} displayAddToCart={this.props.displayAddToCartBtn}/>
                 </div>
               )
            })}

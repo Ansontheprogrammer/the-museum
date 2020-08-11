@@ -71,7 +71,9 @@
       margin-bottom: 30px;
       font-size: 40px;
     }
-  }
+    div .ui.segment {
+      max-width: 20px;
+    }
   .Gallery-text {
     height: 95vh;
     min-width: 100vw;
@@ -97,4 +99,5 @@
     min-height: 250px;
     max-height: 325px ;
   }
+}
 }

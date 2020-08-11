@@ -1,8 +1,8 @@
 import React from "react"
 import "./Card.styles.scss"
-import {CartContext} from './cart.context'
+import {CartContext} from '../../context/cart.context'
 
-const formatPrice = (amount, currency) => {
+export const formatPrice = (amount) => {
   let price = amount
   let numberFormat = new Intl.NumberFormat(["en-US"], {
     style: "currency",
@@ -64,45 +64,14 @@ const SkuCard = class extends React.Component {
           <p>
             {product.description || "No description available"}
           </p>
-          {Object.keys(product._variants).length > 1 && (
-            <div className='variations'>
-              {Object.keys(product._variants).map((attribute, index) => {
-                return (
-                  <>
-                <select key={index} className='shop-selection' onChange={this.toggleSelectedVariation(attribute).bind(this)}>
-                  <option defaultValue disabled>{attribute}</option>
-                  {product._variants[attribute].map(option => {
-                      return (
-                        <>
-                          <option className='variation-name'>{option}</option>
-                        </>
-                      )
-                    })
-                  }
-                </select>
-              </>
-                )
-              })}
-              
-              {product.variants.map((variation, index) => {
-                return <div
-                    className="variation-image"
-                    key={index}
-                    style={{
-                      backgroundImage: `url(${variation.image})`,
-                    }}
-                  />
-              }).slice(1)
-            }
-          </div>
-        )}
         </div>
-        <CartContext.Consumer>
+        
+        {this.props.displayAddToCart && <CartContext.Consumer>
           { cart => {
             return (
-          <button onClick={cart.addToCart(product)}>Add To Cart</button>
-          )}}
-        </CartContext.Consumer>
+              <button onClick={cart.addToCart(product)}>Add To Cart</button>
+            )}}
+        </CartContext.Consumer> }
       </div>
     )
   }
