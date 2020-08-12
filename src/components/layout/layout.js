@@ -44,24 +44,24 @@ class Layout extends React.Component{
       <CartContext.Consumer>
          {cart => (
           <>
-            {this.props.displayAddToCartBtn && cart && (
+            {cart && (
               <Cart quantity={cart.productsInCart.length}/>
             )}
             <DesktopNav />
             <div className={`desktop-layout ${!this.props.designNumber && 'display-column'}`}>
-              { this.props.designNumber ? (
+              {(
                 <>
                   <div className='side-page-design'>
                       {generateDesign(this.props.designNumber)}
                     </div>
                   <div className={'desktop-children'}>
-                    {this.props.displayAddToCartBtn && cart && (
+                    {cart && (
                         <SideBar showingCheckout={this.state.showCheckoutComponent} toggleCheckoutComponent={this.toggleCheckoutComponent} products={cart.productsInCart} />
                     )}
                     {this.props.children}
                   </div>
                 </>
-                ) : this.props.children  
+                )
             }
     
             </div>
