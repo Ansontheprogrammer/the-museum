@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn install
+  /usr/local/bin/node /usr/local/bin/yarn start
 
 PATH: 
   /Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/anson/.rvm/bin:/Users/anson/Library/Android/sdk/emulator:/Users/anson/Library/Android/sdk/tools:/Users/anson/Library/Android/sdk/tools/bin:/Users/anson/Library/Android/sdk/platform-tools:/Users/anson/Downloads/flutter/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: ENOSPC: no space left on device, copyfile '/usr/local/share/Library/Caches/Yarn/v4/npm-date-fns-2.15.0-424de6b3778e4e69d3ff27046ec136af58ae5d5f/node_modules/date-fns/esm/fp/getMonth/index.d.ts' -> '/Users/anson/Desktop/all-apps/the-museum/node_modules/date-fns/esm/fp/getMonth/index.d.ts'
+  Error: ENOSPC: no space left on device, write
 
 npm manifest: 
   {

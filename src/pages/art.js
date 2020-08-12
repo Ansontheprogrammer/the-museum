@@ -7,12 +7,10 @@ import SeaMossHeading from "../components/seamoss/seamossHeading"
 
 const Shop = () => (
   <Layout designNumber={0} displayAddToCartBtn={true} >
-    <PageLayout title="Sea Moss">
+    <PageLayout title="Art">
       <div>
         <SeaMossHeading />
-        <SeaMossVideos />
       </div>
-      <h1 style={{textAlign: 'center'}}>Seamoss Products</h1>
       <Products displayAddToCartBtn={true} />
     </PageLayout>
    </Layout> 

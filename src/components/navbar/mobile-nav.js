@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { FaHome, FaInfoCircle, FaVideo, FaTree} from "react-icons/fa"
+import { FaHome, FaPaintBrush, FaTree, FaCalendar} from "react-icons/fa"
 import { TiImageOutline, TiShoppingCart } from "react-icons/ti";
 
 import NavStyles from "./mobile-nav.module.scss"
@@ -11,11 +11,11 @@ const MobileNav = () => (
       <FaHome />
     </Link>
     <Link
-      to="/about/"
+      to="/art/"
       className={NavStyles.link}
       activeClassName={NavStyles.active}
     >
-      <FaInfoCircle />
+      <FaPaintBrush />
     </Link>
     <Link
       to="/shop/"
@@ -25,18 +25,18 @@ const MobileNav = () => (
       <TiShoppingCart />
     </Link>
     <Link
-      to="/videos/"
-      className={NavStyles.link}
-      activeClassName={NavStyles.active}
-    >
-      <FaVideo />
-    </Link>
-    <Link
-      to="/videos/"
+      to="/seamoss/"
       className={NavStyles.link}
       activeClassName={NavStyles.active}
     >
       <FaTree />
+    </Link>
+    <Link
+      to="/barbers/"
+      className={NavStyles.link}
+      activeClassName={NavStyles.active}
+    >
+      <FaCalendar />
     </Link>
   </nav>
 )
