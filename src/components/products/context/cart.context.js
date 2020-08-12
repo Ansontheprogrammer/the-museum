@@ -1,7 +1,4 @@
-import React, {useState} from "react"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import './cart.styles.scss'
+import React from "react"
 
 export const CartContext = React.createContext();
 
@@ -12,7 +9,7 @@ export class CartProvider extends React.Component {
   }
 
   state = {
-      productsInCart: ['test', 'test2'],
+      productsInCart: [],
   }
   
   addToCart(product){

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Layout from "../components/layout/layout"
 import Gallery from "../components/gallery/gallery"
-import Products from "../components/products/Skus"
+import Products from "../components/products/components/products"
 import VideosComponent from "../components/videos/videos"
 import { Menu, Segment, Grid, Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'

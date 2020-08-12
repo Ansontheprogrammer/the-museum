@@ -1,8 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import "./videos.scss"
-import "../products/Card.styles.scss"
-import '../products/ProductWrapper.styles.scss'
+import "../products/styles/Card.styles.scss"
+import '../products/styles/ProductWrapper.styles.scss'
 
 
 

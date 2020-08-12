@@ -2,7 +2,7 @@ import React from "react"
 import Layout from "../components/layout/layout"
 import PageLayout from "../components/layout/page-layout"
 
-import "./payment-form.styles.scss"
+import "../components/products/styles/payment-form.styles.scss"
 
 const loadSquareSdk = () => {
   return new Promise((resolve, reject) => {
@@ -157,7 +157,7 @@ export default class PaymentForm extends React.Component {
       <div className='form-wrapper'>
           <div id="sq-ccbox">
             <p>
-              <span>Enter Card Info Below </span>
+              <span style={{textAlign: 'center'}}>Enter Card Info Below </span>
               <span>
                 {this.state.cardBrand.toUpperCase()}
               </span>

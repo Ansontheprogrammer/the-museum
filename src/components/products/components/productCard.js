@@ -1,6 +1,6 @@
 import React from "react"
-import "./Card.styles.scss"
-import {CartContext} from '../../context/cart.context'
+import "../styles/Card.styles.scss"
+import {CartContext} from '../context/cart.context'
 
 export const formatPrice = (amount) => {
   let price = amount
@@ -66,12 +66,14 @@ const SkuCard = class extends React.Component {
           </p>
         </div>
         
-        {this.props.displayAddToCart && <CartContext.Consumer>
+        {this.props.displayAddToCart && (
+        <CartContext.Consumer>
           { cart => {
             return (
               <button onClick={cart.addToCart(product)}>Add To Cart</button>
             )}}
-        </CartContext.Consumer> }
+        </CartContext.Consumer> 
+        )}
       </div>
     )
   }
