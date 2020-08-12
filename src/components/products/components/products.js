@@ -4,7 +4,7 @@ import SkuCard from "../components/productCard"
 import "../styles/ProductWrapper.styles.scss"
 
 
-class Skus extends Component {
+class Products extends Component {
   state = {
     stripe: null,
   }
@@ -92,4 +92,4 @@ class Skus extends Component {
   }
 }
 
-export default Skus
+export default Products
