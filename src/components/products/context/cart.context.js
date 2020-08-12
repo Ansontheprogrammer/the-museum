@@ -41,7 +41,7 @@ render () {
   return (
       <CartContext.Provider value={{
           ...this.cart,
-           productsInCart: this.state.productsInCart,
+           productsInCart: this.state.productsInCart ? this.state.productsInCart : [],
       }}>
           {this.props.children}
       </CartContext.Provider>

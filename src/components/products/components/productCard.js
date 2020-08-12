@@ -66,9 +66,10 @@ const SkuCard = class extends React.Component {
           </p>
         </div>
         
-        {this.props.displayAddToCart && (
+        {this.props.displayAddToCart &&  (
         <CartContext.Consumer>
           { cart => {
+            if(!cart) return <p>Error loading Cart</p>
             return (
               <button onClick={cart.addToCart(product)}>Add To Cart</button>
             )}}
