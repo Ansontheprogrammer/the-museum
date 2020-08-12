@@ -1,7 +1,13 @@
-import React from "react"
+import React, {useState} from "react"
+import { Link } from "gatsby"
 import MobileNav from "../navbar/mobile-nav"
 import DesktopNav from "../navbar/desktop-nav"
 import "./layout.scss"
+import {CartContext} from "../products/context/cart.context"
+import {formatPrice} from "../products/components/productCard"
+import PaymentForm from "../../pages/checkout"
+import { Cart } from "../products/components/cart"
+import { SideBar } from "../products/components/sidebar"
 
 const generateDesign = (numberOfDesigns) => {
   const designJSX = [];
@@ -19,21 +25,54 @@ const generateDesign = (numberOfDesigns) => {
   return designJSX.map(jsx => jsx)
 }
 
-const Layout = props => {
-  return (
-    <>
-    <div className='desktop-layout'>
-      <DesktopNav />
-      <div className='side-page-design'>
-        {generateDesign(props.designNumber)}
-      </div>
-      <div className='desktop-children'>
-        {props.children}
-      </div>
-    </div>
-      <MobileNav />
-    </>
-  )
+class Layout extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      showCheckoutComponent: false
+    }
+    this.toggleCheckoutComponent =  this.toggleCheckoutComponent.bind(this)
+  }
+
+  toggleCheckoutComponent(){
+    this.setState({
+      showCheckoutComponent: !this.state.showCheckoutComponent
+    })
+  }
+  render(){
+    return (
+      <CartContext.Consumer>
+         {cart => (
+          <>
+            {this.props.displayAddToCartBtn && (
+              <Cart quantity={cart.productsInCart.length}/>
+            )}
+            <DesktopNav />
+            <div className={`desktop-layout ${!this.props.designNumber && 'display-column'}`}>
+              { this.props.designNumber ? (
+                <>
+                  <div className='side-page-design'>
+                      {generateDesign(this.props.designNumber)}
+                    </div>
+                  <div className={'desktop-children'}>
+                    {this.props.displayAddToCartBtn && (
+                        <SideBar showingCheckout={this.state.showCheckoutComponent} toggleCheckoutComponent={this.toggleCheckoutComponent} products={cart.productsInCart} />
+                    )}
+                    {this.props.children}
+                  </div>
+                </>
+                ) : this.props.children  
+            }
+    
+            </div>
+            <MobileNav />
+          </>
+        )
+    }      
+       </CartContext.Consumer>
+    )
+  }
 }
 
+Layout.contextType = CartContext;
 export default Layout

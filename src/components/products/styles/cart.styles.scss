@@ -1,0 +1,19 @@
+.cart {   
+    .cart-container {
+        display: flex;
+        flex-direction: row;
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 75px;
+        margin-right: 1.5vw;
+        margin-top: 2vw;
+    }
+  
+    p {
+        padding-left: 4px;
+    }
+    svg {
+        margin-top: 10px;
+    }
+}
