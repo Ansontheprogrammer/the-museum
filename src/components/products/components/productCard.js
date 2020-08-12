@@ -66,12 +66,12 @@ const SkuCard = class extends React.Component {
           </p>
         </div>
         
-        {this.props.displayAddToCart &&  (
+        {(
         <CartContext.Consumer>
           { cart => {
-            if(!cart) return <p>Error loading Cart</p>
+            if(!cart) return 
             return (
-              <button onClick={cart.addToCart(product)}>Add To Cart</button>
+              <button className='cart-btn' onClick={cart.addToCart(product)}>Add To Cart</button>
             )}}
         </CartContext.Consumer> 
         )}

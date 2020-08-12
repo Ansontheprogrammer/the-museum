@@ -23,6 +23,14 @@ collections:
       - { name: bio, label: Bio, widget: markdown }
       - { name: pics, label: Pics, widget: image}
       - { name: links, label: Links}
+  - label: Seamoss
+    name: clients
+    folder: seamoss_clients
+    create: true
+    fields:
+      - { name: name, label: Name }
+      - { name: bio, label: Bio, widget: markdown }
+      - { name: links, label: Links}
   - label: "Gallery Image"
     name: gallery
     folder: gallery

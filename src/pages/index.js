@@ -39,7 +39,7 @@ class BarberCard extends Component {
   }
 }
 
-class BarberComponent extends Component {
+export class SelectorMenu extends Component {
   state = { activeItem: 'bio' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -123,7 +123,7 @@ const GalleryPage = () => {
     <Gallery />
     <div className='off-section'>
       <h1 className='section-header spacing'>Our Barbers</h1>
-      <div className='section-content'><DropdownMenu/><BarberComponent/></div>
+      <div className='section-content'><DropdownMenu/><SelectorMenu/></div>
     </div>
     <SeaMoss/>
     <Videos />

@@ -28,7 +28,7 @@ h4,
 h5,
 h6 {
   font-family: "Ubuntu";
-  color: #fff;
+  color: #2f2f2f;
 }
 
 p,
@@ -48,6 +48,7 @@ a {
 button {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 2vh;
   font-size: 13px;
   text-align: center;
   color: #333;
@@ -255,6 +256,8 @@ button {
   .section-header {
     font-size: 40px;
     text-align: center;
+    max-width: revert;
+    padding-left: revert;
   }
 
   .section-subtitle {
@@ -272,9 +275,13 @@ button {
   top: 0;
   right: 0;
   z-index: 1000;
-  margin-top: 15px;
+  margin-top: 5vh;
   margin-bottom: 15px;
   margin-right: 25px;
   color: #fff;
   background-color: #4a4a4a;
+}
+
+.desktop-children {
+  min-width: 90%;
 }

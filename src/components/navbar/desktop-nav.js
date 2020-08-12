@@ -13,19 +13,19 @@ const DesktopNav = () => (
       <Link to="/shop/" activeClassName={DesktopStyles.active}>
         Shop
       </Link>
-      <Link to="/shop/" activeClassName={DesktopStyles.active}>
+      <Link to="/art/" activeClassName={DesktopStyles.active}>
         Art
       </Link>
     </div>
 
     <div>
-      <Link to="/shop/" activeClassName={DesktopStyles.active}>
+      <Link to="/seamoss/" activeClassName={DesktopStyles.active}>
         Sea Moss
       </Link>
       <Link to="/videos/" activeClassName={DesktopStyles.active}>
         Videos
       </Link>
-      <Link to="/videos/" activeClassName={DesktopStyles.active}>
+      <Link to="/barbers/" activeClassName={DesktopStyles.active}>
         Barbers
       </Link>
 
