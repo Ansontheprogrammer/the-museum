@@ -14,13 +14,6 @@ collections:
       - { name: title, label: Title }
       - { name: description, label: Description, widget: markdown }
       - { name: url, label: Url}
-  - label: SeaMoss
-    name: seamoss clients
-    folder: seamoss
-    create: true
-    fields:
-      - { name: name, label: Name }
-      - { name: description, label: Description, widget: markdown }
   - label: Barbers
     name: barbers
     folder: barbers
