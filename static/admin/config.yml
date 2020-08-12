@@ -32,4 +32,11 @@ collections:
     fields:
       - { label: Image, name: image, widget: image }
       - { label: "Image Title", name: imageTitle, widget: string }
+  - label: Page Content
+    name: content
+    folder: content
+    create: true
+    fields:
+      - { name: paragraphOne, label: Paragraph One }
+      - { name: paragraphTwo, label: Paragraph Two }
   
