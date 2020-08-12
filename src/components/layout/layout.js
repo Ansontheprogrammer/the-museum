@@ -44,7 +44,7 @@ class Layout extends React.Component{
       <CartContext.Consumer>
          {cart => (
           <>
-            {this.props.displayAddToCartBtn && (
+            {this.props.displayAddToCartBtn && cart && (
               <Cart quantity={cart.productsInCart.length}/>
             )}
             <DesktopNav />
@@ -55,7 +55,7 @@ class Layout extends React.Component{
                       {generateDesign(this.props.designNumber)}
                     </div>
                   <div className={'desktop-children'}>
-                    {this.props.displayAddToCartBtn && (
+                    {this.props.displayAddToCartBtn && cart && (
                         <SideBar showingCheckout={this.state.showCheckoutComponent} toggleCheckoutComponent={this.toggleCheckoutComponent} products={cart.productsInCart} />
                     )}
                     {this.props.children}
