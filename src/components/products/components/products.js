@@ -1,10 +1,10 @@
 import React, { Component, useState } from "react"
 import { graphql, StaticQuery } from "gatsby"
-import SkuCard from "./SkuCard"
-import "./ProductWrapper.styles.scss"
+import SkuCard from "../components/productCard"
+import "../styles/ProductWrapper.styles.scss"
 
 
-class Skus extends Component {
+class Products extends Component {
   state = {
     stripe: null,
   }
@@ -80,7 +80,7 @@ class Skus extends Component {
               product.node._variants = mapVariations(product.node)
               return (
                 <div className="variations">
-                  <SkuCard key={i} product={product.node}/>
+                  <SkuCard key={i} product={product.node} displayAddToCart={this.props.displayAddToCartBtn}/>
                 </div>
               )
            })}
@@ -92,4 +92,4 @@ class Skus extends Component {
   }
 }
 
-export default Skus
+export default Products

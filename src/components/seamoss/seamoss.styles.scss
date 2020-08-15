@@ -1,0 +1,25 @@
+.seamoss-heading {
+    padding: 25px;
+    
+    
+
+    h3 {
+        margin-top: 10px;
+        opacity: 75%;
+    }
+    
+
+    @media only screen and (max-width: 900px) {
+        text-align: center;
+        margin-top: 2vh;
+        h1 {
+            text-align: center;
+        }
+        p {
+            opacity: 80%;
+            line-height: 1.5em;
+            text-align: center;
+        }
+    }
+       
+}

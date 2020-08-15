@@ -1,6 +1,6 @@
 ---
 url: https://www.youtube.com/embed/Nj2U6rhnucI
-title: '"Developing the Mind for you"'
+title: 'Changing times'
 description: Basic video by Tim Cast
 
 ---

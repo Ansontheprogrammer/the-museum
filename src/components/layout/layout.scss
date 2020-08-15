@@ -28,7 +28,7 @@ h4,
 h5,
 h6 {
   font-family: "Ubuntu";
-  color: #fff;
+  color: #2f2f2f;
 }
 
 p,
@@ -42,24 +42,13 @@ a {
   color: #999;
 }
 
-textarea,
-input[type="text"],
-input[type="password"] {
-  font-family: "Lato";
-  color: #fff;
-  font-size: 18px;
-  display: block;
-  border: none;
-  padding: 10px;
-  background: #333;
-  max-width: 500px;
-  width: 100%;
-}
+
 
 .btn,
 button {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 2vh;
   font-size: 13px;
   text-align: center;
   color: #333;
@@ -194,8 +183,27 @@ button {
     margin-bottom: 10vh;
     color: #bbb;
   }
+
+  
 }
 
+@media only screen and (max-width: 900px) {
+  .section {
+    padding: 25px
+  }
+
+  .section-description {
+    padding-left: revert !important
+  }
+
+  .section-subtitle {
+    font-size: 24px !important
+  }
+}
+
+.section-content {
+  padding: 0 50px 50px;
+}
 .section-header {
   color: #2F2E2E;
   padding-left: 6vw;
@@ -219,15 +227,19 @@ button {
 .section-description {
   color: #2F2E2E;
   padding-left: 6vw;
-  padding-bottom: 5vh;
+  padding-bottom: 2vh;
   max-width: 800px;
   width: 100%;
-  font-size: 20px;
+  font-size: 18px;
   font-family: "Lato";
 }
 
 .spacing {
   margin-bottom: 15vh;
+}
+
+.display-column {
+  flex-direction: column;
 }
 
 .off-section {
@@ -239,6 +251,7 @@ button {
 .section {
   padding-bottom: 10vh;
   padding-top: 15vh;
+  display: block;
 }
 
 .section-button {
@@ -247,6 +260,8 @@ button {
   width: 50%;
   margin-top: 5vh;
   margin-bottom: 15vh;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -260,6 +275,8 @@ button {
   .section-header {
     font-size: 40px;
     text-align: center;
+    max-width: revert;
+    padding-left: revert;
   }
 
   .section-subtitle {
@@ -270,4 +287,20 @@ button {
   .spacing {
     margin-bottom: 5vh;
   }
+}
+
+.sidebar-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  margin-top: 2.5vh;
+  margin-bottom: 15px;
+  margin-right: 25px;
+  color: #fff;
+  background-color: #4a4a4a;
+}
+
+.desktop-children {
+  min-width: 90%;
 }

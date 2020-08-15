@@ -5,6 +5,19 @@
     width: 100%;
     font-weight: normal;
     font-family: "Lato";
+    color: #eee;
+
+    
+  }
+  .section-header {
+    color: #2f2f2f;
+  }
+  h2 {
+    color: #eee;
+  }
+
+  h3 {
+    color: #eee;
   }
 
   .description {
@@ -70,8 +83,11 @@
     h1 {
       margin-bottom: 30px;
       font-size: 40px;
+      max-width: revert;
     }
-  }
+    div .ui.segment {
+      max-width: 20px;
+    }
   .Gallery-text {
     height: 95vh;
     min-width: 100vw;
@@ -88,13 +104,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: revert;
   }
 
   .Gallery-image {
     flex: none;
-    width: 50%;
+    width: 75%;
     margin: 10px 0;
     min-height: 250px;
     max-height: 325px ;
   }
+}
 }

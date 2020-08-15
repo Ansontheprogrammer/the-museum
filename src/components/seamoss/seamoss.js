@@ -6,9 +6,9 @@ import '../products/styles/ProductWrapper.styles.scss'
 
 
 
-const VideosComponent = () => {
+const SeaMoss = () => {
   const data = useStaticQuery(graphql`
-    query getPosts {
+    query getSeaMossContent {
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/(videos)/" } }
       ) {
@@ -27,7 +27,7 @@ const VideosComponent = () => {
   `)
 
 
-  const eventPosts = data.allMarkdownRemark.edges.map((edge, index) => {
+  const seaMossVideos = data.allMarkdownRemark.edges.map((edge, index) => {
     const { title, description, url } = edge.node.frontmatter 
 
     return (
@@ -59,9 +59,9 @@ const VideosComponent = () => {
 
   return (
     <div className='productWrapper'>
-       {eventPosts}
+       {seaMossVideos}
     </div>
   )
 }
 
-export default VideosComponent
+export default SeaMoss

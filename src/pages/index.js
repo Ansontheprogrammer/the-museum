@@ -1,8 +1,16 @@
-import React from "react"
+import React, { Component } from "react"
 import Layout from "../components/layout/layout"
 import Gallery from "../components/gallery/gallery"
-import Products from "../components/products/Skus"
+import Products from "../components/products/components/products"
 import VideosComponent from "../components/videos/videos"
+import { Menu, Segment, Grid, Dropdown } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
+import GalleryImages from "../components/gallery/gallery-images"
+import Barbers from "../components/barbers/wrapper"
+
+export class SelectorMenu extends Component {
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+}
 
 const SeaMoss = () => (
   <div className='section'>
@@ -25,12 +33,13 @@ const Videos = () => {
     </div>
   )
 }
-const GalleryPage = () => (
-  <Layout designNumber={4}>
+const GalleryPage = () => {
+  return (
+  <Layout designNumber={3}>
     <Gallery />
     <div className='off-section'>
       <h1 className='section-header spacing'>Our Barbers</h1>
-      <div className='section-content'><Products/></div>
+    <div className='section-content'><Barbers/></div>
     </div>
     <SeaMoss/>
     <Videos />
@@ -44,7 +53,7 @@ const GalleryPage = () => (
       <h1 className='section-header spacing'>Our Products</h1>
       <div className='section-content'><Products/></div>
     </div>
-  </Layout>
-)
-
+  </Layout> 
+    )
+  } 
 export default GalleryPage

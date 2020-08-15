@@ -14,7 +14,23 @@ collections:
       - { name: title, label: Title }
       - { name: description, label: Description, widget: markdown }
       - { name: url, label: Url}
-  # FIRST GALLERY IMAGE TEST
+  - label: Barbers
+    name: barbers
+    folder: barbers
+    create: true
+    fields:
+      - { name: name, label: Name }
+      - { name: bio, label: Bio, widget: markdown }
+      - { name: pics, label: Pics, widget: image}
+      - { name: links, label: Links}
+  - label: Seamoss
+    name: clients
+    folder: seamoss_clients
+    create: true
+    fields:
+      - { name: name, label: Name }
+      - { name: bio, label: Bio, widget: markdown }
+      - { name: links, label: Links}
   - label: "Gallery Image"
     name: gallery
     folder: gallery
@@ -24,4 +40,11 @@ collections:
     fields:
       - { label: Image, name: image, widget: image }
       - { label: "Image Title", name: imageTitle, widget: string }
+  - label: Page Content
+    name: content
+    folder: content
+    create: true
+    fields:
+      - { name: paragraphOne, label: Paragraph One }
+      - { name: paragraphTwo, label: Paragraph Two }
   

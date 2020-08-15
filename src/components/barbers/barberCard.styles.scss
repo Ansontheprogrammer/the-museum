@@ -1,0 +1,87 @@
+.barberCardStyles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  max-height: 500px;
+  color: "#333";
+  min-width: 300px;
+  
+  .image-wrapper {
+   display: block;
+  }
+  .image {
+    min-height: 150px;
+    min-width: 100px;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    background-size: cover;
+    border-radius: 50%;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 5vh;
+  }
+  .title {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+
+    h4 {
+      font-size: 24px;
+      font-weight: lighter;
+      font-family: 'Lato';
+    }
+  }
+
+  p {
+    text-align: left;
+    color: #555;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  select {
+    background-color: #fff;
+  }
+  
+  .text {
+    margin-bottom: auto; 
+    margin-top: 10px;
+  }
+
+  .link-btn {
+    margin-top: 30px
+  }
+
+  a {
+    width: 100%;
+    font-size: 13px;
+    text-align: center;
+    color: #333;
+    outline: none;
+    padding: 12px;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 6px;
+    letter-spacing: 1.5px;
+    transition: background-color 0.3s;
+
+     &:hover {
+      background-color: darken(rgb(104, 232, 255), 10%);
+      color: white;
+    }
+  }
+}
+
+// .cart-btn {
+//   margin-top: 5vh;
+// }
