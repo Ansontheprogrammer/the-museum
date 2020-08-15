@@ -183,6 +183,22 @@ button {
     margin-bottom: 10vh;
     color: #bbb;
   }
+
+  
+}
+
+@media only screen and (max-width: 900px) {
+  .section {
+    padding: 25px
+  }
+
+  .section-description {
+    padding-left: revert !important
+  }
+
+  .section-subtitle {
+    font-size: 24px !important
+  }
 }
 
 .section-content {
@@ -211,10 +227,10 @@ button {
 .section-description {
   color: #2F2E2E;
   padding-left: 6vw;
-  padding-bottom: 5vh;
+  padding-bottom: 2vh;
   max-width: 800px;
   width: 100%;
-  font-size: 20px;
+  font-size: 18px;
   font-family: "Lato";
 }
 
@@ -235,6 +251,7 @@ button {
 .section {
   padding-bottom: 10vh;
   padding-top: 15vh;
+  display: block;
 }
 
 .section-button {
@@ -243,6 +260,8 @@ button {
   width: 50%;
   margin-top: 5vh;
   margin-bottom: 15vh;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -275,7 +294,7 @@ button {
   top: 0;
   right: 0;
   z-index: 1000;
-  margin-top: 5vh;
+  margin-top: 2.5vh;
   margin-bottom: 15px;
   margin-right: 25px;
   color: #fff;

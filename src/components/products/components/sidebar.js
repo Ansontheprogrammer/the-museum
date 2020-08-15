@@ -18,6 +18,9 @@ export const SideBar = (props) => {
             visibility: "hidden",
             transition: "opacity .3s ease-out, visibility .3s ease-out",
             backgroundColor: "rgba(0,0,0,.3)"
+        },
+        sidebar: {
+          background: "white", 
         }
     }
 
@@ -33,6 +36,9 @@ export const SideBar = (props) => {
             visibility: "revert",
             transition: "opacity .3s ease-out, visibility .3s ease-out",
             backgroundColor: "rgba(0,0,0,.3)"
+        },
+        sidebar: {
+          background: "black", 
         }
     }
 
@@ -69,7 +75,8 @@ export const SideBar = (props) => {
         onSetOpen={setSidebarOpen}
         styles={{ 
             sidebar: { 
-                background: "white", 
+                ...getOverlayStyles().sidebar,
+                background: 'white',
                 minWidth: '50%', 
                 zIndex: 100,
                 position: "fixed",
