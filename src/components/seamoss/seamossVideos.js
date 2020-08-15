@@ -25,19 +25,15 @@ const SeaMossVideos = () => {
     }
   `)
 
-  let client = {
-    name: '',
-    bio: '',
-    links: ''
-  }
+  let clients = []
 
   const seaMossVideos = data.allMarkdownRemark.edges
-  .filter((edge) => edge.node.frontmatter.name)
+  .filter((edge) => !!edge.node.frontmatter.bio)
   .map((edge, index) => {
     const { name, bio, links } = edge.node.frontmatter 
-    if(!client.name) client = { name, bio, links }
+    clients.push({name, bio, links})
 
-    return (
+    return links.map((link, index) => (
       <div 
         key={name + index}
         className=""
@@ -49,31 +45,36 @@ const SeaMossVideos = () => {
         webkitallowfullscreen="true"
         mozallowfullscreen="true"
         allowFullScreen
-        width="200"
-        height="115"
+        width="250"
+        height="150"
         // Requires youtube embed link
         src={links ? links[index] : ''}
         title={name}
       />
       </div>
-    )
+    ))
   }).map(post => post)
 
-  const clientJSX = (
+  const clientJSX = clients.map(client => (
     <div>
       <div className="text video-text">
         <h3 className="title video-title">{client.name}</h3>
         <p className='video-description'>{client.bio}</p>
       </div>
     </div>
-  )
+  )).map(jsx => jsx)
 
   return (
     <div className='seamoss-heading' >
       <h1>Clients</h1>
-      {clientJSX}
-      <div className='spacing'></div>
-      {seaMossVideos}
+      {clientJSX.map((client, index) => (
+        <div className="spacing">
+          {client}
+            <div className='spacing'></div>
+          {seaMossVideos[index]}
+        </div>
+      ))
+    }
     </div>
   )
 }

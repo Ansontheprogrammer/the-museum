@@ -6,19 +6,52 @@
   z-index: 1100;
   width: 100%;
   margin: 0 auto;
+  padding-left: 10px;
 }
 
 .menu {
   max-width: 100px;
   margin-top: 5%;
+  margin-bottom: 2vh;
   margin-right: 10px;
   display: flex;
-  align-items: center;
+}
+
+.vendor {
+  margin-left: 10vw;
+}
+
+.spacer {
+  margin-top: 5vh;
+}
+
+.shop-wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
 @media only screen and (max-width: 950px) {
   .productWrapper {
     grid-template-columns: none;
     justify-content: center;
+  }
+
+  .vendor {
+    margin-left: 10vw;
+    margin-top: 3vh;
+  }
+
+  .shop-wrapper {
+    margin-top: -20vh;
+    display: inherit;
+    flex-direction: inherit;
+  }
+
+  .column {
+    position: fixed;
+    margin-bottom: 8vh;
+    margin-left: 2vw;
+    bottom:0;
+    left:0;
   }
 }

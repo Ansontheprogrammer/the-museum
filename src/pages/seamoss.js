@@ -12,7 +12,7 @@ const Shop = () => (
         <SeaMossHeading />
         <SeaMossVideos />
       </div>
-      <h1 style={{textAlign: 'center'}}>Seamoss Products</h1>
+      <h1>Seamoss Products</h1>
       <Products displayAddToCartBtn={true} />
     </PageLayout>
    </Layout> 
