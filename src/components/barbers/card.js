@@ -1,7 +1,7 @@
 import React from "react"
 import "./barberCard.styles.scss"
 
-class BarberCard extends React.Component {
+export class BarberCard extends React.Component {
   constructor(props){
     super(props)
   }
@@ -9,7 +9,7 @@ class BarberCard extends React.Component {
   render() {
     const barber = this.props.barber
     return (
-      <div className="cardStyles">
+      <div className="barberCardStyles">
         <div>
           <div className='image-wrapper'>
             <div
@@ -25,11 +25,14 @@ class BarberCard extends React.Component {
             <h4 style={{ color: "#333" }}>{barber.name}</h4>
           </div>
           <p>
-            {barber.description}
+            {barber.bio}
           </p>
+          <ul>
+              {barber.links.map(link => <li className='link-btn'><a href={'https://' + link}>{link}</a></li>)}
+          </ul>
         </div>
         <a>
-          <button className='cart-btn'>Book</button>
+          Book
         </a> 
       </div>
     )
