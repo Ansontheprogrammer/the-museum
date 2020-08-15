@@ -29,9 +29,15 @@ class Layout extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      showCheckoutComponent: false
+      showCheckoutComponent: false,
+      showCart: this.props.onHomePage ? false : true
     }
     this.toggleCheckoutComponent =  this.toggleCheckoutComponent.bind(this)
+    setTimeout(() => {
+      this.setState({
+        showCart: true
+      })
+    }, 2000)
   }
 
   toggleCheckoutComponent(){
@@ -44,7 +50,7 @@ class Layout extends React.Component{
       <CartContext.Consumer>
          {cart => (
           <>
-            {cart && (
+            {cart && this.state.showCart && (
               <Cart quantity={cart.productsInCart.length}/>
             )}
             <DesktopNav />

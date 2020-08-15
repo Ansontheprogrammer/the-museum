@@ -35,7 +35,7 @@ const Videos = () => {
 }
 const GalleryPage = () => {
   return (
-  <Layout designNumber={3}>
+  <Layout designNumber={3} onHomePage={true}>
     <Gallery />
     <div className='off-section'>
       <h1 className='section-header spacing'>Our Barbers</h1>
