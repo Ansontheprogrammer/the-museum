@@ -39,11 +39,7 @@ const GalleryPage = () => {
     <Gallery />
     <div className='off-section'>
       <h1 className='section-header spacing'>Our Barbers</h1>
-<<<<<<< HEAD
     <div className='section-content'><Barbers/></div>
-=======
-      <div className='section-content'><DropdownMenu/><SelectorMenu/></div>
->>>>>>> b0973c1a38cf81ad5855bf4b221e980c115f9bd4
     </div>
     <SeaMoss/>
     <Videos />
