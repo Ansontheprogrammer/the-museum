@@ -45,6 +45,7 @@ collections:
     folder: content
     create: true
     fields:
+      - { name: page, label: Page Name }
       - { name: paragraphOne, label: Paragraph One }
       - { name: paragraphTwo, label: Paragraph Two }
   
