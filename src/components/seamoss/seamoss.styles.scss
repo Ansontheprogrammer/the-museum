@@ -1,8 +1,6 @@
 .seamoss-heading {
     padding: 25px;
     
-    
-
     h3 {
         margin-top: 10px;
         opacity: 75%;
@@ -20,6 +18,17 @@
             line-height: 1.5em;
             text-align: center;
         }
-    }
-       
+    }  
 }
+
+.clients {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+@media only screen and (max-width: 900px) {
+    .clients {
+        flex-direction: column;
+    }
+}  
