@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import './seamoss.styles.scss'
+import './art.styles.scss'
 
 
 const ArtHeroSection = () => {
