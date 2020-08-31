@@ -3,14 +3,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
 
 @font-face {
-  font-family: "starbricksregular";
-  src: url("../../fonts/starbricks.woff") format("woff");
+  font-family: "greatvibes";
+  src: url("../../fonts/greatvibes.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: "Lato";
+  font-family: "lato" !important;
   font-weight: 100;
   background: #f5f5f5;
 }
@@ -27,10 +27,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Ubuntu";
+  font-family: "Ubuntu" !important;
   color: #2f2f2f;
 }
 
+h1,
+h2 {
+  font-family: "greatvibes" !important;
+}
 p,
 label {
   color: #999;
@@ -213,7 +217,6 @@ button {
   width: 100%;
   font-size: 60px;
   font-weight: normal;
-  font-family: "Lato";
 }
 
 .section-subtitle {
@@ -231,7 +234,6 @@ button {
   max-width: 800px;
   width: 100%;
   font-size: 18px;
-  font-family: "Lato";
 }
 
 .spacing {

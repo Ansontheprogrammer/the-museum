@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import Logo from "../../images/zooty-logo.svg"
+import Logo from "../../images/logo.png"
 
 import DesktopStyles from "./desktop-nav.module.scss"
 

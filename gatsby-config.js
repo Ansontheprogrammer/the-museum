@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: "The Museum",
     author: "AE Inc",
-    siteUrl: "https://zootythebarber.com",
+    siteUrl: "https://the1museum.com",
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -25,7 +25,7 @@ module.exports = {
         background_color: "#fff",
         theme_color: "#fff``",
         display: "standalone",
-        icon: "src/images/zooty-logo.svg", // This path is relative to the root of the site.
+        icon: "src/images/logo.png", // This path is relative to the root of the site.
         crossOrigin: `use-credentials`,
       },
     },
