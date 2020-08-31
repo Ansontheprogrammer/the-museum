@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-Hr
 export const Hero = props => ( 
     <section>
         <div className='container'>
