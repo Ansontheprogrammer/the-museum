@@ -11,5 +11,5 @@ export const Container = styled.section`
     @media only screen and (max-width: 600px) {
         flex-direction: column;
         text-align: center;
-      }
+    }
 `

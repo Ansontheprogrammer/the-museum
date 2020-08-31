@@ -27,7 +27,6 @@ const AboutSection = () => {
         className="About-img"
       ></BackgroundImage> */}
       <div className="About-text">
-        <h2 className="custom-font">About Us</h2>
         <p>
           ​Born in this industry, literally learning from the floor up as a
           young child sweeping hair in his uncle's shop, Zooty the Barber has

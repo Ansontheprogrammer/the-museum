@@ -11,6 +11,9 @@ const HeroWrapper = styled.div`
     background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(43,43,43,.75))),url("https://res.cloudinary.com/dhgnvzmi3/image/upload/v1598888656/IMG_3049_d12gio.jpg");
     background-size: cover;
     color: #fff;
+    @media only screen and (max-width: 600px) {
+        padding-left: 0vw;
+    }
     h1 {
         max-width: 700px;
         font-size: 60px;
