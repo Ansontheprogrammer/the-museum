@@ -7,6 +7,7 @@ import { Menu, Segment, Grid, Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import GalleryImages from "../components/gallery/gallery-images"
 import Barbers from "../components/barbers/wrapper"
+import { Hero } from "../components/hero/hero"
 
 export class SelectorMenu extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -35,7 +36,13 @@ const Videos = () => {
 }
 const GalleryPage = () => {
   return (
-  <Layout designNumber={3} onHomePage={true}>
+  <Layout 
+    sidePageDesign={true} 
+    useCart={true}
+    sidePageDesignNumber={4}
+    sideBar={true}
+  >
+    <Hero/>
     <Gallery />
     <div className='off-section'>
       <h1 className='section-header spacing'>Our Barbers</h1>
