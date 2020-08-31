@@ -1,65 +1,9 @@
-.Gallery {
-  h1 {
-    max-width: 700px;
-    font-size: 60px;
-    width: 100%;
-    font-weight: normal;
-    color: #eee;
-
-    
-  }
-  .section-header {
-    color: #2f2f2f;
-  }
-  h2 {
-    color: #eee;
-  }
-
-  h3 {
-    color: #eee;
-  }
-
-  .description {
-    margin-top: 25vh;
-    margin-bottom: 1vh;
-    font-weight: lighter;
-    font-family: "Lato";
-  }
-
-  .btn {
-    display: inline-block;
-    cursor: pointer;
-    padding: 15px 30px;
-    font-weight: bold;
-    background: #c03a2b00;
-    border: 1px solid #fff;
-    color: #fff;
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 14px;
-    &:disabled {
-      opacity: 0.75;
-      filter: grayscale(50%);
-    }
-  }
-}
 
 .Gallery-section {
   display: flex;
   flex-direction: row;
   margin-top: 15vh;
   margin-bottom: 25vh;
-}
-
-.Gallery-text {
-  height: 100vh;
-  min-width: 94vw;
-  display: flex;
-  padding-left: 7vw;
-  padding-top: 25vh;
-  background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(43,43,43,.75))),url("../../images/museum-wall.jpeg");
-  background-size: cover;
-  color: #fff;
 }
 
 .Gallery-images {
@@ -78,19 +22,6 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .Gallery {
-    h1 {
-      margin-bottom: 30px;
-      font-size: 40px;
-      max-width: revert;
-    }
-    div .ui.segment {
-      max-width: 20px;
-    }
-  .Gallery-text {
-    height: 95vh;
-    min-width: 100vw;
-  }
 
   .Gallery-section {
     display: flex;

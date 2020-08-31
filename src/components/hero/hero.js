@@ -1,10 +1,44 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { Section, Container } from '../typographics'
+
+const HeroWrapper = styled.div`
+    height: 100vh;
+    width: 100%;
+    padding-left: 7vw;
+    padding-top: 25vh;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(43,43,43,.75))),url("https://res.cloudinary.com/dhgnvzmi3/image/upload/v1598888656/IMG_3049_d12gio.jpg");
+    background-size: cover;
+    color: #fff;
+    h1 {
+        max-width: 700px;
+        font-size: 60px;
+        width: 100%;
+        font-weight: normal;
+        color: #eee;      
+    }
+
+    h2 {
+        color: #eee;
+    }
+
+    h3 {
+        color: #eee;
+        margin-bottom: 25px;
+    }
+    .description {
+        margin-top: 20vh;
+        margin-bottom: 7.5vh;
+        font-weight: lighter;
+        font-family: "Lato";
+    }
+`
 
 export const Hero = props => ( 
-    <section>
-        <div className='container'>
-          {props.content}
+    <Section>
+        <Container>
+          <HeroWrapper>
             <h2>{props.smallHeading}</h2>
             <h1>{props.heading}</h1>
             <h3 className="description">{props.subtitle}</h3>
@@ -14,8 +48,9 @@ export const Hero = props => (
             >
                 {props.buttonText}
             </a>
-        </div>
-    </section>
+         </HeroWrapper>
+        </Container>
+    </Section>
 )
 
 Hero.defaultProps = {

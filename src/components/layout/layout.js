@@ -61,7 +61,7 @@ class Layout extends React.Component{
               <Cart quantity={cart.productsInCart.length}/>
             )}
             <DesktopNav />
-            <div className={`desktop-layout ${!this.props.sidePageDesign && 'display-column'}`}>
+            <div className={`desktop-layout ${this.props.sidePageDesign && 'display-column'}`}>
               {(
                 <>
                   {this.props.sidePageDesign && <div className='side-page-design'>
