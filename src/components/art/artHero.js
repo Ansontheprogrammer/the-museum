@@ -27,7 +27,7 @@ const ArtHeroSection = () => {
 
     if(page === 'art'){
         jsxToRender = (
-            <div className='seamoss-heading'>
+            <div>
                 <p className='section-description'>{paragraphOne}</p>
                 <p className='section-description'>{paragraphTwo}</p>
             </div>

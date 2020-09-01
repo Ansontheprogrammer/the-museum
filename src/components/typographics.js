@@ -1,8 +1,49 @@
+import React from 'react'
 import styled from 'styled-components'
 
-export const Section = styled.section`
-    margin-bottom: 25px;
-    
+export const Section = (props) => (
+    <SectionWrapper>
+        {props.children}
+    </SectionWrapper>
+)
+export const SectionWrapper = styled.section`
+    display: block;
+`
+export const Padding = styled.div`
+    padding: 3rem;
+`
+
+export const SpacingSm = styled.div`
+    margin-top: 2rem;
+`
+export const SectionHeader = styled.div`
+    h1 {
+        color: #2F2E2E;
+        padding-left: 2vw;
+        margin-top: auto;
+        max-width: 700px;
+        width: 100%;
+        font-size: 60px;
+        font-weight: normal;
+    }
+
+    margin-bottom: 7.5vh;
+
+    @media only screen and (max-width: 900px) {
+        h1 {
+            text-align: center;
+            max-width: revert;
+            padding-left: revert;
+        }
+
+        .productWrapper {
+            grid-template-columns: none;
+            justify-content: center;
+        }
+        .section-subtitle {
+            text-align: center;
+        }
+   }
 `
 
 export const Container = styled.section`
@@ -19,7 +60,6 @@ export const Card = styled.div`
     flex-direction: column;
     justify-content: space-between;
     border-radius: 6px;
-    max-height: 500px;
     min-height: 100%;
     margin-left: auto;
     margin-right: auto;
