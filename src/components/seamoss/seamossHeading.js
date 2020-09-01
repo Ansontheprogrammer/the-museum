@@ -28,7 +28,7 @@ const SeaMossHeading = () => {
 
     if(page === 'seamoss'){
         jsxToRender = (
-            <div className='seamoss-heading'>
+            <div className='section-text'>
                 <p className='section-description'>{paragraphOne}</p>
                 <p className='section-description'>{paragraphTwo}</p>
             </div>

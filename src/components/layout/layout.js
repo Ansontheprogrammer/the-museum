@@ -93,10 +93,10 @@ class Layout extends React.Component{
 
 Layout.contextType = CartContext;
 Layout.defaultProps = {
-  useCart: false,
+  useCart: true,
   sidePageDesign: false,
   sidePageDesignNumber: 0,
-  sideBar: false,
+  sideBar: true,
 }
 
 

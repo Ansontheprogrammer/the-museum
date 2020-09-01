@@ -6,7 +6,7 @@ import SeaMossVideos from "../components/seamoss/seamossVideos"
 import SeaMossHeading from "../components/seamoss/seamossHeading"
 
 const Shop = () => (
-  <Layout designNumber={0} displayAddToCartBtn={true} >
+  <Layout designNumber={0} useCart={false} >
     <PageLayout title="Sea Moss">
         <SeaMossHeading />
         <div className='spacing'/>

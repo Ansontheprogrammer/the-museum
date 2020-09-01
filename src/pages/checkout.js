@@ -4,6 +4,7 @@ import { CartContext } from "../components/products/context/cart.context"
 import { formatPrice } from "../components/products/components/productCard"
 import Layout from "../components/layout/layout"
 import { Loading } from "../components/products/components/loading"
+import PageLayout from "../components/layout/page-layout"
 
 export default class Checkout extends React.Component {
   constructor(props) {
@@ -171,12 +172,15 @@ export default class Checkout extends React.Component {
 
   render() {  
     return (
-      <Layout>
+      <Layout 
+        useCart={false}
+      >
+        <PageLayout title='Checkout'>
             <CartContext.Consumer>
             { cart => {
                 if(!cart) return <Loading/> 
                 return cart.productsInCart.length > 0 ? (
-                <div style={{marginTop: '10%', display: "block"}}>
+                <div style={{ display: "block"}}>
                   <div style={{
                           textAlign: "center",
                           minWidth: '300px',
@@ -200,13 +204,14 @@ export default class Checkout extends React.Component {
                 </div>
               ) :
               (
-                <div style={{display: 'flex', padding: '15px', justifyContent: 'center', alignItems: 'center', height: '90vh'}}>
+                <div style={{display: 'flex', padding: '15px', justifyContent: 'center', height: '2vh'}}>
                   <p style={{textAlign: 'center', fontSize: '20px'}}>There are currently no products in your cart</p>
                 </div>
               )
             }}
           </CartContext.Consumer>
         <p id="error" />  
+        </PageLayout>
       </Layout>
     )
   }

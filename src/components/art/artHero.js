@@ -27,7 +27,7 @@ const ArtHeroSection = () => {
 
     if(page === 'art'){
         jsxToRender = (
-            <div>
+            <div className='section-text'>
                 <p className='section-description'>{paragraphOne}</p>
                 <p className='section-description'>{paragraphTwo}</p>
             </div>

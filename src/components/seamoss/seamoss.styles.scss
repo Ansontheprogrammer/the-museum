@@ -1,20 +1,10 @@
-.seamoss-heading {
-    h3 {
-        margin-top: 10px;
-        opacity: 75%;
-    }
-    
-
+.section-text {    
     @media only screen and (max-width: 900px) {
         text-align: center;
-        margin-top: 2vh;
-        h1 {
-            text-align: center;
-        }
+        
         p {
-            opacity: 80%;
-            line-height: 1.5em;
-            text-align: center;
+            opacity: 90%;
+            line-height: 1.75em;
         }
     }  
 }
@@ -29,5 +19,9 @@
     .clients {
         flex-direction: column;
         align-items: center;
+    }
+    
+    h1 {
+        margin-left: 5vw;
     }
 }  
