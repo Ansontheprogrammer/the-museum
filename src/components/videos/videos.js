@@ -1,6 +1,5 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import "./videos.scss"
 import "../products/styles/Card.styles.scss"
 import '../products/styles/ProductWrapper.styles.scss'
 
@@ -43,8 +42,8 @@ const VideosComponent = () => {
         webkitallowfullscreen="true"
         mozallowfullscreen="true"
         allowFullScreen
-        width="200"
-        height="115"
+        width="300"
+        height="200"
         // Requires youtube embed link
         src={url}
         title={title}
@@ -58,7 +57,7 @@ const VideosComponent = () => {
   }).map(post => post)
 
   return (
-    <div className='productWrapper wrapperPad addMarginTop'>
+    <div className='productWrapper'>
        {eventPosts}
     </div>
   )

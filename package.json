@@ -43,7 +43,8 @@
     "react-sidebar": "^3.0.2",
     "react-stripe-checkout": "^2.6.3",
     "shopify-buy": "^2.11.0",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "text-clipper": "^2.1.0"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",

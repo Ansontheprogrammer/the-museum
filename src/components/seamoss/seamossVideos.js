@@ -1,6 +1,5 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import "../videos/videos.scss"
 import "../products/styles/Card.styles.scss"
 import '../products/styles/ProductWrapper.styles.scss'
 import '../layout/layout.scss'
@@ -67,12 +66,11 @@ const SeaMossVideos = () => {
   return (
     <>
       <h1>Clients</h1>
-      <div className='seamoss-heading clients' >
+      <div className='clients' >
       {clientJSX.map((client, index) => (
         <div className="spacing">
-          {client}
-            <div className='spacing'></div>
           {seaMossVideos[index]}
+          {client}
         </div>
       ))
     }

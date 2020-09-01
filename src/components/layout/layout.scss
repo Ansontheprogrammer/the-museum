@@ -31,6 +31,11 @@ h6 {
   color: #2f2f2f;
 }
 
+h1 {
+  font-size: 36px;
+  font-weight: 300 ;
+}
+
 h1,
 h2 {
   font-family: "greatvibes" !important;
@@ -206,9 +211,6 @@ button {
   }
 }
 
-.section-content {
-  padding: 0 50px 50px;
-}
 .section-header {
   color: #2F2E2E;
   padding-left: 6vw;
@@ -231,14 +233,14 @@ button {
 .section-description {
   color: #2F2E2E;
   padding-left: 6vw;
-  padding-bottom: 2vh;
+  padding-bottom: 4vh;
   max-width: 800px;
   width: 100%;
   font-size: 18px;
 }
 
 .spacing {
-  margin-bottom: 15vh;
+  margin-bottom: 13vh;
 }
 
 .off-section {

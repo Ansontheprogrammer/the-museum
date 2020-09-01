@@ -9,7 +9,7 @@ export class BarberCard extends React.Component {
   render() {
     const barber = this.props.barber
     return (
-      <div className="barberCardStyles">
+      <div className="barber-card">
         <div>
           <div className='image-wrapper'>
             <div

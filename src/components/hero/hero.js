@@ -13,6 +13,10 @@ const HeroWrapper = styled.div`
     color: #fff;
     @media only screen and (max-width: 600px) {
         padding-left: 0vw;
+        .description {
+            padding-left: 5vw;
+            padding-right: 5vw;
+        }
     }
     h1 {
         max-width: 700px;

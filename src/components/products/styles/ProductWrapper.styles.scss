@@ -1,12 +1,13 @@
 .productWrapper {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 35px;
   max-width: 1100px;
   z-index: 1100;
   width: 100%;
   margin: 0 auto;
-  padding-left: 10px;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 .addMarginTop {
@@ -25,10 +26,6 @@
   margin-left: 10vw;
 }
 
-.spacer {
-  margin-top: 5vh;
-}
-
 .shop-wrapper {
   display: flex;
   flex-direction: row;
@@ -43,9 +40,14 @@
 }
 
 @media only screen and (max-width: 950px) {
+  .spacer {
+    margin-top: 2vh;
+  }
+
   .productWrapper {
     grid-template-columns: none;
     justify-content: center;
+    margin-left: 0vw;
   }
 
   .vendor {
@@ -54,7 +56,6 @@
   }
 
   .shop-wrapper {
-    margin-top: -20vh;
     display: inherit;
     flex-direction: inherit;
   }
