@@ -1,5 +1,4 @@
 .seamoss-heading {
-    
     h3 {
         margin-top: 10px;
         opacity: 75%;
@@ -29,5 +28,6 @@
 @media only screen and (max-width: 900px) {
     .clients {
         flex-direction: column;
+        align-items: center;
     }
 }  

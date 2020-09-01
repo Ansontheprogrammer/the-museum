@@ -2,6 +2,7 @@ import Sidebar from "react-sidebar";
 import React, { useState } from 'react'
 import { formatPrice } from "./productCard";
 import { Link } from "gatsby";
+import { FaEraser } from 'react-icons/fa'
 
 export const SideBar = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -44,26 +45,33 @@ export const SideBar = (props) => {
 
     const getOverlayStyles = () => props.showCheckoutComponent ? closedOverlayStyles : openOverlayStyle
 
-    const Products = props.products.map(product => {
-      total += parseInt(product._price)
+    const productsJSX = props.cart.productsInCart.map((product, index) => {
+
+      total += parseFloat(product._price)
+
       return (
-        <div style={{display: 'block'}}>
+        <div key={index} style={{display: 'block'}}>
           <div style={{padding: '15px', paddingBottom: '20px'}}>
             { product.images &&
               <img style={{height: '150px', width:'150px'}} src={product.images[0].originalSrc}/>
             }
+            <button onClick={props.cart.removeItemFromCart(product.cartID)}>
+              <FaEraser/>
+            </button>
             <p>{product.title}</p>
             <p>{formatPrice(product._price)}</p>
           </div>
         </div>
       )
     }).map(jsx => jsx)
+
     return (
+      <>
       <Sidebar
         sidebar={
           <div style={{textAlign: 'center'}}>
             <p style={{paddingTop: '20px', fontSize: '22px'}}>Products</p>
-            {Products}
+            {productsJSX}
             <p style={{paddingTop: '16px', paddingBottom: '16px', fontSize: '22px'}}>Total: {formatPrice(total)}</p>
               <Link to='/checkout/'>
                 <button style={{marginBottom: '20px'}}>Go to Checkout</button>
@@ -116,13 +124,13 @@ export const SideBar = (props) => {
                 bottom: 0
               }
         }}
-      >
-        <button className='sidebar-btn' onClick={() => {
-          props.toggleCheckoutComponent();
-          setSidebarOpen(!sidebarOpen)
-        }}>
-          {!sidebarOpen ? 'Checkout' : 'Close'}
-        </button>
-      </Sidebar>
+      />
+      <button className='sidebar-btn' onClick={() => {
+        props.toggleCheckoutComponent();
+        setSidebarOpen(!sidebarOpen)
+      }}>
+        {!sidebarOpen ? 'Open Cart' : 'Close'}
+      </button>
+      </>
     )
   }

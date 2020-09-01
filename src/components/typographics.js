@@ -6,9 +6,26 @@ export const Section = (props) => (
         {props.children}
     </SectionWrapper>
 )
+
+export const SectionRow = (props) => (
+    <SectionWrapperRow>
+        {props.children}
+    </SectionWrapperRow>
+)
+
 export const SectionWrapper = styled.section`
     display: block;
 `
+
+export const SectionWrapperRow = styled.section`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @media only screen and (max-width: 900px) {
+        flex-direction: column
+   }
+`
+
 export const Padding = styled.div`
     padding: 3rem;
 `
@@ -20,28 +37,17 @@ export const SectionHeader = styled.div`
     h1 {
         color: #2F2E2E;
         padding-left: 2vw;
-        margin-top: auto;
-        max-width: 700px;
-        width: 100%;
         font-size: 60px;
-        font-weight: normal;
+        font-weight: bold;
     }
 
     margin-bottom: 7.5vh;
 
     @media only screen and (max-width: 900px) {
+        text-align: center;
+        
         h1 {
-            text-align: center;
-            max-width: revert;
             padding-left: revert;
-        }
-
-        .productWrapper {
-            grid-template-columns: none;
-            justify-content: center;
-        }
-        .section-subtitle {
-            text-align: center;
         }
    }
 `

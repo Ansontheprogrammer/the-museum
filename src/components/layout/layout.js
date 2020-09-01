@@ -70,7 +70,10 @@ class Layout extends React.Component{
                   }
                   <div className={'desktop-children'}>
                     {this.props.sideBar && cart && this.state.showCart && (
-                        <SideBar showingCheckout={this.state.showCheckoutComponent} toggleCheckoutComponent={this.toggleCheckoutComponent} products={cart.productsInCart} />
+                        <SideBar 
+                          showingCheckout={this.state.showCheckoutComponent} 
+                          toggleCheckoutComponent={this.toggleCheckoutComponent} 
+                          cart={cart} />
                     )}
                     {this.props.children}
                   </div>

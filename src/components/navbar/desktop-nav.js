@@ -28,7 +28,9 @@ const DesktopNav = () => (
       <Link to="/barbers/" activeClassName={DesktopStyles.active}>
         Barbers
       </Link>
-
+      <Link to="/checkout/" activeClassName={DesktopStyles.active}>
+        Checkout
+      </Link>
       <Link to="/about/" activeClassName={DesktopStyles.active}>
         About
       </Link>

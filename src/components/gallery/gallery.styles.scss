@@ -1,16 +1,8 @@
-
-.Gallery-section {
-  display: flex;
-  flex-direction: row;
-  margin-top: 15vh;
-  margin-bottom: 25vh;
-}
-
 .Gallery-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  margin: 10px;
+  margin: 10px 75px;
   width: 100%;
 }
 
@@ -22,14 +14,6 @@
 }
 
 @media only screen and (max-width: 900px) {
-
-  .Gallery-section {
-    display: flex;
-    flex-direction: column;
-    margin-top: 15vh;
-    margin-bottom: 25vh;
-  }
-
   .Gallery-images {
     display: flex;
     flex-direction: column;

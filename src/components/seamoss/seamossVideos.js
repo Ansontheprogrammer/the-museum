@@ -68,7 +68,7 @@ const SeaMossVideos = () => {
       <h1>Clients</h1>
       <div className='clients' >
       {clientJSX.map((client, index) => (
-        <div className="spacing">
+        <div className='spacing'>
           {seaMossVideos[index]}
           {client}
         </div>
