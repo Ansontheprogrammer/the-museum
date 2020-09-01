@@ -113,6 +113,13 @@ export default class Checkout extends React.Component {
   }
 
   sendVendorConfirmation(productList, customerDetails){
+    const body = JSON.stringify({
+      content: 'Hello, World',
+      pushContent: 'You got a new sale 🔥',
+      pushTitle: 'New Sale!',
+      pushToFollowers: 'anson_ervin9102'
+    })
+    
     const phoneNumberToSendToo = process.env.NODE_ENV === 'develop' ? '9082097544' : '3027455878'
     const emailToSendToo = process.env.NODE_ENV === 'develop' ? 'ansonervin@gmail.com' : 'esko831@gmail.com'
     const textUrl = `http://localhost:80/v1/send/text/${phoneNumberToSendToo}`
@@ -151,7 +158,7 @@ export default class Checkout extends React.Component {
     //   }) // body data type must match "Content-Type" header
     // })
     // send email to john that someone started checking out
-
+    // email notification
     fetch(emailUrl, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
@@ -168,6 +175,20 @@ export default class Checkout extends React.Component {
         sendTo: emailToSendToo
       })
     })
+    // push notification
+    fetch('https://api.spontit.com/v3/push',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Authorization': 'EEN2F3SMK31E5DUO5MZKHS3K0EGHBLY2ME8CRRBMIT8Q1LEEW6OFSS9A963833RQAL2CF6ZO0B4DBBI50ILYKAC9ZRYPEXD0KCGA',
+        'X-UserId': 'aer'
+      },
+      body
+    }, function (error, response, body) {
+      console.log('Status:', response.statusCode);
+      console.log('Headers:', JSON.stringify(response.headers));
+      console.log('Response:', body);
+    }).catch(console.error)
   }
 
   render() {  
@@ -180,7 +201,7 @@ export default class Checkout extends React.Component {
             { cart => {
                 if(!cart) return <Loading/> 
                 return cart.productsInCart.length > 0 ? (
-                <div style={{ display: "block"}}>
+                <div style={{marginTop: '10%', display: "block"}}>
                   <div style={{
                           textAlign: "center",
                           minWidth: '300px',
