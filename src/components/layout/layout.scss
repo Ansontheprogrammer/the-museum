@@ -29,6 +29,12 @@ h5,
 h6 {
   font-family: "Ubuntu" !important;
   color: #2f2f2f;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 300 ;
 }
 
 h1,
@@ -52,7 +58,6 @@ a {
 button {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2vh;
   font-size: 13px;
   text-align: center;
   color: #333;
@@ -70,12 +75,6 @@ button {
     background-color: darken(rgb(152, 253, 152), 10%);
   }
 }
-
-.custom-font {
-  font-family: "starbricksregular";
-}
-
-// Custom radio buttons from - https://www.w3schools.com/howto/howto_css_custom_checkbox.asp
 
 .input-container {
   margin: 0 auto;
@@ -154,10 +153,11 @@ button {
   
   .side-page-design {
     min-height: 100%;
-    width: 6vw !important;
+    width: 10vw !important;
     background-color: #2F2E2E;
     display: flex;
     flex-direction: column;
+    z-index: 100;
   }
 
   .circle {  
@@ -186,42 +186,26 @@ button {
     margin-top: 10vh;
     margin-bottom: 10vh;
     color: #bbb;
-  }
-
-  
+  } 
 }
 
-@media only screen and (max-width: 900px) {
-  .section {
-    padding: 25px
-  }
-
-  .section-description {
-    padding-left: revert !important
-  }
-
-  .section-subtitle {
-    font-size: 24px !important
-  }
+.spacing {
+  margin-bottom: 3rem;
+}
+.section {
+  padding: 3rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
-.section-content {
-  padding: 0 50px 50px;
-}
-.section-header {
-  color: #2F2E2E;
-  padding-left: 6vw;
-  margin-top: auto;
-  margin-bottom: auto;
-  max-width: 700px;
-  width: 100%;
-  font-size: 60px;
-  font-weight: normal;
+.off-section {
+  background-color: #EEE9E9;
 }
 
 .section-subtitle {
   color: #2F2E2E;
   padding-left: 6vw;
+  margin-bottom: 5vh;
   width: 100%;
   font-size: 30px;
   font-weight: lighter;
@@ -230,30 +214,10 @@ button {
 .section-description {
   color: #2F2E2E;
   padding-left: 6vw;
-  padding-bottom: 2vh;
+  padding-bottom: 4vh;
   max-width: 800px;
   width: 100%;
   font-size: 18px;
-}
-
-.spacing {
-  margin-bottom: 15vh;
-}
-
-.display-column {
-  flex-direction: column;
-}
-
-.off-section {
-  background-color: #EEE9E9;
-  padding-bottom: 10vh;
-  padding-top: 15vh;
-}
-
-.section {
-  padding-bottom: 10vh;
-  padding-top: 15vh;
-  display: block;
 }
 
 .section-button {
@@ -266,31 +230,6 @@ button {
   margin-right: auto;
 }
 
-
-
-@media only screen and (max-width: 900px) {
-  .productWrapper {
-    grid-template-columns: none;
-    justify-content: center;
-  }
-
-  .section-header {
-    font-size: 40px;
-    text-align: center;
-    max-width: revert;
-    padding-left: revert;
-  }
-
-  .section-subtitle {
-    margin-top: 10px;
-    text-align: center;
-  }
-
-  .spacing {
-    margin-bottom: 5vh;
-  }
-}
-
 .sidebar-btn {
   position: fixed;
   top: 0;
@@ -300,9 +239,24 @@ button {
   margin-bottom: 15px;
   margin-right: 25px;
   color: #fff;
-  background-color: #4a4a4a;
+  background-color: #4a4a4a !important;
 }
 
 .desktop-children {
-  min-width: 90%;
+  min-width: 94%;
+}
+
+@media only screen and (max-width: 900px) {
+  .productWrapper {
+    grid-template-columns: none;
+    justify-content: center;
+  }
+
+  .section-subtitle {
+    font-size: 24px !important
+  }
+
+  .section-description {
+    padding-left: 0vw;
+  }
 }

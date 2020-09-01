@@ -1,6 +1,8 @@
 import React from "react"
 import "../styles/Card.styles.scss"
 import {CartContext} from '../context/cart.context'
+import { Card } from "../../typographics"
+import clip from 'text-clipper';
 
 export const formatPrice = (amount) => {
   let price = amount
@@ -48,7 +50,7 @@ const SkuCard = class extends React.Component {
     const product = this.props.product
     const productImage = this.props.product.images.length ? this.props.product.images[0].originalSrc : null
     return (
-      <div className="cardStyles">
+      <Card>
         <div
           className="image"
           style={{
@@ -62,7 +64,7 @@ const SkuCard = class extends React.Component {
           </div>
           <p className="price">{formatPrice(product._price, product.currency)}</p>
           <p>
-            {product.description || "No description available"}
+            {clip(product.description, 175) || "No description available"}
           </p>
         </div>
         
@@ -75,7 +77,7 @@ const SkuCard = class extends React.Component {
             )}}
         </CartContext.Consumer> 
         )}
-      </div>
+      </Card>
     )
   }
 }

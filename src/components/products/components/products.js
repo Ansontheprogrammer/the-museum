@@ -24,6 +24,7 @@ class Products extends Component {
                 id
                 title
                 vendor
+                productType
                 priceRange {
                   minVariantPrice {
                     amount
@@ -51,10 +52,20 @@ class Products extends Component {
         }
         `}
         render={({ allShopifyProduct }) => {
-          let products = allShopifyProduct.edges.filter(product => {
-            // Filter products by vendor
-            return product
-          })
+          let products = allShopifyProduct.edges
+          // Filter products by vendor
+          .filter(product => {
+            return this.props.vendor ? product.node.vendor.toLowerCase() === this.props.vendor.toLowerCase() : true
+          })  
+          // Filter for product type. if none passed don't show art or seamoss
+          .filter(product => {
+            if(this.props.type) {
+              return product.node.productType.toLowerCase() === this.props.type.toLowerCase()
+            } else {
+              // return false
+              return product.node.productType.toLowerCase() !==  'art' && product.node.productType.toLowerCase() !==  'seamoss' 
+            }
+          })  
           // Limit products returned
           products = this.props.limit ? products.slice(0, this.props.limit) : products
           const mapVariations = (node) => {

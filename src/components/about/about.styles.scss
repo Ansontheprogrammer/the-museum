@@ -1,23 +1,19 @@
 .About {
   display: flex;
-  align-items: center;
-  margin-top: 71px;
-}
-
-.About h2 {
-  font-size: 75px;
-  color: #333;
-  font-weight: normal;
+  flex-direction: row;
+  margin: 0;
 }
 
 .About-img {
   width: 50%;
   order: 2;
+  z-index: -1;
   background: #ccc;
   justify-content: center;
   height: calc(100vh - 75px);
   background-size: cover;
   background-position: top;
+  max-height: 350px;
 }
 
 .About-img img {
@@ -31,7 +27,6 @@
 }
 
 .About-text p {
-  margin: 15px 0;
   line-height: 1.5;
   color: #555;
 }
@@ -41,21 +36,22 @@
     flex-direction: column;
     padding: 25px 15px 75px;
     margin: 0;
+    text-align: center;
   }
 
   .About-image-wrapper {
-    width: 100%;
     padding: 15px;
   }
 
   .About-img {
-    margin: 10px auto;
+    margin:  auto;
     height: 300px;
+    min-width: 100%;
   }
 
   .About-text {
     padding: 15px;
-    max-width: 450px;
-    width: 95%;
+    max-width: 500px;
+    width: 100%;
   }
 }

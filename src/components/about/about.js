@@ -5,29 +5,28 @@ import BackgroundImage from "gatsby-background-image"
 import "./about.styles.scss"
 
 const AboutSection = () => {
-  // const data = useStaticQuery(graphql`
-  //   query {
-  //     aboutImage: file(relativePath: { eq: "zooty-about.jpeg" }) {
-  //       childImageSharp {
-  //         fluid(quality: 90, maxWidth: 1920) {
-  //           ...GatsbyImageSharpFluid_withWebp
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
+  const data = useStaticQuery(graphql`
+    query {
+      aboutImage: file(relativePath: { eq: "logo.png" }) {
+        childImageSharp {
+          fluid(quality: 90, maxWidth: 1920) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  `)
 
-  // const imageData = data.aboutImage.childImageSharp.fluid
+  const imageData = data.aboutImage.childImageSharp.fluid
 
   return (
     <div className="About" id="about">
-      {/* <BackgroundImage
+      <BackgroundImage
         Tag="div"
         fluid={imageData}
         className="About-img"
-      ></BackgroundImage> */}
+      ></BackgroundImage>
       <div className="About-text">
-        <h2 className="custom-font">About Us</h2>
         <p>
           ​Born in this industry, literally learning from the floor up as a
           young child sweeping hair in his uncle's shop, Zooty the Barber has

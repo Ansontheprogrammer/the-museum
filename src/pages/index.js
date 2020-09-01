@@ -1,59 +1,148 @@
-import React, { Component } from "react"
+import React from "react"
 import Layout from "../components/layout/layout"
 import Gallery from "../components/gallery/gallery"
 import Products from "../components/products/components/products"
 import VideosComponent from "../components/videos/videos"
-import { Menu, Segment, Grid, Dropdown } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
-import GalleryImages from "../components/gallery/gallery-images"
 import Barbers from "../components/barbers/wrapper"
+import { Hero } from "../components/hero/hero"
+import ArtHeroSection from "../components/art/artHero"
+import { Section, SectionHeader, OffSection, SpacingSm } from "../components/typographics"
+import SeaMossHeading from "../components/seamoss/seamossHeading"
+import Proptypes from 'prop-types'
 
-export class SelectorMenu extends Component {
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-}
-
-const SeaMoss = () => (
-  <div className='section'>
-    <h1 className='section-header'>Sea Moss</h1>
-    <h2 className='section-subtitle spacing'>W.Y.N (What You Need)</h2>
-    <p className='section-description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-    <p className='section-description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-      <button className='section-button'>Read More</button>
-    <div className='section-content'><Products limit={1}/></div>
-  </div>
-)
-
-const Videos = () => {
-  return (
-    <div className='off-section'>
-      <h1 className='section-header spacing'>My Videos</h1>
-      <div className='section-content'>
-      <VideosComponent />
+const generateSection = (index, headings, contents) => {
+  const offSection = (index + 1) % 2;
+  
+  return  (
+    <Section>
+      <div className={`section ${offSection && 'off-section'}`}>
+        <SectionHeader>
+          <h1>{headings.heading}</h1>
+          {headings.subtitleHeading && <h2 className='section-subtitle'>{headings.subtitleHeading}</h2>}
+        </SectionHeader>
+        {contents}
       </div>
-    </div>
+    </Section>
   )
 }
-const GalleryPage = () => {
+
+const LandingPage = (props) => {
+  const generateLandingPage = () => {
+    return Object.keys(props.page)
+    .filter(section => {
+      return props.page[section].show
+    })
+    .map((section, index) => {
+      const heading = props.page[section].heading
+      const subtitleHeading = props.page[section].subtitleHeading
+      return generateSection(index, { heading, subtitleHeading }, props.page[section].jsx)
+    })
+    .map(jsx => jsx)
+  }
+
   return (
-  <Layout designNumber={3} onHomePage={true}>
-    <Gallery />
-    <div className='off-section'>
-      <h1 className='section-header spacing'>Our Barbers</h1>
-    <div className='section-content'><Barbers/></div>
-    </div>
-    <SeaMoss/>
-    <Videos />
-    <div className='section'>
-      <h1 className='section-header spacing'>Art</h1>
-      <p className='section-description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-      <p className='section-description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-      <div className='section-content'><Products/></div>
-    </div>
-    <div className='off-section'>
-      <h1 className='section-header spacing'>Our Products</h1>
-      <div className='section-content'><Products/></div>
-    </div>
-  </Layout> 
+    <Layout 
+      sidePageDesign={true} 
+      useCart={true}
+      sidePageDesignNumber={3}
+      sideBar={true}
+    >
+      <Hero/>
+      <Gallery/>
+      {generateLandingPage()}
+    </Layout> 
     )
-  } 
-export default GalleryPage
+} 
+
+LandingPage.defaultProps = {
+  page: {
+    users: {
+      show: true,
+      heading: 'Our Barbers',
+      subtitleHeading: '',
+      jsx: <Barbers/>
+    },
+    seamoss: {
+      show: true,
+      heading: 'Sea Moss',
+      subtitleHeading: 'W.Y.N (What You Need)',
+      jsx: <>
+        <SeaMossHeading/>
+        <button className='section-button'>Read More</button>
+        <Products type='seamoss' limit={1}/>
+      </> 
+    },
+    videos: {
+      show: true,
+      heading: 'Videos',
+      subtitleHeading: '',
+      jsx: <VideosComponent/>
+    },
+    art: {
+      show: true,
+      heading: 'Art',
+      subtitleHeading: '',
+      jsx: <>
+        <ArtHeroSection />
+        <SpacingSm/>
+        <Products type='art' limit={3}/>
+      </>
+    },
+    shop: {
+      show: true,
+      heading: 'Shop',
+      subtitleHeading: '',
+      jsx: <Products limit={3}/>
+    },
+  }
+}
+
+
+LandingPage.propTypes = {
+  page: {
+    hero: {
+      show: Proptypes.bool,
+      heading: Proptypes.string,
+      subtitleHeading: Proptypes.string,
+      jsx: Proptypes.element
+    },
+    gallery: {
+      show: Proptypes.bool,
+      heading: Proptypes.string,
+      subtitleHeading: Proptypes.string,
+      jsx: Proptypes.element
+    },
+    users: {
+      show: Proptypes.bool,
+      heading: Proptypes.string,
+      subtitleHeading: Proptypes.string,
+      jsx: Proptypes.element
+    },
+    seamoss: {
+      show: Proptypes.bool,
+      heading: Proptypes.string,
+      subtitleHeading: Proptypes.string,
+      jsx: Proptypes.element
+    },
+    videos: {
+      show: Proptypes.bool,
+      heading: Proptypes.string,
+      subtitleHeading: Proptypes.string,
+      jsx: Proptypes.element
+    },
+    art: {
+      show: Proptypes.bool,
+      heading: Proptypes.string,
+      subtitleHeading: Proptypes.string,
+      jsx: Proptypes.element
+    },
+    shop: {
+      show: Proptypes.bool,
+      heading: Proptypes.string,
+      subtitleHeading: Proptypes.string,
+      jsx: Proptypes.element
+    },
+  }
+}
+
+export default LandingPage

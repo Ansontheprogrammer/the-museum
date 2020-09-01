@@ -44,7 +44,7 @@ class Barbers extends Component {
                   <BarberCard key={i} barber={barber.node.frontmatter}/>
                 </div>
               )
-           })}
+            })}
           </div>
         )}
       }

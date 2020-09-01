@@ -1,6 +1,5 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import './art.styles.scss'
 
 
 const ArtHeroSection = () => {
@@ -28,7 +27,7 @@ const ArtHeroSection = () => {
 
     if(page === 'art'){
         jsxToRender = (
-            <div className='seamoss-heading'>
+            <div className='section-text'>
                 <p className='section-description'>{paragraphOne}</p>
                 <p className='section-description'>{paragraphTwo}</p>
             </div>

@@ -1,208 +1,217 @@
-import React from "react"
+import React, { Fragment } from "react"
+import "../components/products/styles/ProductWrapper.styles.scss"
+import { CartContext } from "../components/products/context/cart.context"
+import { formatPrice } from "../components/products/components/productCard"
 import Layout from "../components/layout/layout"
+import { Loading } from "../components/products/components/loading"
 import PageLayout from "../components/layout/page-layout"
 
-import "../components/products/styles/payment-form.styles.scss"
-
-const loadSquareSdk = () => {
-  return new Promise((resolve, reject) => {
-    const sqPaymentScript = document.createElement("script")
-    sqPaymentScript.src = "https://js.squareup.com/v2/paymentform"
-    sqPaymentScript.crossorigin = "anonymous"
-    sqPaymentScript.onload = () => {
-      console.log('Loaded square payments')
-      resolve()
-    }
-    sqPaymentScript.onerror = () => {
-      reject(`Failed to load ${sqPaymentScript.src}`)
-    }
-    document.getElementsByTagName("head")[0].appendChild(sqPaymentScript)
-  })
-}
-
-
-
-export default class PaymentForm extends React.Component {
-  config = {
-    applicationId: "sq0idp-pKotYot0J7sR9TLQobsB0g",
-    inputClass: "sq-input",
-    autoBuild: false,
-    googlePay: {
-      elementId: "sq-google-pay",
-    },
-    cardNumber: {
-      elementId: "sq-card-number",
-      placeholder: "• • • •  • • • •  • • • •  • • • •",
-    },
-    cvv: {
-      elementId: "sq-cvv",
-      placeholder: "CVV",
-    },
-    expirationDate: {
-      elementId: "sq-expiration-date",
-      placeholder: "MM/YY",
-    },
-    postalCode: {
-      elementId: "sq-postal-code",
-      placeholder: "Zip",
-    },
-    callbacks: {
-      methodsSupported : () => {return},
-      createPaymentRequest: () => {
-        return {
-          requestShippingAddress: false,
-          requestBillingInfo: true,
-          currencyCode: "USD",
-          countryCode: "US",
-          total: {
-            label: "MERCHANT NAME",
-            amount: "100",
-            pending: false,
-          },
-          lineItems: [
-            {
-              label: "T-shirt",
-              amount: "100",
-              pending: false,
-            },
-          ],
-        }
-      },
-      cardNonceResponseReceived:  (errors, nonce, cardData) => {
-        if (errors) {
-          // Log errors from nonce generation to the JavaScript console
-          console.log("Encountered errors:")
-          errors.forEach(function (error) {
-            console.log(" Error in card nonce respon " + error.message)
-          })
-          return
-        }
-        fetch('http://localhost:3000/api/checkout', {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            nonce
-          })
-        }).then(() => console.log('success'))
-      },
-      unsupportedBrowserDetected: () => {
-        console.log('Browser doesnt support square')
-      },
-      inputEventReceived: inputEvent => {
-        switch (inputEvent.eventType) {
-          case "focusClassAdded":
-            break
-          case "focusClassRemoved":
-            break
-          case "errorClassAdded":
-            document.getElementById("error").innerHTML =
-              "Please fix card information errors before continuing."
-            break
-          case "errorClassRemoved":
-            document.getElementById("error").style.display = "none"
-            break
-          case "cardBrandChanged":
-            if (inputEvent.cardBrand !== "unknown") {
-              this.setState({
-                cardBrand: inputEvent.cardBrand,
-              })
-            } else {
-              this.setState({
-                cardBrand: "",
-              })
-            }
-            break
-          case "postalCodeChanged":
-            break
-          default:
-            break
-        }
-      },
-   
-    },
-  }
-
+export default class Checkout extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       cardBrand: "",
       nonce: undefined,
       paymentFormLoaded: false, 
-      paymentForm: null
+      paymentForm: null,
+      paypal: null,
+      showSquareCheckoutForm: null,
+      checkoutSuccess: null,
+      products: null,
     }
-    this.requestCardNonce = this.requestCardNonce.bind(this)
-  }
-
-  requestCardNonce(e) {
-    this.state.paymentForm.requestCardNonce()
   }
 
   componentDidMount() {
-    loadSquareSdk().then(() => {
-      const paymentForm =  new window.SqPaymentForm(this.config)
-      paymentForm.build()
+    const script = document.createElement("script");
+    script.src = `https://www.paypal.com/sdk/js?client-id=AZswhoudLfZvanXDERMGG-oA1yXUvo3C0v4co0E-uUIrp8qAfPUS_RcYpxXjodM57c4nHyn2cw1DarZW&currency=USD`;
+    script.async = true;
+
+    document.body.appendChild(script);
+    setTimeout(() => {
       this.setState({
-        paymentFormLoaded: true,
-        paymentForm
+        paypal: window.paypal
+      })
+    }, 2000 ) 
+  }
+
+  getTotal(productsList){
+    let total = 0;
+    productsList.forEach(product => {
+      total += parseFloat(product._price)
+    })
+    return total.toFixed(2)
+  }
+
+  generatePaypalButtons(productsList){
+    const total = this.getTotal(productsList)
+    if(this.state.paypal) this.state.paypal.Buttons({
+      style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal',
+          
+      },
+      createOrder: function(data, actions) {
+          return actions.order.create({
+              purchase_units: [{
+                  amount: {
+                      value: total
+                  }
+              }]
+          });
+      },
+      onApprove: function(data, actions) {
+          return actions.order.capture().then(async function(details) {
+              // const { email_address: email} = details.payer;
+              const { value: saleAmount } = details['purchase_units'][0].amount
+              const shipping = details['purchase_units'][0].shipping
+              const {address_line_1: street, admin_area_1: state, admin_area_2: city, postal_code: zipcode } = shipping.address
+              const { full_name: name } = shipping.name
+              const checkoutDetails = {
+                name, 
+                address: {
+                  street,
+                  state,
+                  city,
+                  zipcode
+                },
+                saleAmount
+              }
+              new Checkout().sendVendorConfirmation(productsList, checkoutDetails)
+              alert('Transaction successful!');
+          });
+      }
+  }).render('#paypal-button-container');
+    return <div/>
+  }
+  
+  productsJSX = cart => {
+    if(!this.state.paypal) return
+    const products = {}
+    cart.productsInCart.forEach(product => {
+      if(!products[product.title]) {
+        products[product.title] = product
+        products[product.title].quantity = 1
+      } else {
+         products[product.title].quantity++
+      }
+    })
+    return Object.values(products).map(product => (
+      <div style={{display: 'block'}}>
+        <div style={{padding: '15px', paddingBottom: '20px'}}>
+          { product.images &&
+            <img style={{height: '150px', width:'150px'}} src={product.images[0].originalSrc}/>
+          }
+          <p>{product.title}</p>
+          <p>{product.vendor}</p>
+          <p>{formatPrice(products[product.title]._price)}</p>
+        <p>Quantity: {product.quantity}</p>
+        </div>
+      </div>
+    ))
+  }
+
+  sendVendorConfirmation(productList, customerDetails){
+    const phoneNumberToSendToo = process.env.NODE_ENV === 'develop' ? '9082097544' : '3027455878'
+    const emailToSendToo = process.env.NODE_ENV === 'develop' ? 'ansonervin@gmail.com' : 'esko831@gmail.com'
+    const textUrl = `http://localhost:80/v1/send/text/${phoneNumberToSendToo}`
+    const emailUrl = `https://application-form-server.glitch.me/`
+    const generateMessage = () => {
+      let message = "Here are the client's cart details:";
+      const products = {}
+      productList.forEach(product => {
+        if(!products[product.title]) {
+          products[product.title] = product
+          products[product.title].quantity = 1
+        } else {
+           products[product.title].quantity++
+        }
+      })
+      Object.values(products).forEach(product => {
+        message += ' ' + product.quantity + ' ' + product.title
+      })
+      return message
+    }
+  
+    // send text to john that someone started checking out
+    // await fetch(textUrl, {
+    //   method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    //   mode: 'cors', // no-cors, *cors, same-origin
+    //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    //   credentials: 'same-origin', // include, *same-origin, omit
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   redirect: 'follow', // manual, *follow, error
+    //   referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    //   body: JSON.stringify({
+    //     ...this.state.formData,
+    //     message: this.generateMessage(productList)
+    //   }) // body data type must match "Content-Type" header
+    // })
+    // send email to john that someone started checking out
+
+    fetch(emailUrl, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify({
+        ...customerDetails,
+        message: generateMessage(productList),
+        sendTo: emailToSendToo
       })
     })
   }
 
-  render() {
+  render() {  
     return (
-      <Layout designNumber={0}>
-        <PageLayout title={'Checkout'}>
-      <div className='form-wrapper'>
-          <div id="sq-ccbox">
-            <p>
-              <span style={{textAlign: 'center'}}>Enter Card Info Below </span>
-              <span>
-                {this.state.cardBrand.toUpperCase()}
-              </span>
-            </p>
-            <div className='column-wrapper'>
-              <label>
-                Card Number
-              </label>
-              <div className='card-wrapper'>
-                <div id="sq-card-number" />
-              </div>
-              <input type="hidden" id="card-nonce" name="nonce" />
-              </div>
-            <div id="cc-field-wrapper">
-              <label>
-                Expiration Date
-                <div id="sq-expiration-date"/>
-              </label>
-              <label>
-                CVV
-                <div id="sq-cvv" />
-              </label>
-            </div>
-            <label>
-              Name
-              <input
-                id="name"
-                type="text"
-                placeholder="Name"
-              />
-            </label>
-            <label>
-              Postal Code
-              <div id="sq-postal-code" />
-            </label>
-          </div>
-          <button
-            className="button-credit-card"
-            onClick={this.requestCardNonce}
-          >
-            Pay
-          </button>
-        </div>
-        <p id="error" />
-      </PageLayout>
+      <Layout 
+        useCart={false}
+      >
+        <PageLayout title='Checkout'>
+            <CartContext.Consumer>
+            { cart => {
+                if(!cart) return <Loading/> 
+                return cart.productsInCart.length > 0 ? (
+                <div style={{ display: "block"}}>
+                  <div style={{
+                          textAlign: "center",
+                          minWidth: '300px',
+                          maxWidth: '300px',
+                          margin: 'auto'
+                        }} id='paypal-button-container'/>
+                  {this.state.paypal ?
+                      <div>
+                        {this.generatePaypalButtons(cart.productsInCart)}
+
+                        <p style={{paddingBottom: '25px', fontSize: '18px', textAlign: 'center'}}>Total: ${this.getTotal(cart.productsInCart)}</p>
+                        
+                        {this.state.paypal && <h2 style={{fontSize: '32px', marginTop: '3vh', marginBottom: '3vh', color: 'black', textAlign: 'center'}}>Cart</h2>}
+                      </div>
+                    : <Loading/>
+                  }
+
+                  <div className='productWrapper'>
+                    {this.productsJSX(cart)}
+                  </div>
+                </div>
+              ) :
+              (
+                <div style={{display: 'flex', padding: '15px', justifyContent: 'center', height: '2vh'}}>
+                  <p style={{textAlign: 'center', fontSize: '20px'}}>There are currently no products in your cart</p>
+                </div>
+              )
+            }}
+          </CartContext.Consumer>
+        <p id="error" />  
+        </PageLayout>
       </Layout>
     )
   }

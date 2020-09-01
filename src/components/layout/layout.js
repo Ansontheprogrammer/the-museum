@@ -1,11 +1,9 @@
-import React, {useState} from "react"
-import { Link } from "gatsby"
+import React from "react"
 import MobileNav from "../navbar/mobile-nav"
 import DesktopNav from "../navbar/desktop-nav"
 import "./layout.scss"
+import PropTypes from "prop-types"
 import {CartContext} from "../products/context/cart.context"
-import {formatPrice} from "../products/components/productCard"
-import PaymentForm from "../../pages/checkout"
 import { Cart } from "../products/components/cart"
 import { SideBar } from "../products/components/sidebar"
 
@@ -26,13 +24,22 @@ const generateDesign = (numberOfDesigns) => {
 }
 
 class Layout extends React.Component{
+  /*
+    props : {
+      useCart?: false,
+      sidePageDesign?: false,
+      sidePageDesignNumber?: 0,
+      sideBar?: true
+    }
+  */
   constructor(props){
     super(props);
     this.state = {
       showCheckoutComponent: false,
-      showCart: this.props.onHomePage ? false : true
+      showCart: this.props.useCart ? false : true
     }
     this.toggleCheckoutComponent =  this.toggleCheckoutComponent.bind(this)
+    // Set timeout to avoid ui issues with safari browser
     setTimeout(() => {
       this.setState({
         showCart: true
@@ -50,19 +57,23 @@ class Layout extends React.Component{
       <CartContext.Consumer>
          {cart => (
           <>
-            {cart && this.state.showCart && (
+            {this.props.useCart && cart && this.state.showCart && (
               <Cart quantity={cart.productsInCart.length}/>
             )}
             <DesktopNav />
-            <div className={`desktop-layout ${!this.props.designNumber && 'display-column'}`}>
+            <div className={`desktop-layout ${this.props.sidePageDesign && 'display-column'}`}>
               {(
                 <>
-                  <div className='side-page-design'>
-                      {generateDesign(this.props.designNumber)}
+                  {this.props.sidePageDesign && <div className='side-page-design'>
+                      {generateDesign(this.props.sidePageDesignNumber)}
                     </div>
+                  }
                   <div className={'desktop-children'}>
-                    {cart && this.state.showCart && (
-                        <SideBar showingCheckout={this.state.showCheckoutComponent} toggleCheckoutComponent={this.toggleCheckoutComponent} products={cart.productsInCart} />
+                    {this.props.sideBar && cart && this.state.showCart && (
+                        <SideBar 
+                          showingCheckout={this.state.showCheckoutComponent} 
+                          toggleCheckoutComponent={this.toggleCheckoutComponent} 
+                          cart={cart} />
                     )}
                     {this.props.children}
                   </div>
@@ -81,4 +92,19 @@ class Layout extends React.Component{
 }
 
 Layout.contextType = CartContext;
+Layout.defaultProps = {
+  useCart: true,
+  sidePageDesign: false,
+  sidePageDesignNumber: 0,
+  sideBar: true,
+}
+
+
+Layout.propTypes = {
+  useCart: PropTypes.bool,
+  sidePageDesign: PropTypes.bool,
+  sidePageDesignNumber: PropTypes.number,
+  sideBar: PropTypes.bool
+}
+
 export default Layout

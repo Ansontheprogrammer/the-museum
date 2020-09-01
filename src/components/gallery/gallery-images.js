@@ -28,6 +28,7 @@ const GalleryImages = () => {
         background: `url(${imagePath})`,
         backgroundSize: "cover",
         backgroundPosition: "center 40%",
+        maxHeight: '350px'
       }
       return (
         <div key={imageTitle} className="Gallery-image" style={imageStyle} />
