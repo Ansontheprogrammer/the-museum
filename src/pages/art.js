@@ -10,7 +10,7 @@ const Shop = () => (
       <div>
         <ArtHeroSection />
       </div>
-      <Products displayAddToCartBtn={true} />
+      <Products type='art' displayAddToCartBtn={true} />
     </PageLayout>
    </Layout> 
 )

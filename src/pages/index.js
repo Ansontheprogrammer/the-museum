@@ -44,7 +44,7 @@ const LandingPage = (props) => {
     <Layout 
       sidePageDesign={true} 
       useCart={true}
-      sidePageDesignNumber={2}
+      sidePageDesignNumber={3}
       sideBar={true}
     >
       <Hero/>
@@ -69,7 +69,7 @@ LandingPage.defaultProps = {
       jsx: <>
         <SeaMossHeading/>
         <button className='section-button'>Read More</button>
-        <Products limit={1}/>
+        <Products type='seamoss' limit={1}/>
       </> 
     },
     videos: {
@@ -85,7 +85,7 @@ LandingPage.defaultProps = {
       jsx: <>
         <ArtHeroSection />
         <SpacingSm/>
-        <Products limit={3}/>
+        <Products type='art' limit={3}/>
       </>
     },
     shop: {

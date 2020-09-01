@@ -9,10 +9,11 @@ const Shop = () => (
   <Layout designNumber={0} displayAddToCartBtn={true} >
     <PageLayout title="Sea Moss">
         <SeaMossHeading />
+        <div className='spacing'/>
         <SeaMossVideos />
-        <div className='section'/>
+        <div className='spacing'/>
       <h1>Seamoss Products</h1>
-      <Products displayAddToCartBtn={true} />
+      <Products type='seamoss' displayAddToCartBtn={true} />
     </PageLayout>
    </Layout> 
 )
