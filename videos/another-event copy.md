@@ -1,7 +1,13 @@
 ---
-url: https://www.youtube.com/embed/czuFnWLsO1c
-title: 'Cutting hair'
-description: Basic video by Anson Ervin
+title: Cutting hair
+description: >-
+  in this video I'll be talking about the benefits of consuming 
 
+
+  Sea Moss as well as my own personal experience with using it consistently. 💗OTHER RELATED VIDEOS: -How to Make Sea Moss Gel: [https://bit.ly/3b5BUgy](https://www.youtube.com/redirect?v=2XLRrbR0m2A&redir_token=QUFFLUhqbHRGVmdTSFlsTDBXM2M3VFZKM0FQeU1vOEhOQXxBQ3Jtc0tsLTA5Z2hodDFrMXJSd2lJZVhBX01iY2tQSW5hMU1pWlVfNmVyTVV0UmpBcmFQanR5YmZQRl9MYVZPNmtURkZiT29NQXYxZzZmZGtOZTJPMlMwLVFoZFdCLTZjeGVnZTIyZ2JKWFBXazRRVktNQkVVZw%3D%3D&event=video_description&q=https%3A%2F%2Fbit.ly%2F3b5BUgy) -How I Take Sea Moss: [https://bit.ly/2RydowP](https://www.youtube.com/redirect?v=2XLRrbR0m2A&redir_token=QUFFLUhqbkNSczNGMy0wdHJsUkZsY0dtcnZuTHhiSlVkd3xBQ3Jtc0ttUEhhRzF4WnpOU0djdFdmbWNJTjBzeWREN19MOHUySmUxY1dhZkcya0t0c25LbGh3dUtvWGUzSW9NZTNVSnplY3JYWF9xd1FJXzBIU3k2VmxBa19LbTlZZ1NDNG0tcEtFSGRzVkhMZTEzbHh6d0FCSQ%3D%3D&event=video_description&q=https%3A%2F%2Fbit.ly%2F2RydowP) -Sea Moss As a Face Mask: [https://bit.ly/3eKc0RE](https://www.youtube.com/redirect?v=2XLRrbR0m2A&redir_token=QUFFLUhqbUpVUXNBLWFMRWRmMEtWcmtJbk1BUlpPOHozUXxBQ3Jtc0traHJnVmtBNTNaUlQ3Q3pZa0pRejdzU0gtZU9qcTFaMlpRY3g0X1FRbTZxOGtWTEZUbHZfQng5WmVtYzRNX0pIQVRBalN0ZzJMX01IZkUyOUxCTUg4TW5XdXJwYXRSTXd4NzRvdWVidHNSNjBVVFBNbw%3D%3D&event=video_description&q=https%3A%2F%2Fbit.ly%2F3eKc0RE) -Full Uterine Fibroid Embolization Experience Video: [https://bit.ly/2RNsrmL](https://www.youtube.com/redirect?v=2XLRrbR0m2A&redir_token=QUFFLUhqa2FLY0lxNURCY3lJZGpFN1VZYmx5aWxaQXhMQXxBQ3Jtc0tuU3hZSXBNMnpuRU9kemxCU1pvOVM3eG4zbGRfX29LcFZ4SFlWWElMdk1HLVd3V3NsWEFYVi1zU28wV1U0bDhHZkpoVEJ3T242dkF6TWxiV216bHoxU1hhNVFhUUpVcmxaVnludFhqNDB1TDRMdVFRQQ%3D%3D&event=video_description&q=https%3A%2F%2Fbit.ly%2F2RNsrmL) 💗SHOP MY STORE: [http://www.yvyandcompany.com](https://www.youtube.com/redirect?v=2XLRrbR0m2A&redir_token=QUFFLUhqblg2VlN3bUl3ck9tNUVnNzZBT3dDcWk0eTg2UXxBQ3Jtc0tsWFNOVld0bUtYX2ZkRWdBeVprallBSFhVTnR5aVZZdmlyekJtUUFER1U0dXhYaEU1R2xUdW50V2ZQRndYWGNzY09IeTJHb3NwUVFQd2Z3RVNkNWtScmpPNWNYNUp1WVJUS2hnSTZsd3FKelhPZXlLMA%3D%3D&event=video_description&q=http%3A%2F%2Fwww.yvyandcompany.com) 💗
+
+
+  SHOP MY AMAZON FAV’S: [http://www.amazon.com/shop/VeryVanessa](https://www.youtube.com/redirect?v=2XLRrbR0m2A&redir_token=QUFFLUhqa2RPb0JDRFp5VEticmlROHJkVVpQUUd3QTFXQXxBQ3Jtc0tueWVaQjdkNm1qZG91djE1RkQ0RFRMTFFWcHFGX1ZWMjlIWV81bWtDUXkwR1Jka0tuVzROTGdxNk92VTJIZTZHanNHbFFiRGRXdER5ZnkwdW80YUxqcndRYWFBemxkY3BWY0pTcG94b2p4dVc1alRnQQ%3D%3D&event=video_description&q=http%3A%2F%2Fwww.amazon.com%2Fshop%2FVeryVanessa) *Some links above may be affiliate links Disclaimer: The content in this video is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+url: https://www.youtube.com/embed/czuFnWLsO1c
 ---
 Developing Basketball IQ and Skills Camp Hosted by MaDC ( Making a Difference Coalition)
