@@ -5,6 +5,5 @@ bio: He genuinely cares about servicing clients among other things, but his love
   after barber.
 pics:
   - /assets/zooty-work2.jpeg
-links: List [ "ansonervin.com", "twitter.com/ansontheprogrammer",
-  "instagram.com/ansontheprogrammer"]
+links: [ "ansonervin.com", "twitter.com/ansontheprogrammer","instagram.com/ansontheprogrammer" ]
 ---

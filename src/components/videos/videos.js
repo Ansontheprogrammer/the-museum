@@ -57,7 +57,7 @@ const VideosComponent = () => {
   }).map(post => post)
 
   return (
-    <div className='productWrapper'>
+    <div className='productWrapper videoWrapperGrid'>
        {eventPosts}
     </div>
   )

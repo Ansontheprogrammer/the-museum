@@ -89,6 +89,7 @@ export const SideBar = (props) => {
                 zIndex: 100,
                 position: "fixed",
                 top: 0,
+                right: 0,
                 bottom: 0,
                 transition: "transform .3s ease-out",
                 WebkitTransition: "-webkit-transform .3s ease-out",

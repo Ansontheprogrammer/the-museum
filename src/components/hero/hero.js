@@ -21,7 +21,6 @@ const HeroWrapper = styled.div`
     h1 {
         max-width: 700px;
         font-size: 72px;
-        width: 100%;
         font-weight: normal;
         color: #eee;      
     }

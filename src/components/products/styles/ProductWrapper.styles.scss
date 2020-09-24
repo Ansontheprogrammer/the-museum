@@ -1,6 +1,6 @@
 .productWrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 35px;
   max-width: 1100px;
   z-index: 1100;
@@ -8,6 +8,14 @@
   margin: 0 auto;
   padding-left: 5vw;
   padding-right: 5vw;
+}
+
+.barbersWrapperGrid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.videoWrapperGrid {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .addMarginTop {
@@ -48,7 +56,6 @@
     grid-template-columns: none;
     justify-content: center;
     margin-left: 0vw;
-    margin-bottom: 5vh;
   }
 
   .vendor {
@@ -61,6 +68,10 @@
     flex-direction: inherit;
   }
 
+  .variations {
+    margin-top: 5vh;
+  }
+  
   .column {
     position: fixed;
     margin-bottom: 8vh;

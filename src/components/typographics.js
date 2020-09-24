@@ -48,6 +48,7 @@ export const SectionHeader = styled.div`
         
         h1 {
             padding-left: revert;
+            margin-left: revert;
         }
    }
 `

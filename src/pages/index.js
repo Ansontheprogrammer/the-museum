@@ -44,7 +44,7 @@ const LandingPage = (props) => {
     <Layout 
       sidePageDesign={true} 
       useCart={true}
-      sidePageDesignNumber={3}
+      sidePageDesignNumber={4}
       sideBar={true}
     >
       <Hero/>
@@ -85,14 +85,14 @@ LandingPage.defaultProps = {
       jsx: <>
         <ArtHeroSection />
         <SpacingSm/>
-        <Products type='art' limit={3}/>
+        <Products type='art' limit={4}/>
       </>
     },
     shop: {
       show: true,
       heading: 'Shop',
       subtitleHeading: '',
-      jsx: <Products limit={3}/>
+      jsx: <Products limit={4}/>
     },
   }
 }

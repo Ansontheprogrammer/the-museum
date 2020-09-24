@@ -37,7 +37,7 @@ class Barbers extends Component {
         render={({allMarkdownRemark}) => {
           let barbers = allMarkdownRemark.edges
           return (
-          <div className="productWrapper">
+          <div className="productWrapper barbersWrapperGrid">
             {barbers.map((barber, i) => {
               return (
                 <div className="variations">
