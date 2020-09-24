@@ -69,7 +69,7 @@ LandingPage.defaultProps = {
       jsx: <>
         <SeaMossHeading/>
         <button className='section-button'>Read More</button>
-        <Products type='seamoss' limit={1}/>
+        <Products category='seamoss' limit={1}/>
       </> 
     },
     videos: {
@@ -85,7 +85,7 @@ LandingPage.defaultProps = {
       jsx: <>
         <ArtHeroSection />
         <SpacingSm/>
-        <Products type='art' limit={4}/>
+        <Products category='art' limit={4}/>
       </>
     },
     shop: {
