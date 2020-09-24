@@ -39,6 +39,7 @@
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.8.6",
+    "react-horizontal-scrolling-menu": "^0.7.8",
     "react-icons": "^3.7.0",
     "react-sidebar": "^3.0.2",
     "react-stripe-checkout": "^2.6.3",

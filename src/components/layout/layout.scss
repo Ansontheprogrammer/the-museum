@@ -91,6 +91,35 @@ button {
   padding: 10px;
 }
 
+// Horizontal menu
+.menu-item {
+  padding: 0 40px;
+  margin: 5px 10px;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+}
+.menu-item-wrapper.active {
+  background-color: #2f2f2f;
+  color: #eee
+}
+
+ 
+.scroll-menu-arrow {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.menu-item {
+  padding: 0px 25px
+}
+
+.horizontal-menu {
+  margin: 35px 0px;
+}
+
+//
+
 /* Hide the browser's default radio button */
 .input-container input {
   position: absolute;

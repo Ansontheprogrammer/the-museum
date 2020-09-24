@@ -55,12 +55,12 @@ class Products extends Component {
           let products = allShopifyProduct.edges
           // Filter products by vendor
           .filter(product => {
-            return this.props.vendor ? product.node.vendor.toLowerCase() === this.props.vendor.toLowerCase() : true
+            return this.props.vendor && this.props.vendor !== 'all' ? product.node.vendor.toLowerCase() === this.props.vendor.toLowerCase() : true
           })  
           // Filter for product type. if none passed don't show art or seamoss
           .filter(product => {
-            if(this.props.type) {
-              return product.node.productType.toLowerCase() === this.props.type.toLowerCase()
+            if(this.props.category && this.props.category !== 'all') {
+              return product.node.productType.toLowerCase() === this.props.category.toLowerCase()
             } else {
               // return false
               return product.node.productType.toLowerCase() !==  'art' && product.node.productType.toLowerCase() !==  'seamoss' 

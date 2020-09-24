@@ -13,7 +13,7 @@ const Shop = () => (
         <SeaMossVideos />
         <div className='spacing'/>
       <h1>Seamoss Products</h1>
-      <Products type='seamoss' displayAddToCartBtn={true} />
+      <Products category='seamoss' displayAddToCartBtn={true} />
     </PageLayout>
    </Layout> 
 )
