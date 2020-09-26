@@ -44,7 +44,7 @@ const LandingPage = (props) => {
     <Layout 
       sidePageDesign={true} 
       useCart={true}
-      sidePageDesignNumber={4}
+      sidePageDesignNumber={3}
       sideBar={true}
     >
       <Hero/>
