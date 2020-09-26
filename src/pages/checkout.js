@@ -1,10 +1,11 @@
 import React, { Fragment } from "react"
 import "../components/products/styles/ProductWrapper.styles.scss"
 import { CartContext } from "../components/products/context/cart.context"
-import { formatPrice } from "../components/products/components/productCard"
 import Layout from "../components/layout/layout"
 import { Loading } from "../components/products/components/loading"
 import PageLayout from "../components/layout/page-layout"
+import axios from 'axios'
+import { formatPrice } from "../components/products/components/productCard"
 
 export default class Checkout extends React.Component {
   constructor(props) {
@@ -39,11 +40,16 @@ export default class Checkout extends React.Component {
     productsList.forEach(product => {
       total += parseFloat(product._price)
     })
-    return total.toFixed(2)
+
+    return {
+      total: total.toFixed(2),
+      ae: (total * 0.02).toFixed(2)
+    }
   }
 
   generatePaypalButtons(productsList){
-    const total = this.getTotal(productsList)
+     const calculations = this.getTotal(productsList)
+    const total = calculations.total
     if(this.state.paypal) this.state.paypal.Buttons({
       style: {
           shape: 'rect',
@@ -62,112 +68,146 @@ export default class Checkout extends React.Component {
           });
       },
       onApprove: function(data, actions) {
-          return actions.order.capture().then(async function(details) {
-              // const { email_address: email} = details.payer;
-              const { value: saleAmount } = details['purchase_units'][0].amount
-              const shipping = details['purchase_units'][0].shipping
-              const {address_line_1: street, admin_area_1: state, admin_area_2: city, postal_code: zipcode } = shipping.address
-              const { full_name: name } = shipping.name
-              const checkoutDetails = {
+        const order = new Checkout().generateMessage(productsList);
+        return actions.order.capture().then(async function(details) {
+            const { email_address: email} = details.payer;
+            const { value: saleAmount } = details['purchase_units'][0].amount
+            const shipping = details['purchase_units'][0].shipping
+            const {address_line_1: street, admin_area_1: state, admin_area_2: city, postal_code: zipcode } = shipping.address
+            const { full_name: name } = shipping.name
+            const checkoutDetails = {
+              customer: {
                 name, 
+                email,
                 address: {
                   street,
                   state,
                   city,
                   zipcode
                 },
-                saleAmount
-              }
-              new Checkout().sendVendorConfirmation(productsList, checkoutDetails)
-              alert('Transaction successful!');
-          });
-      }
-  }).render('#paypal-button-container');
-    return <div/>
-  }
-  
-  productsJSX = cart => {
-    if(!this.state.paypal) return
-    const products = {}
-    cart.productsInCart.forEach(product => {
-      if(!products[product.title]) {
-        products[product.title] = product
-        products[product.title].quantity = 1
-      } else {
-         products[product.title].quantity++
-      }
-    })
-    return Object.values(products).map(product => (
-      <div style={{display: 'block'}}>
-        <div style={{padding: '15px', paddingBottom: '20px'}}>
-          { product.images &&
-            <img style={{height: '150px', width:'150px'}} src={product.images[0].originalSrc}/>
-          }
-          <p>{product.title}</p>
-          <p>{product.vendor}</p>
-          <p>{formatPrice(products[product.title]._price)}</p>
-        <p>Quantity: {product.quantity}</p>
-        </div>
-      </div>
-    ))
-  }
-
-  sendVendorConfirmation(productList, customerDetails){
-    const phoneNumberToSendToo = process.env.NODE_ENV === 'develop' ? '9082097544' : '3027455878'
-    const emailToSendToo = process.env.NODE_ENV === 'develop' ? 'ansonervin@gmail.com' : 'esko831@gmail.com'
-    const textUrl = `http://localhost:80/v1/send/text/${phoneNumberToSendToo}`
-    const emailUrl = `https://application-form-server.glitch.me/`
-    const generateMessage = () => {
-      let message = "Here are the client's cart details:";
-      const products = {}
-      productList.forEach(product => {
-        if(!products[product.title]) {
-          products[product.title] = product
-          products[product.title].quantity = 1
-        } else {
-           products[product.title].quantity++
-        }
-      })
-      Object.values(products).forEach(product => {
-        message += ' ' + product.quantity + ' ' + product.title
-      })
-      return message
+              order
+              },
+            }
+            new Checkout().sendConfirmationEmailToVendor(checkoutDetails)
+            new Checkout().sendConfirmationEmailToAEInc(calculations.ae, order)
+            alert('Transaction successful!');
+        });
     }
-  
-    // send text to john that someone started checking out
-    // await fetch(textUrl, {
-    //   method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    //   mode: 'cors', // no-cors, *cors, same-origin
-    //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    //   credentials: 'same-origin', // include, *same-origin, omit
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   redirect: 'follow', // manual, *follow, error
-    //   referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    //   body: JSON.stringify({
-    //     ...this.state.formData,
-    //     message: this.generateMessage(productList)
-    //   }) // body data type must match "Content-Type" header
-    // })
-    // send email to john that someone started checking out
+}).render('#paypal-button-container');
+  return <div/>
+}
 
-    fetch(emailUrl, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
+async sendConfirmationEmailToVendor(customerDetails){
+  const url = `https://ae-api.glitch.me/api/send/email`
+  try {
+    await axios({
+      url,
+      method: 'POST',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify({
+      data: JSON.stringify({
         ...customerDetails,
-        message: generateMessage(productList),
-        sendTo: emailToSendToo
+        to: 'zootythebarber@gmail.com'
       })
     })
+    return Promise.resolve()
+  } catch(err){
+    return Promise.reject(err)
+  }
+}
+
+async sendConfirmationEmailToAEInc(ourIncome, order){
+  const url = `https://ae-api.glitch.me/api/send/email`
+  try {
+    await axios({
+      url,
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify({
+        order,
+        message: 'Customer just checked and we made for $' + ourIncome,
+        to: 'ansonervin@gmail.com'
+      })
+    })
+    return Promise.resolve()
+  } catch(err){
+    return Promise.reject()
+  }
+}
+
+generateMessage(productList){
+  let message = "Here are the client's cart details: ";
+  const products = {}
+  productList.forEach(product => {
+    let optionString = '- '
+    // generate option string
+    // product._variants.forEach(option => {
+    //   if(!Object.values(option)[0] === undefined){
+    //     for(let key in option){
+    //       optionString += key + ' ' + option[key] + ' '
+    //     }
+    //   }
+    // })
+    const productID = `${product.title} ${optionString}`;
+    if(!products[productID]) {
+      products[productID] = product
+      products[productID].quantity = 1
+    } else {
+       products[productID].quantity++
+    }
+  })
+  
+  for(let product in products){
+    message += '\n' + product + ' ' +  products[product].quantity + ' -- '
+  }
+  return message
+}
+
+productsJSX = cart => {
+  if(!this.state.paypal) return
+  const products = {}
+  cart.productsInCart.forEach(product => {
+    let optionString = '---- '
+    // generate option string
+    Object.keys(product._variants).forEach(option => {
+      console.log(option, 'option')
+      for(let key in option){
+        optionString += ' ' + option[key]
+      }
+    })
+    const productID = `${product.title} ${optionString}`;
+    if(!products[productID]) {
+      products[productID] = product
+      products[productID].quantity = 1
+    } else {
+       products[productID].quantity++
+    }
+  })
+
+  return Object.values(products).map(product => (
+    <div style={{display: 'block'}}>
+      <div style={{padding: '15px', paddingBottom: '20px'}}>
+        { product.images &&
+          <img style={{height: '150px', width:'150px'}} src={product.images[0].src}/>
+        }
+        <p>{product.title}</p>
+        <p>{product.vendor}</p>
+        <p>{formatPrice(product._price)}</p>
+        {Object.keys(product._variants).map(attribute => {
+          for(let key in attribute){
+            if(!attribute[key]) return <div/>
+            return <p>{key} - {attribute[key]}</p>
+          }
+        })}
+      <p>Quantity: {product.quantity}</p>
+      </div>
+    </div>
+    ))
   }
 
   render() {  
@@ -191,7 +231,7 @@ export default class Checkout extends React.Component {
                       <div>
                         {this.generatePaypalButtons(cart.productsInCart)}
 
-                        <p style={{paddingBottom: '25px', fontSize: '18px', textAlign: 'center'}}>Total: ${this.getTotal(cart.productsInCart)}</p>
+                        <p style={{paddingBottom: '25px', fontSize: '18px', textAlign: 'center'}}>Total: ${this.getTotal(cart.productsInCart).total}</p>
                         
                         {this.state.paypal && <h2 style={{fontSize: '32px', marginTop: '3vh', marginBottom: '3vh', color: 'black', textAlign: 'center'}}>Cart</h2>}
                       </div>

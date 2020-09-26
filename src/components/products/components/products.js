@@ -72,6 +72,7 @@ class Products extends Component {
             const variants = {}
             node.variants.forEach(variant => {
               variant.selectedOptions.forEach(option => {
+                if(option.name.toLowerCase() === 'title') return 
                 if(variants[option.name]) {
                   if(!variants[option.name].find(variant => variant === option.value)) {
                     variants[option.name].push(option.value)
