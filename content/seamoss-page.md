@@ -1,6 +1,8 @@
 ---
-page: 'seamoss'
-paragraphOne: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-paragraphTwo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+page: Seamoss
+paragraphOne: “Also known as Irish Moss, sea moss is a red algae best known
+  around the world as a superfood. With its high vitamin and mineral contents,
+  sea moss is known to fight the effects of aging, help the skin retain
+  moisture, and prevent and relieve cold and flu-like symptoms.”
+paragraphTwo: "- Contact our stop and speak to Nas Ervin for all Purchases. "
 ---
-
