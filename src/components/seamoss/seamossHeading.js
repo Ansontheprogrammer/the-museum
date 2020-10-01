@@ -4,37 +4,40 @@ import './seamoss.styles.scss'
 
 
 const SeaMossHeading = () => {
-  const data = useStaticQuery(graphql`
-    query getPageContent {
-      allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/(content)/" } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              page
-              paragraphOne
-              paragraphTwo
-            }
-          }
-        }
-      }
-    }
-  `)
+  // const data = useStaticQuery(graphql`
+  //   query getPageContent {
+  //     allMarkdownRemark(
+  //       filter: { fileAbsolutePath: { regex: "/(content)/" } }
+  //     ) {
+  //       edges {
+  //         node {
+  //           frontmatter {
+  //             page
+  //             paragraphOne
+  //             paragraphTwo
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
 
-  let jsxToRender;
-  data.allMarkdownRemark.edges.forEach((edge, index) => {
-    const { page, paragraphOne, paragraphTwo } = edge.node.frontmatter 
+  let jsxToRender = <div className='section-text'>
+                 <p className='section-description'>Hey</p>
+                 <p className='section-description'>Two</p>
+             </div>;
+  // data.allMarkdownRemark.edges.forEach((edge, index) => {
+  //   const { page, paragraphOne, paragraphTwo } = edge.node.frontmatter 
 
-    if(page === 'seamoss'){
-        jsxToRender = (
-            <div className='section-text'>
-                <p className='section-description'>{paragraphOne}</p>
-                <p className='section-description'>{paragraphTwo}</p>
-            </div>
-          )
-    }
-  })
+  //   if(page === 'seamoss'){
+  //       jsxToRender = (
+  //           <div className='section-text'>
+  //               <p className='section-description'>{paragraphOne}</p>
+  //               <p className='section-description'>{paragraphTwo}</p>
+  //           </div>
+  //         )
+  //   }
+  // })
 
   return jsxToRender
 }
