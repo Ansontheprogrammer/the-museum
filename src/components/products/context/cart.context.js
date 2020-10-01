@@ -13,29 +13,29 @@ function makeid(length) {
  }
 
 export class CartProvider extends React.Component {
-  constructor(props){
-      super(props)
-  }
-
   state = {
       productsInCart: [],
   }
   
   addToCart(product){
       return () => {
+          const cartID = makeid(8)
           this.setState({
-              productsInCart: this.state.productsInCart.concat({...product, cartID: makeid(8)})
+              productsInCart: this.state.productsInCart.concat({...product, cartID})
           })
       }
   }
 
   removeItemFromCart(cartIDNumber){
-      return () => {
-        console.log(this.state.productsInCart, 'cart id number')
-          this.setState({
-            productsInCart: this.state.productsInCart.filter(product => product.cartID !== cartIDNumber)
-        })
-        }
+    const filteredArray = this.state.productsInCart.filter(product => {
+        return product.cartID !== cartIDNumber 
+    })
+
+    return () => {
+      this.setState({
+          productsInCart: filteredArray.length ? filteredArray : []
+      })
+    }
   }
 
   removeAllItemsFromCart(){

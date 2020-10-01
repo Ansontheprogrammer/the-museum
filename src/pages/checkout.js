@@ -175,7 +175,6 @@ productsJSX = cart => {
     let optionString = '---- '
     // generate option string
     Object.keys(product._variants).forEach(option => {
-      console.log(option, 'option')
       for(let key in option){
         optionString += ' ' + option[key]
       }
@@ -193,7 +192,7 @@ productsJSX = cart => {
     <div style={{display: 'block'}}>
       <div style={{padding: '15px', paddingBottom: '20px'}}>
         { product.images &&
-          <img style={{height: '150px', width:'150px'}} src={product.images[0].src}/>
+          <img style={{height: '150px', width:'150px'}} src={product.images[0].originalSrc}/>
         }
         <p>{product.title}</p>
         <p>{product.vendor}</p>
@@ -237,7 +236,6 @@ productsJSX = cart => {
                       </div>
                     : <Loading/>
                   }
-
                   <div className='productWrapper'>
                     {this.productsJSX(cart)}
                   </div>

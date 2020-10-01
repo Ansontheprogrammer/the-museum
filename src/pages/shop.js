@@ -30,11 +30,11 @@ const MenuItem = ({text, selected}) => {
  
 // All items component
 // Important! add unique key
-export const Menu = (categoryList, selected) =>
+export const Menu = (categoryList, selected, alignment) =>
   categoryList.map(el => {
     const {name} = el;
  
-    return <MenuItem text={name} key={name} selected={selected} />;
+    return <MenuItem text={name} key={name} selected={selected} alignment={alignment} />;
   });
 
  
@@ -43,8 +43,8 @@ class ShopPageComponent extends Component {
   constructor(props) {
     super(props);
     // call it again if items count changes
-    this.categoryItems = Menu(categoryList, 'all');
-    this.vendorItems = Menu(vendorList, 'all');
+    this.categoryItems = Menu(categoryList, 'all', 'top');
+    this.vendorItems = Menu(vendorList, 'all', 'left');
   }
  
   state = {
@@ -66,16 +66,21 @@ class ShopPageComponent extends Component {
     return (
       <div>
         <div className='spacer'/>
-          <ScrollMenu
-            data={categoryMenu}
-            selected={categorySelected}
-            onSelect={this.onSelect('categorySelected')}
-          />
-          <ScrollMenu
-            data={vendoMenu}
-            selected={vendorSelected}
-            onSelect={this.onSelect('vendorSelected')}
-          />
+          {/* <div className='top-category-menu'>
+            <ScrollMenu
+              data={categoryMenu}
+              selected={categorySelected}
+              onSelect={this.onSelect('categorySelected')}
+              arrowLeft={<p>{'<'}</p>}
+            />
+          </div> */}
+          {/* <div className='left-category-menu'>
+            <ScrollMenu
+              data={vendoMenu}
+              selected={vendorSelected}
+              onSelect={this.onSelect('vendorSelected')}
+            />
+          </div> */}
           <Products category={categorySelected} vendor={vendorSelected} displayAddToCartBtn={true} />
         </div>
     );

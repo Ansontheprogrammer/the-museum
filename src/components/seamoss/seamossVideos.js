@@ -38,6 +38,7 @@ const SeaMossVideos = () => {
         className=""
       >
         <iframe
+        style={{marginTop: '20px'}}
         className=""
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         frameBorder="0"
@@ -63,14 +64,15 @@ const SeaMossVideos = () => {
     </div>
   )).map(jsx => jsx)
 
+  console.log(seaMossVideos, 'seamoss videos')
   return (
     <>
       <h1>Clients</h1>
       <div className='clients' >
       {clientJSX.map((client, index) => (
         <div className='spacing'>
-          {seaMossVideos[index]}
           {client}
+          {seaMossVideos[index]}
         </div>
       ))
     }
