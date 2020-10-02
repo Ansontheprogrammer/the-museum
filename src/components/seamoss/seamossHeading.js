@@ -1,45 +1,28 @@
+import { useStaticQuery } from "gatsby"
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import './seamoss.styles.scss'
 
-
 const SeaMossHeading = () => {
-  // const data = useStaticQuery(graphql`
-  //   query getPageContent {
-  //     allMarkdownRemark(
-  //       filter: { fileAbsolutePath: { regex: "/(content)/" } }
-  //     ) {
-  //       edges {
-  //         node {
-  //           frontmatter {
-  //             page
-  //             paragraphOne
-  //             paragraphTwo
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
+  const data = useStaticQuery(graphql`
+    query getSeamossPageContent {
+      allMarkdownRemark(
+        filter: { 
+          fileAbsolutePath: { regex: "/(content)/" },
+          frontmatter: {page: {eq: "Seamoss" }}
+        }
+      ) {
+        edges {
+          node {
+            html
+          }
+        }
+      }
+    }
+  `)
+  
+  const seamossContent = data.allMarkdownRemark.edges[0].node.html
 
-  let jsxToRender = <div className='section-text'>
-                 <p className='section-description'>Hey</p>
-                 <p className='section-description'>Two</p>
-             </div>;
-  // data.allMarkdownRemark.edges.forEach((edge, index) => {
-  //   const { page, paragraphOne, paragraphTwo } = edge.node.frontmatter 
-
-  //   if(page === 'seamoss'){
-  //       jsxToRender = (
-  //           <div className='section-text'>
-  //               <p className='section-description'>{paragraphOne}</p>
-  //               <p className='section-description'>{paragraphTwo}</p>
-  //           </div>
-  //         )
-  //   }
-  // })
-
-  return jsxToRender
+  return <div className='section-text' dangerouslySetInnerHTML={{__html: seamossContent}}/>
 }
 
 export default SeaMossHeading

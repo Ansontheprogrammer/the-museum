@@ -5,8 +5,21 @@ import BackgroundImage from "gatsby-background-image"
 import "./about.styles.scss"
 
 const AboutSection = () => {
+  
   const data = useStaticQuery(graphql`
     query {
+      allMarkdownRemark(
+        filter: { 
+          fileAbsolutePath: { regex: "/(content)/" },
+          frontmatter: {page: {eq: "about" }}
+        }
+      ) {
+        edges {
+          node {
+            html
+          }
+        }
+      }
       aboutImage: file(relativePath: { eq: "logo.png" }) {
         childImageSharp {
           fluid(quality: 90, maxWidth: 1920) {
@@ -18,7 +31,7 @@ const AboutSection = () => {
   `)
 
   const imageData = data.aboutImage.childImageSharp.fluid
-
+  const aboutContent = data.allMarkdownRemark.edges[0].node.html
   return (
     <div className="About" id="about">
       <BackgroundImage
@@ -26,26 +39,7 @@ const AboutSection = () => {
         fluid={imageData}
         className="About-img"
       ></BackgroundImage>
-      <div className="About-text">
-        <p>
-          ​Born in this industry, literally learning from the floor up as a
-          young child sweeping hair in his uncle's shop, Zooty the Barber has
-          over 15 years of experience in the industry.
-        </p>
-        <p>
-          His ambitious spirit and knowledge of hair, coupled with his
-          creativity and high degree of customer service allows him to
-          understand his customers’ needs on a deeper level. Having such a
-          diverse background in hair, along with his hungry nature, Zooty the
-          Barber can be found either perfecting his craft or learning new trends
-          to better serve all individuals in the community.
-        </p>
-        <p>
-          He genuinely cares about servicing clients among other things, but his
-          love for raising expectations and self-esteems continue to make him a
-          well sought after barber.
-        </p>
-      </div>
+      <div className="About-text" dangerouslySetInnerHTML={{__html: aboutContent}} />
     </div>
   )
 }
