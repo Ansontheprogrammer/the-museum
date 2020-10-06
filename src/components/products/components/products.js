@@ -68,9 +68,15 @@ class Products extends Component {
           })  
           // Limit products returned
           products = this.props.limit ? products.slice(0, this.props.limit) : products
+
           const mapVariations = (node) => {
             const variants = {}
             node.variants.forEach(variant => {
+              /* Convert variants to object
+                {
+                  variantName : string[]
+                }
+              */
               variant.selectedOptions.forEach(option => {
                 if(option.name.toLowerCase() === 'title') return 
                 if(variants[option.name]) {
@@ -82,17 +88,27 @@ class Products extends Component {
                 } 
               })
             })
-            return variants
+            // Convert variants to list
+            const variantsToList = Object.keys(variants).map(optionName => {
+            return {
+                name: optionName,
+                variants: variants[optionName],
+                default: variants[optionName][0]
+              }
+            })
+            return variantsToList
           }
 
           return (
           <div className="productWrapper">
             {products.map((product, i) => {
-              product.node._price = product.node.priceRange.minVariantPrice.amount
-              product.node._variants = mapVariations(product.node)
+              const productNode = product.node;
+              productNode._price = productNode.priceRange.minVariantPrice.amount
+              productNode._variants = mapVariations(productNode)
+              
               return (
                 <div className="variations">
-                  <SkuCard key={i} product={product.node} displayAddToCart={this.props.displayAddToCartBtn}/>
+                  <SkuCard key={i} product={productNode} displayAddToCart={this.props.displayAddToCartBtn}/>
                 </div>
               )
            })}

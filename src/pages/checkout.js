@@ -6,6 +6,7 @@ import { Loading } from "../components/products/components/loading"
 import PageLayout from "../components/layout/page-layout"
 import axios from 'axios'
 import { formatPrice } from "../components/products/components/productCard"
+import config from "../../config/config"
 
 export default class Checkout extends React.Component {
   constructor(props) {
@@ -48,7 +49,8 @@ export default class Checkout extends React.Component {
   }
 
   generatePaypalButtons(productsList){
-     const calculations = this.getTotal(productsList)
+    const order = new Checkout().generateMessage(productsList);
+    const calculations = this.getTotal(productsList)
     const total = calculations.total
     if(this.state.paypal) this.state.paypal.Buttons({
       style: {
@@ -62,13 +64,19 @@ export default class Checkout extends React.Component {
           return actions.order.create({
               purchase_units: [{
                   amount: {
-                      value: total
-                  }
+                    value: total,
+                    breakdown: {
+                      item_total: {
+                        currency_code: 'USD',
+                        value: total
+                      },
+                    },
+                  },
+                  items : new Checkout().generateItems(productsList)
               }]
           });
       },
       onApprove: function(data, actions) {
-        const order = new Checkout().generateMessage(productsList);
         return actions.order.capture().then(async function(details) {
             const { email_address: email} = details.payer;
             const { value: saleAmount } = details['purchase_units'][0].amount
@@ -89,7 +97,7 @@ export default class Checkout extends React.Component {
               },
             }
             new Checkout().sendConfirmationEmailToVendor(checkoutDetails)
-            new Checkout().sendConfirmationEmailToAEInc(calculations.ae, order)
+            new Checkout().sendConfirmationEmailToAEInc(calculations.ae, checkoutDetails)
             alert('Transaction successful!');
         });
     }
@@ -98,7 +106,19 @@ export default class Checkout extends React.Component {
 }
 
 async sendConfirmationEmailToVendor(customerDetails){
-  const url = `https://ae-api.glitch.me/api/send/email`
+  return await this.sendEmail(customerDetails, config.vendorEmail)
+}
+
+async sendConfirmationEmailToAEInc(ourIncome, checkoutDetails){
+  const messageBody = {
+    checkoutDetails,
+    message: 'Customer just checked and we made for $' + ourIncome,
+  }
+  return await this.sendEmail(messageBody, config.aeEmail)
+}
+
+async sendEmail(messageBody, toEmail){
+  const url = `${config.aeSystemURL}/api/send/email`
   try {
     await axios({
       url,
@@ -108,8 +128,8 @@ async sendConfirmationEmailToVendor(customerDetails){
         'Content-Type': 'application/json'
       },
       data: JSON.stringify({
-        ...customerDetails,
-        to: 'zootythebarber@gmail.com'
+        ...messageBody,
+        to: toEmail
       })
     })
     return Promise.resolve()
@@ -118,42 +138,36 @@ async sendConfirmationEmailToVendor(customerDetails){
   }
 }
 
-async sendConfirmationEmailToAEInc(ourIncome, order){
-  const url = `https://ae-api.glitch.me/api/send/email`
-  try {
-    await axios({
-      url,
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+generateItems(productList){
+  const products = {}
+  productList.forEach(product => {
+    const productID = `${product.title} ${product._selectedVariant}`;
+    if(!products[productID]) {
+      products[productID] = product
+      products[productID].quantity = 1
+    } else {
+       products[productID].quantity++
+    }
+  })
+  
+  return Object.keys(products).map(product => {
+    return {
+      name: product,
+      unit_amount: {
+        value: products[product]._price,
+        currency_code: 'USD'
       },
-      data: JSON.stringify({
-        order,
-        message: 'Customer just checked and we made for $' + ourIncome,
-        to: 'ansonervin@gmail.com'
-      })
-    })
-    return Promise.resolve()
-  } catch(err){
-    return Promise.reject()
-  }
+      description: products[product].body_html,
+      quantity: products[product].quantity.toString()
+    }
+  })
 }
 
 generateMessage(productList){
-  let message = "Here are the client's cart details: ";
+  let message = "Checkout details: ";
   const products = {}
   productList.forEach(product => {
-    let optionString = '- '
-    // generate option string
-    // product._variants.forEach(option => {
-    //   if(!Object.values(option)[0] === undefined){
-    //     for(let key in option){
-    //       optionString += key + ' ' + option[key] + ' '
-    //     }
-    //   }
-    // })
-    const productID = `${product.title} ${optionString}`;
+    const productID = `${product.title} ${product._selectedVariant}`;
     if(!products[productID]) {
       products[productID] = product
       products[productID].quantity = 1
@@ -163,7 +177,7 @@ generateMessage(productList){
   })
   
   for(let product in products){
-    message += '\n' + product + ' ' +  products[product].quantity + ' -- '
+    message += products[product].quantity  + ' ' + product + ' | '  
   }
   return message
 }
@@ -172,14 +186,8 @@ productsJSX = cart => {
   if(!this.state.paypal) return
   const products = {}
   cart.productsInCart.forEach(product => {
-    let optionString = '---- '
     // generate option string
-    Object.keys(product._variants).forEach(option => {
-      for(let key in option){
-        optionString += ' ' + option[key]
-      }
-    })
-    const productID = `${product.title} ${optionString}`;
+    const productID = `${product.title} ${product._selectedVariant}`;
     if(!products[productID]) {
       products[productID] = product
       products[productID].quantity = 1
@@ -197,12 +205,7 @@ productsJSX = cart => {
         <p>{product.title}</p>
         <p>{product.vendor}</p>
         <p>{formatPrice(product._price)}</p>
-        {Object.keys(product._variants).map(attribute => {
-          for(let key in attribute){
-            if(!attribute[key]) return <div/>
-            return <p>{key} - {attribute[key]}</p>
-          }
-        })}
+        <p>{product._selectedVariant}</p>
       <p>Quantity: {product.quantity}</p>
       </div>
     </div>

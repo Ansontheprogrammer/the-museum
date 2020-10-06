@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   background: #2f2f2f ;
-
+  z-index: 1000;
   a:not(.logo) {
     color: #fff;
     font-weight: lighter;

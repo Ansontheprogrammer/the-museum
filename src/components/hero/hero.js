@@ -51,12 +51,12 @@ export const Hero = props => (
             <h2>{props.smallHeading}</h2>
             <h1>{props.heading}</h1>
             <h3 className="description">{props.subtitle}</h3>
-            <a
+            {/* <a
             className="btn"
             href={props.buttonLink}
             >
                 {props.buttonText}
-            </a>
+            </a> */}
          </HeroWrapper>
         </Container>
     </Section>

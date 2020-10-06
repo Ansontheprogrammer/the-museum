@@ -64,7 +64,6 @@ const SeaMossVideos = () => {
     </div>
   )).map(jsx => jsx)
 
-  console.log(seaMossVideos, 'seamoss videos')
   return (
     <>
       <h1>Clients</h1>
