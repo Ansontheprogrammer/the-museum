@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: space-between;
   border-radius: 6px;
-  max-height: 500px;
   color: "#333";
   min-width: 300px;
   min-height: 100%;
@@ -34,20 +33,6 @@
   .title {
     margin-bottom: 10px;
     margin-top: 10px;
-    font-size: 20px;
-
-    h4 {
-      font-size: 24px;
-      font-weight: lighter;
-      font-family: 'Lato';
-    }
-  }
-
-  p {
-    text-align: left;
-    color: #555;
-    margin-top: 20px;
-    text-align: center;
   }
 
   select {
@@ -55,7 +40,6 @@
   }
   
   .text {
-    margin-bottom: auto; 
     margin-top: 10px;
   }
 
@@ -82,7 +66,3 @@
     }
   }
 }
-
-// .cart-btn {
-//   margin-top: 5vh;
-// }

@@ -43,41 +43,93 @@ const vendorList = [
 class ShopPageComponent extends Component {
   constructor(props) {
     super(props);
+    this.onSelect = this.onSelect.bind()
   }
- 
+  toggleSelectorMenus = (selector, value) => {
+    return () => {
+    this.setState({
+      selectors : {
+        ...this.state.selectors,
+        [selector] : !this.state[selector]
+      }
+      })
+    }
+  }
+  selectors = {
+    category: {
+      displayedMenu: this.generateButtonList(categoryList, 'categorySelected'),
+      nonDisplayed: <button onClick={this.toggleSelectorMenus('category')}>Show Category Menu</button>
+    },
+    vendor : {
+      displayedMenu: this.generateButtonList(vendorList, 'vendorSelected'),
+      nonDisplayed: <button onClick={this.toggleSelectorMenus('vendor')}>Switch Vendors</button>
+    } 
+  }
+
   state = {
     categorySelected: '',
-    vendorSelected: ''
+    vendorSelected: '',
+    selectors: {
+      category: false,
+      vendor: false,
+    }
   };
  
-  onSelect = (selectorType) =>  key => () => {
-    this.setState({ [selectorType]: key });
+  onSelect = (selectorType) => {
+    const findIfAnyOtherTogglesAreSelected = Object.keys(this.state.selectors).find(selector => this.state.selectors[selector])
+
+   return (e) => {
+     const findIfAnyOtherTogglesAreSelected = Object.keys(this.state.selectors).find(selector => this.state.selectors[selector])
+     if(findIfAnyOtherTogglesAreSelected){
+      this.setState({ 
+        [selectorType.selectorName]: selectorType.btnName,
+        [findIfAnyOtherTogglesAreSelected] : !this.state.selectors[findIfAnyOtherTogglesAreSelected]
+      });
+     } else {
+      this.setState({ 
+        [selectorType.selectorName]: selectorType.btnName,
+       });
+     }
+   }
   }
  
   generateButtonList(list, selectorName){
     return list.map(btn => {
-            return <button onClick={this.onSelect(selectorName)(btn.name)}>{btn.name}</button>
-          })
-          .map(jsx => jsx)
+      return <button >{btn.name}</button>
+    })
+    .map(jsx => jsx)
   }
  
   render() {
     const { categorySelected, vendorSelected } = this.state;
     // Create menu from items
-    const CategoryMenu = this.generateButtonList(categoryList, 'categorySelected');
-    const VendorMenu = this.generateButtonList(vendorList, 'vendorSelected');
-
+    
     return (
       <div>
         <div className='spacer'/>
           <div className='top-category-menu'>
-            {CategoryMenu}
+            {this.state.selectors.category ? (
+              <>
+              {this.selectors.category.displayedMenu}
+              </>
+            ): (
+            <>
+              {this.selectors.category.nonDisplayed}
+            </>)}
           </div>
           <div className='left-category-menu'>
-            {VendorMenu}
+          {this.state.selectors.vendor ? (
+              <>
+              {this.selectors.vendor.displayedMenu}
+              </>
+            ): (
+            <>
+              {this.selectors.vendor.nonDisplayed}
+            </>)}
           </div>
           <SpacingSm/>
           <Products category={categorySelected} vendor={vendorSelected} displayAddToCartBtn={true} />
+          <SpacingSm/>
         </div>
     );
   }

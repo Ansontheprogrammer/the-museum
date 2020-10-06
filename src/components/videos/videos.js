@@ -30,6 +30,7 @@ const VideosComponent = () => {
     const { title, description, url } = edge.node.frontmatter 
 
     return (
+      <>
       <div
         id={title.replace(/ /g, "")}
         key={title + index}
@@ -48,11 +49,12 @@ const VideosComponent = () => {
         src={url}
         title={title}
       />
+      </div>
       <div className="text video-text">
        <h1 className="title video-title">{title}</h1>
        <p className='video-description'>{description}</p>
-       </div>
       </div>
+      </>
     )
   }).map(post => post)
 

@@ -20,13 +20,11 @@ const HeroWrapper = styled.div`
     }
     h1 {
         max-width: 700px;
-        font-size: 72px;
         font-weight: normal;
         color: #eee;      
     }
 
     h2 {
-        font-size: 36px;
         font-weight: 100;
         color: #eee;
     }
@@ -34,7 +32,6 @@ const HeroWrapper = styled.div`
     h3 {
         color: #eee;
         margin-bottom: 25px;
-        font-size: 28px;
     }
     .description {
         margin-top: 20vh;

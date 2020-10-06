@@ -22,7 +22,7 @@ export class BarberCard extends React.Component {
         </div>
         <div className="text">
           <div className="title">
-            <h4 style={{ color: "#333" }}>{barber.name}</h4>
+            <h4>{barber.name}</h4>
           </div>
           <p>
             {barber.bio}

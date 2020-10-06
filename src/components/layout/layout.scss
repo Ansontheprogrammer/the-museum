@@ -21,30 +21,40 @@ body {
   box-sizing: border-box;
 }
 
+h1 {
+  font-size: 60px;
+  font-weight: bolder ;
+}
+h2 {
+  font-size: 48px;
+  font-weight: bold ;
+}
+h3 {
+  font-size: 36px;
+  font-weight: normal ;
+}
+h4 {
+  font-size: 30px;
+  font-weight: lighter ;
+}
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-  font-family: "Ubuntu" !important;
+h6  {
+  font-family: "greatvibes" !important;
   color: #2f2f2f;
   margin-bottom: 1rem;
 }
-
-h1 {
-  font-size: 36px;
-  font-weight: 300 ;
-}
-
-h1,
-h2 {
-  font-family: "greatvibes" !important;
-}
 p,
 label {
-  color: #999;
+  color: #333;
   line-height: 1.5;
+}
+
+p {
+  font-size: 20px;
 }
 
 a {
@@ -58,6 +68,7 @@ a {
 button {
   margin-left: auto;
   margin-right: auto;
+  min-width: 75px;
   font-size: 13px;
   text-align: center;
   color: #333;
@@ -121,11 +132,10 @@ button {
 // Shop filters
 .top-category-menu {
   position: fixed;
-  bottom: 3vh;
   left: 10px;
+  bottom: 3vh;
   display: flex;
   flex-direction: column;
-  background-color: #f5f5f5;
   button {
     margin-top: 25px;
   }
@@ -135,6 +145,7 @@ button {
   position: sticky;
   position: -webkit-sticky;
   display: flex;
+  top: 12vh;
 }
 
 /* Hide the browser's default radio button */
@@ -293,6 +304,27 @@ button {
 }
 
 @media only screen and (max-width: 900px) {
+  h1 {
+    font-size: 36px;
+    font-weight: bolder ;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: bold ;
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: normal ;
+  }
+  h4 {
+    font-size: 20px;
+    font-weight: lighter ;
+  }
+  p {
+    font-size: 18px;
+  }
+  
+
   .productWrapper {
     grid-template-columns: none;
     justify-content: center;
@@ -306,13 +338,26 @@ button {
     padding-left: 0vw;
   }
 
-  .top-category-menu {
+  .left-category-menu {
     position: relative;
-    bottom: 3vh;
-    left: 10px;
     display: flex;
+    top: 0vh;
     flex-direction: row;
-    background-color: #f5f5f5;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    button {
+      margin-top: 25px;
+    }
+  }
+
+  .top-category-menu {
+    position: relative ;
+    flex-wrap: wrap;
+    top: 0vh;
+    left: 0px;
+    bottom: revert !important;
+    flex-direction: row;
+    justify-content: space-between;
     button {
       margin-top: 25px;
     }
