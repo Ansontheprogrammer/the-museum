@@ -4,6 +4,7 @@ import PageLayout from "../components/layout/page-layout"
 import Products from "../components/products/components/products"
 import SeaMossVideos from "../components/seamoss/seamossVideos"
 import SeaMossHeading from "../components/seamoss/seamossHeading"
+import { SpacingSm } from "../components/typographics"
 
 const Shop = () => (
   <Layout designNumber={0} useCart={false} >
@@ -14,6 +15,7 @@ const Shop = () => (
         <div className='spacing'/>
       <h1>Seamoss Products</h1>
       <Products category='seamoss' displayAddToCartBtn={true} />
+      <SpacingSm/>
     </PageLayout>
    </Layout> 
 )

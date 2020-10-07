@@ -13,6 +13,7 @@ const Shop = () => (
         <SpacingSm/>
       </div>
       <Products category='art' displayAddToCartBtn={true} />
+      <SpacingSm/>
     </PageLayout>
    </Layout> 
 )
