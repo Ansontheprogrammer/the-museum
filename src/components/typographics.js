@@ -37,7 +37,6 @@ export const SectionHeader = styled.div`
     h1 {
         color: #2F2E2E;
         padding-left: 2vw;
-        font-size: 60px;
         font-weight: bold;
     }
 
@@ -115,7 +114,6 @@ export const Card = styled.div`
     .title {
     margin-bottom: 10px;
     margin-top: 10px;
-    font-size: 20px;
 
     h4 {
         font-weight: lighter;
@@ -132,7 +130,6 @@ export const Card = styled.div`
 
     a {
     width: 100%;
-    font-size: 13px;
     text-align: center;
     color: #333;
     outline: none;

@@ -245,7 +245,7 @@ productsJSX = cart => {
                 </div>
               ) :
               (
-                <div style={{display: 'flex', padding: '15px', justifyContent: 'center', height: '2vh'}}>
+                <div style={{display: 'flex', padding: '15px', justifyContent: 'center', height: '50vh', alignItems: 'center'}}>
                   <p style={{textAlign: 'center', fontSize: '20px'}}>There are currently no products in your cart</p>
                 </div>
               )
