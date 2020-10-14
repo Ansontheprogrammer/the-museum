@@ -5,7 +5,6 @@
   max-width: 1100px;
   z-index: 1100;
   width: 100%;
-  margin: 0 auto;
   padding-left: 5vw;
   padding-right: 5vw;
 }
@@ -31,6 +30,10 @@
 }
 
 .vendor {
+  margin-left: 10vw;
+}
+
+.product-page-product-wrapper {
   margin-left: 10vw;
 }
 

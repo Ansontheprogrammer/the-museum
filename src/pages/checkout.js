@@ -18,7 +18,7 @@ export default class Checkout extends React.Component {
       paymentForm: null,
       paypal: null,
       showSquareCheckoutForm: null,
-      checkoutSuccess: null,
+      checkoutSuccess: false,
       products: null,
     }
   }
@@ -58,7 +58,6 @@ export default class Checkout extends React.Component {
           color: 'gold',
           layout: 'vertical',
           label: 'paypal',
-          
       },
       createOrder: function(data, actions) {
           return actions.order.create({
@@ -214,44 +213,51 @@ productsJSX = cart => {
 
   render() {  
     return (
-      <Layout 
-        useCart={false}
-      >
+      <Layout useCart={false}>
         <PageLayout title='Checkout'>
-            <CartContext.Consumer>
-            { cart => {
-                if(!cart) return <Loading/> 
-                return cart.productsInCart.length > 0 ? (
-                <div style={{ display: "block"}}>
-                  <div style={{
-                          textAlign: "center",
-                          minWidth: '300px',
-                          maxWidth: '300px',
-                          margin: 'auto'
-                        }} id='paypal-button-container'/>
-                  {this.state.paypal ?
-                      <div>
-                        {this.generatePaypalButtons(cart.productsInCart)}
-
-                        <p style={{paddingBottom: '25px', fontSize: '18px', textAlign: 'center'}}>Total: ${this.getTotal(cart.productsInCart).total}</p>
-                        
-                        {this.state.paypal && <h2 style={{fontSize: '32px', marginTop: '3vh', marginBottom: '3vh', color: 'black', textAlign: 'center'}}>Cart</h2>}
-                      </div>
-                    : <Loading/>
-                  }
-                  <div className='productWrapper'>
-                    {this.productsJSX(cart)}
+         <CartContext.Consumer>
+          { cart => {
+              if(!cart) return <Loading/> 
+              if(cart.productsInCart.length === 0) {
+                return (
+                  <div style={{display: 'flex', padding: '15px', justifyContent: 'center', height: '50vh', alignItems: 'center'}}>
+                    <p style={{textAlign: 'center', fontSize: '20px'}}>There are currently no products in your cart</p>
                   </div>
-                </div>
-              ) :
-              (
-                <div style={{display: 'flex', padding: '15px', justifyContent: 'center', height: '50vh', alignItems: 'center'}}>
-                  <p style={{textAlign: 'center', fontSize: '20px'}}>There are currently no products in your cart</p>
-                </div>
-              )
+                ) 
+              } else {
+                return (
+                  <div style={{ display: "block"}}>
+                    <div style={{
+                      textAlign: "center",
+                      minWidth: '300px',
+                      maxWidth: '300px',
+                      margin: 'auto'
+                    }} id='paypal-button-container'/>
+                      {this.state.checkoutSuccess && (
+                      <div style={{display: 'flex', padding: '15px', justifyContent: 'center', height: '50vh', alignItems: 'center'}}>
+                        <p style={{textAlign: 'center', fontSize: '20px'}}>Checkout Successful</p>
+                      </div>
+                    ) }
+                    {this.state.paypal  ?
+                      (
+                        <>
+                          {this.generatePaypalButtons(cart.productsInCart)}
+                        </>
+                      ): <Loading/>
+                    }
+                        <div>
+                          {this.generatePaypalButtons(cart.productsInCart)}
+                            <p style={{paddingBottom: '25px', fontSize: '18px', textAlign: 'center'}}>Total: ${this.getTotal(cart.productsInCart).total}</p>                  
+                          {this.state.paypal && <h2 style={{fontSize: '32px', marginTop: '3vh', marginBottom: '3vh', color: 'black', textAlign: 'center'}}>Cart</h2>}
+                        </div>
+                    <div className='productWrapper'>
+                      {this.productsJSX(cart)}
+                    </div>
+                  </div>
+                )
+              }
             }}
-          </CartContext.Consumer>
-        <p id="error" />  
+        </CartContext.Consumer>
         </PageLayout>
       </Layout>
     )

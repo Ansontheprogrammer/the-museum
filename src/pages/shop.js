@@ -87,7 +87,7 @@ class ShopPageComponent extends Component {
     // Create menu from items
     
     return (
-      <div>
+      <div className='product-page-product-wrapper'>
         <div className='spacer'/>
           <div className='top-category-menu'>
             {this.state.selectors.category ? (

@@ -6,7 +6,6 @@ import DesktopStyles from "./desktop-nav.module.scss"
 
 const DesktopNav = () => (
   <nav className={DesktopStyles.nav}>
-    <div>
       <Link to="/" activeClassName={DesktopStyles.active}>
         Home
       </Link>
@@ -16,9 +15,6 @@ const DesktopNav = () => (
       <Link to="/art/" activeClassName={DesktopStyles.active}>
         Art
       </Link>
-    </div>
-
-    <div>
       <Link to="/seamoss/" activeClassName={DesktopStyles.active}>
         Sea Moss
       </Link>
@@ -31,10 +27,12 @@ const DesktopNav = () => (
       <Link to="/checkout/" activeClassName={DesktopStyles.active}>
         Checkout
       </Link>
+      <Link to="/gallery/" activeClassName={DesktopStyles.active}>
+        Gallery
+      </Link>
       <Link to="/about/" activeClassName={DesktopStyles.active}>
         About
       </Link>
-    </div>
   </nav>
 )
 

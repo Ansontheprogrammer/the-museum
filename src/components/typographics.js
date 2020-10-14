@@ -13,17 +13,32 @@ export const SectionRow = (props) => (
     </SectionWrapperRow>
 )
 
-export const SectionWrapper = styled.section`
+export const SectionColumn = (props) => (
+    <SectionWrapperColumn>
+        {props.children}
+    </SectionWrapperColumn>
+)
+
+const SectionWrapper = styled.section`
     display: block;
 `
 
-export const SectionWrapperRow = styled.section`
+const SectionWrapperRow = styled.section`
     display: flex;
     flex-direction: row;
     align-items: center;
     @media only screen and (max-width: 900px) {
         flex-direction: column
    }
+`
+
+const SectionWrapperColumn = styled.section`
+    display: flex;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 25px;
 `
 
 export const Padding = styled.div`
@@ -152,5 +167,43 @@ export const Card = styled.div`
     .text {
     margin-bottom: auto; 
     margin-top: 10px;
+    }
+`
+
+export const HeroWrapper = styled.div`
+    height: 95vh;
+    width: 100%;
+    padding-left: 7vw;
+    padding-top: 15vh;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(43,43,43,.75))),url("https://res.cloudinary.com/dhgnvzmi3/image/upload/v1598888656/IMG_3049_d12gio.jpg");
+    background-size: cover;
+    color: #fff;
+    @media only screen and (max-width: 600px) {
+        padding-left: 0vw;
+        .description {
+            padding-left: 5vw;
+            padding-right: 5vw;
+        }
+    }
+    h1 {
+        max-width: 700px;
+        font-weight: normal;
+        color: #eee;      
+    }
+
+    h2 {
+        font-weight: 100;
+        color: #eee;
+    }
+
+    h3 {
+        color: #eee;
+        margin-bottom: 25px;
+    }
+    .description {
+        margin-top: 20vh;
+        margin-bottom: 7.5vh;
+        font-weight: lighter;
+        font-family: "Lato";
     }
 `

@@ -9,6 +9,7 @@ import ArtHeroSection from "../components/art/artHero"
 import { Section, SectionHeader, OffSection, SpacingSm } from "../components/typographics"
 import SeaMossHeading from "../components/seamoss/seamossHeading"
 import Proptypes from 'prop-types'
+import { Link } from "gatsby"
 
 const generateSection = (index, headings, contents) => {
   const offSection = (index + 1) % 2;
@@ -68,7 +69,7 @@ LandingPage.defaultProps = {
       subtitleHeading: 'W.Y.N (What You Need)',
       jsx: <>
         <SeaMossHeading/>
-        <button className='section-button'>Read More</button>
+        <Link to='/seamoss'><button className='section-button'>Read More</button></Link>
         <Products category='seamoss' limit={1}/>
       </> 
     },
@@ -85,6 +86,7 @@ LandingPage.defaultProps = {
       jsx: <>
         <ArtHeroSection />
         <SpacingSm/>
+        <Link to='/art'><button className='section-button'>Read More</button></Link>
         <Products category='art' limit={4}/>
       </>
     },

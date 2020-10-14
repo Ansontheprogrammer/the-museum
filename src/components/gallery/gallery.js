@@ -1,7 +1,8 @@
 import React from "react"
 import "./gallery.styles.scss"
 import GalleryImages from "./gallery-images"
-import { Section, SectionHeader, SectionRow } from "../typographics"
+import { SectionColumn, SectionHeader, SectionRow, SectionWrapperRow } from "../typographics"
+import { Link } from "gatsby"
 
 const Gallery = () => {
   return (
@@ -11,7 +12,10 @@ const Gallery = () => {
           <h1>Gallery</h1>
         </SectionHeader>
         <GalleryImages/>  
-      </SectionRow>   
+      </SectionRow>  
+      <SectionColumn>
+      <Link to='/gallery'><button>View all</button></Link> 
+      </SectionColumn>
     </div>
   )
 }
