@@ -1,4 +1,5 @@
 import React from "react"
+import Fade from "react-reveal/Fade"
 import { useStaticQuery, graphql } from "gatsby"
 import "./gallery.styles.scss"
 
@@ -21,7 +22,7 @@ const GalleryImages = () => {
   `)
 
   const generateGallery = () => {
-    return imageData.allMarkdownRemark.edges.map(edge => {
+    return imageData.allMarkdownRemark.edges.map((edge, i) => {
       const imagePath = edge.node.frontmatter.image
       const imageTitle = edge.node.frontmatter.imageTitle
       const imageStyle = {
@@ -31,7 +32,9 @@ const GalleryImages = () => {
         maxHeight: '350px'
       }
       return (
-        <div key={imageTitle} className="Gallery-image" style={imageStyle} />
+        <Fade key={imageTitle} delay={i * 300}>
+          <div className="Gallery-image" style={imageStyle} />
+        </Fade>
       )
     }).slice(0, 2)
   }

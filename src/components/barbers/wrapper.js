@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react"
+import Fade from "react-reveal/Fade"
 import { graphql, StaticQuery } from "gatsby"
 import "../products/styles/ProductWrapper.styles.scss"
 import BarberCard from "./card"
@@ -40,9 +41,11 @@ class Barbers extends Component {
           <div className="productWrapper barbersWrapperGrid">
             {barbers.map((barber, i) => {
               return (
-                <div className="variations">
-                  <BarberCard key={i} barber={barber.node.frontmatter}/>
-                </div>
+                <Fade key={i}>
+                  <div className="variations">
+                    <BarberCard barber={barber.node.frontmatter}/>
+                  </div>
+                </Fade>
               )
             })}
           </div>
