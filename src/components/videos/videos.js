@@ -34,7 +34,6 @@ const VideosComponent = () => {
       <div
         id={title.replace(/ /g, "")}
         key={title + index}
-        className="video cardStyles"
       >
         <iframe
         className=""
@@ -51,7 +50,7 @@ const VideosComponent = () => {
       />
       </div>
       <div className="text video-text">
-       <h1 className="title video-title">{title}</h1>
+       <h3 className="title video-title">{title}</h3>
        <p className='video-description'>{description}</p>
       </div>
       </>

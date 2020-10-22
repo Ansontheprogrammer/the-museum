@@ -10,6 +10,17 @@ import { Section, SectionHeader, OffSection, SpacingSm } from "../components/typ
 import SeaMossHeading from "../components/seamoss/seamossHeading"
 import Proptypes from 'prop-types'
 import { Link } from "gatsby"
+import {
+  FaSquarespace,
+  FaCut,
+  FaOilCan,
+  FaFacebook,
+  FaAt,
+  FaMapMarked,
+  FaBars,
+  FaLink,
+  FaInstagram
+} from 'react-icons/fa'
 
 const generateSection = (index, headings, contents) => {
   const offSection = (index + 1) % 2;
@@ -28,6 +39,11 @@ const generateSection = (index, headings, contents) => {
 }
 
 const LandingPage = (props) => {
+  const [showServicesModal, setShowServicesModal] = useState(false)
+  const toggleServicesModal = () => {
+    setShowServicesModal(prevState => !prevState)
+  }
+
   const generateLandingPage = () => {
     return Object.keys(props.page)
     .filter(section => {

@@ -33,7 +33,6 @@ const SeaMoss = () => {
       <div
         id={title.replace(/ /g, "")}
         key={title + index}
-        className="video cardStyles"
       >
         <iframe
         className=""
@@ -48,9 +47,9 @@ const SeaMoss = () => {
         src={url}
         title={title}
       />
-      <div className="text video-text">
-       <h1 className="title video-title">{title}</h1>
-       <p className='video-description'>{description}</p>
+      <div>
+       <h1>{title}</h1>
+       <p>{description}</p>
        </div>
       </div>
     )

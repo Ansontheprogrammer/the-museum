@@ -56,26 +56,24 @@ const SeaMossVideos = () => {
   }).map(post => post)
 
   const clientJSX = clients.map(client => (
-    <div>
-      <div className="text video-text">
-        <h3 className="title video-title">{client.name}</h3>
-        <p className='video-description'>{client.bio}</p>
-      </div>
-    </div>
+    <>
+      <h3>{client.name}</h3>
+      <p>{client.bio}</p>
+    </>
   )).map(jsx => jsx)
 
   return (
     <>
-      <h1>Clients</h1>
+      <h2>Clients</h2>
       <div className='clients' >
       {clientJSX.map((client, index) => (
         <div className='spacing'>
           {client}
           {seaMossVideos[index]}
         </div>
-      ))
-    }
-    </div>
+        ))
+      }
+      </div>
     </>
   )
 }
