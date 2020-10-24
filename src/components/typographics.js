@@ -84,8 +84,10 @@ export const Card = styled.div`
     min-height: 100%;
     margin-left: auto;
     margin-right: auto;
-    max-width: 275px;
+    max-width: 400px;
     color: "#333";
+    box-shadow: 0 2px 10px rgba(47,47,47, .08);
+    background-color: #fff;
 
     .variations {
     height: 30px;
@@ -104,26 +106,24 @@ export const Card = styled.div`
     }
 
     .shop-selection {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 20px 20px 0px;
     padding: 5px 25px 5px 25px;
     color: #2f2f2f;
-    border-radius: 2%;
+    border-radius: 6px;
     border-color: #fff;
-    background-color: #fff
-
+    background-color: #eee;
     
     }
     .image {
     min-height: 200px;
     min-width: 100%;
-    border-radius: 2.5%;
+    border-radius: 2.5% 2.5% 0 0;
     background-size: cover;
     }
 
     .price {
     color: #999;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     }
 
     .title {
@@ -150,6 +150,7 @@ export const Card = styled.div`
     outline: none;
     padding: 12px;
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     background-color: #fff;
     border-radius: 6px;
     letter-spacing: 1.5px;
@@ -167,6 +168,7 @@ export const Card = styled.div`
     .text {
     margin-bottom: auto; 
     margin-top: 10px;
+    padding: 20px 20px 0;
     }
 `
 
