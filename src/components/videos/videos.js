@@ -1,4 +1,5 @@
 import React from "react"
+import Fade from "react-reveal/Fade"
 import { useStaticQuery, graphql } from "gatsby"
 import "../products/styles/Card.styles.scss"
 import '../products/styles/ProductWrapper.styles.scss'
@@ -31,24 +32,26 @@ const VideosComponent = () => {
 
     return (
       <>
-      <div
-        id={title.replace(/ /g, "")}
-        key={title + index}
-      >
-        <iframe
-        className=""
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        frameBorder="0"
-        webkitallowfullscreen="true"
-        mozallowfullscreen="true"
-        allowFullScreen
-        width="300"
-        height="200"
-        // Requires youtube embed link
-        src={url}
-        title={title}
-      />
-      </div>
+      <Fade>
+        <div
+          id={title.replace(/ /g, "")}
+          key={title + index}
+        >
+          <iframe
+          className=""
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          frameBorder="0"
+          webkitallowfullscreen="true"
+          mozallowfullscreen="true"
+          allowFullScreen
+          width="300"
+          height="200"
+          // Requires youtube embed link
+          src={url}
+          title={title}
+        />
+        </div>
+      </Fade>
       <div className="text video-text">
        <h3 className="title video-title">{title}</h3>
        <p className='video-description'>{description}</p>
