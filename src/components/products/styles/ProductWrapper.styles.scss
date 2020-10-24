@@ -101,6 +101,10 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .barbersWrapperGrid {
+    padding-left: 0;
+    padding-right: 0;
+  }
   .product-page-product-wrapper {
     display: block;
   }

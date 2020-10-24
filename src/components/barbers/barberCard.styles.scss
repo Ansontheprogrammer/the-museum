@@ -5,8 +5,12 @@
   border-radius: 6px;
   color: "#333";
   min-width: 300px;
+  max-width: 500px;
   min-height: 100%;
   text-align: center;
+  background-color: #fff;
+  padding-top: 28px;
+    box-shadow: 0 3px 10px rgba(47, 47, 47, 0.1);
   
   .image-wrapper {
    display: block;
@@ -22,13 +26,53 @@
     border-radius: 50%;
   }
 
-  ul {
+  .services-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    p {
+      font-size: 18px;
+    }
+    svg {
+      transform: rotate(-90deg);
+      margin-right: 16px;
+      margin-left: 16px;
+      color: #bbb;
+    }
+  }
+
+  .services-list {
+    padding: 0 20px;
+    color: #777;
+    list-style: none;
+    margin: 20px 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+
+    li {
+      margin-bottom: 16px;
+      flex: 1 1 50%;
+    }
+  }
+
+  .links-list {
     list-style: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-bottom: 5vh;
+    text-align: left;
+    padding: 0 20px;
+    a {
+      background-color: #eee;
+      border-radius: 6px;
+      padding: 8px 12px;
+      border: none;
+    }
+
   }
   .title {
     margin-bottom: 10px;
@@ -54,11 +98,11 @@
     color: #333;
     outline: none;
     padding: 12px;
-    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    border-radius: 6px;
+    border-radius: 0 0 6px 6px;
     letter-spacing: 1.5px;
     transition: background-color 0.3s;
+    border-top: 1px solid #eee;
 
      &:hover {
       background-color: darken(rgb(104, 232, 255), 10%);
