@@ -100,12 +100,12 @@ class Products extends Component {
           }
 
           return (
-          <div className="productWrapper">
+          <div className={`productWrapper ${this.props.perRow === 2 ? 'productWrapper--2' : ''}`}>
             {products.map((product, i) => {
               const productNode = product.node;
               productNode._price = productNode.priceRange.minVariantPrice.amount
               productNode._variants = mapVariations(productNode)
-              
+
               return (
                 <div className="variations">
                   <SkuCard key={i} product={productNode} displayAddToCart={this.props.displayAddToCartBtn}/>

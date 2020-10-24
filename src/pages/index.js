@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import Fade from "react-reveal/Fade"
 import Layout from "../components/layout/layout"
 import Gallery from "../components/gallery/gallery"
 import Products from "../components/products/components/products"
@@ -29,7 +30,9 @@ const generateSection = (index, headings, contents) => {
     <Section>
       <div className={`section ${offSection && 'off-section'}`}>
         <SectionHeader>
-          <h1>{headings.heading}</h1>
+          <Fade bottom cascade distance={'50px'}>
+            <h1>{headings.heading}</h1>
+          </Fade>
           {headings.subtitleHeading && <h2 className='section-subtitle'>{headings.subtitleHeading}</h2>}
         </SectionHeader>
         {contents}
@@ -86,7 +89,9 @@ LandingPage.defaultProps = {
       jsx: <>
         <SeaMossHeading/>
         <Link to='/seamoss'><button className='section-button'>Read More</button></Link>
-        <Products category='seamoss' limit={1}/>
+        <Fade>
+          <Products category='seamoss' limit={1}/>
+        </Fade>
       </> 
     },
     videos: {
@@ -103,14 +108,16 @@ LandingPage.defaultProps = {
         <ArtHeroSection />
         <SpacingSm/>
         <Link to='/art'><button className='section-button'>Read More</button></Link>
+        <Fade>
         <Products category='art' limit={4}/>
+        </Fade>
       </>
     },
     shop: {
       show: true,
       heading: 'Shop',
       subtitleHeading: '',
-      jsx: <Products limit={4}/>
+      jsx: <Fade><Products limit={4}/></Fade>
     },
   }
 }

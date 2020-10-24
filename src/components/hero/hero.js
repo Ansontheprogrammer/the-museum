@@ -1,4 +1,5 @@
 import React from 'react'
+import Fade from "react-reveal/Fade"
 import PropTypes from 'prop-types'
 import { Section, Container, HeroWrapper } from '../typographics'
 
@@ -6,9 +7,17 @@ export const Hero = props => (
     <Section>
         <Container>
           <HeroWrapper>
-            <h2>{props.smallHeading}</h2>
-            <h1>{props.heading}</h1>
-            <h3 className="description">{props.subtitle}</h3>
+            <Fade bottom cascade delay={200} distance={'20px'}>
+              <h2>{props.smallHeading}</h2>
+            </Fade>
+            <Fade bottom cascade distance={'70px'}>
+							<h1>{props.heading}</h1>
+						</Fade>
+						<Fade delay={400}>
+            	<h3 className="description">{props.subtitle}</h3>
+						</Fade>
+            
+            
             {/* <a
             className="btn"
             href={props.buttonLink}
