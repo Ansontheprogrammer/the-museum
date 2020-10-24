@@ -2,11 +2,19 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 35px;
-  max-width: 1100px;
+  max-width: 1200px;
   z-index: 1100;
   width: 100%;
   padding-left: 5vw;
   padding-right: 5vw;
+  &--2 {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+    .variations > * {
+      margin-left: 0;
+      max-width: 400px;
+    }
+  }
 }
 
 .barbersWrapperGrid {
@@ -34,7 +42,13 @@
 }
 
 .product-page-product-wrapper {
-  margin-left: 10vw;
+  display: flex;
+  align-items: flex-start;
+}
+
+.product-page-right {
+  flex: 1;
+  padding-left: 12vw;
 }
 
 .shop-wrapper {
@@ -56,9 +70,11 @@
   }
 
   .productWrapper {
-    grid-template-columns: none;
+    grid-template-columns: 1fr;
     justify-content: center;
     margin-left: 0vw;
+    padding-left: 0;
+    padding-right: 0;  
   }
 
   .vendor {
@@ -81,5 +97,14 @@
     margin-left: 2vw;
     bottom:0;
     left:0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .product-page-product-wrapper {
+    display: block;
+  }
+  .product-page-right {
+    padding-left: 0;
   }
 }

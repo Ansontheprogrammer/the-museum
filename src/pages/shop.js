@@ -88,43 +88,45 @@ class ShopPageComponent extends Component {
     
     return (
       <div className='product-page-product-wrapper'>
-        <div className='spacer'/>
-          <div className='top-category-menu'>
-            {this.state.selectors.category ? (
-              <>
-              {categoryList
-                .filter(btn => this.state.category && this.state.category !== 'all' ? btn.name === this.state.category || btn.name === 'all': true )
-                .map(btn => {
-                    return <button onClick={this.onSelectorChoice({name: 'category', btnName: btn.name}).bind(this)}>{btn.name}</button>
-                })
-                .map(jsx => jsx)
-              }
-              </>
-            ): (
-            <>
-              {this.selectors.category.nonDisplayed}
-            </>)}
-          </div>
-          <div className='left-category-menu'>
-          {this.state.selectors.vendor ? (
-              <>
-              {vendorList
-                .filter(btn => this.state.vendor && this.state.vendor !== 'all' ? btn.name === this.state.vendor || btn.name === 'all': true )
-                .map(btn => {
-                    return <button onClick={this.onSelectorChoice({name: 'vendor', btnName: btn.name}).bind(this)}>{btn.name}</button>
-                })
-                .map(jsx => jsx)
-              }
-              </>
-            ): (
-            <>
-              {this.selectors.vendor.nonDisplayed}
-            </>)}
-          </div>
-          <SpacingSm/>
-          <Products category={category} vendor={vendor} displayAddToCartBtn={true} />
-          <SpacingSm/>
+
+        <div className='top-category-menu'>
+          <p className="category-menu-label">Filter by category:</p>
+          {
+            categoryList.map(btn => {
+                return (
+                  <>
+                    <button 
+                      className={(btn.name === this.state.category || (btn.name === 'all' && this.state.category === '')) ? 'active-selection' : ''} 
+                      onClick={this.onSelectorChoice({name: 'category', btnName: btn.name}).bind(this)}
+                    >
+                      {btn.name}
+                    </button>
+                  </>
+                )
+            })
+          }
         </div>
+
+        <div className="product-page-right">
+          
+          <div className='left-category-menu'>  
+            <p className="category-menu-label">Filter by vendor:</p>
+
+            {
+              vendorList.map(btn => (
+                <button 
+                  className={(btn.name === this.state.vendor || (btn.name === 'all' && this.state.vendor === '')) ? 'active-selection' : ''} 
+                  onClick={this.onSelectorChoice({name: 'vendor', btnName: btn.name}).bind(this)}
+                >
+                  {btn.name}
+                </button>
+              ))
+            }
+          </div>
+          <Products perRow={2} category={category} vendor={vendor} displayAddToCartBtn={true} />
+        </div>
+
+      </div>
     );
   }
 }

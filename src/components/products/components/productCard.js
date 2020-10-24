@@ -80,10 +80,10 @@ const SkuCard = class extends React.Component {
           <div className="title">
             <h4 style={{ color: "#333" }}>{product.title}</h4>
           </div>
-          <p className="price">{formatPrice(product._price, product.currency)}</p>
           <p>
             {clip(product.description, 175) || "No description available"}
           </p>
+          <p className="price">{formatPrice(product._price, product.currency)}</p>
         </div>
         {!!product._variants && product._variants.map((option, index) => 
           <select key={index} select={'true'} className='shop-selection' id={`variation-${option.name}`} onChange={this.toggleSelectedVariation(option.name).bind(this)}>
