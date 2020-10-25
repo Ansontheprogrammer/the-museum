@@ -11,11 +11,6 @@ export class BarberCard extends React.Component {
 
   render() {
     const barber = this.props.barber
-    const exampleServicesList = [
-      'Service example one',
-      'Service example two',
-      'Service example three',
-    ]
     return (
       <div className="barber-card">
     
@@ -43,7 +38,19 @@ export class BarberCard extends React.Component {
               <FaCut />
             </div>
             <ul className="services-list">
-              {exampleServicesList.map(service => <li key={service}>{service}</li>)}
+              { this.props.serviceListLimit ?
+              <>
+              { barber.serviceList
+              .map(service => <li key={service}>{service}</li>)
+              .slice(this.props.serviceListLimit)
+              }
+              </> :
+               <>
+                { barber.serviceList
+                .map(service => <li key={service}>{service}</li>)
+                }
+               </>
+              }
             </ul>
           </div>
 
@@ -53,7 +60,7 @@ export class BarberCard extends React.Component {
         </div>
         </div>
 
-        <a>
+        <a href={barber.bookLink}>
           Book
         </a> 
       </div>

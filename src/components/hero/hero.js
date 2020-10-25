@@ -8,7 +8,7 @@ export const Hero = props => (
         <Container>
           <HeroWrapper>
             <Fade bottom cascade delay={200} distance={'20px'}>
-              <h2>{props.smallHeading}</h2>
+              <h1>{props.smallHeading}</h1>
             </Fade>
             <Fade bottom cascade distance={'70px'}>
 							<h1>{props.heading}</h1>

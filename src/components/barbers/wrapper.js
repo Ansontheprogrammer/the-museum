@@ -29,6 +29,7 @@ class Barbers extends Component {
                   links
                   bio
                   pics
+                  serviceList
                 }
               }
             }
@@ -37,13 +38,14 @@ class Barbers extends Component {
         `}
         render={({allMarkdownRemark}) => {
           let barbers = allMarkdownRemark.edges
+          console.log(this.props, 'slice')
           return (
           <div className="productWrapper barbersWrapperGrid">
             {barbers.map((barber, i) => {
               return (
                 <Fade key={i}>
                   <div className="variations">
-                    <BarberCard barber={barber.node.frontmatter}/>
+                    <BarberCard serviceListLimit={this.props.limit} barber={barber.node.frontmatter}/>
                   </div>
                 </Fade>
               )
