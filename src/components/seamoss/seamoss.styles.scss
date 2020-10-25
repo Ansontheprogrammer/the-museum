@@ -1,4 +1,8 @@
 .section-text {    
+    h4 {
+        margin-top: 10px;
+        text-align: center;
+    }
     @media only screen and (max-width: 900px) {        
         p {
             line-height: 1.75em;

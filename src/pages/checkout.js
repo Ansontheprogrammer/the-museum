@@ -7,6 +7,7 @@ import PageLayout from "../components/layout/page-layout"
 import axios from 'axios'
 import { formatPrice } from "../components/products/components/productCard"
 import config from "../../config/config"
+import { navigate } from "gatsby"
 
 export default class Checkout extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ export default class Checkout extends React.Component {
       checkoutSuccess: false,
       products: null,
     }
+    this.generatePaypalButtons = this.generatePaypalButtons.bind(this)
   }
 
   componentDidMount() {
@@ -28,7 +30,7 @@ export default class Checkout extends React.Component {
     script.src = `https://www.paypal.com/sdk/js?client-id=AZswhoudLfZvanXDERMGG-oA1yXUvo3C0v4co0E-uUIrp8qAfPUS_RcYpxXjodM57c4nHyn2cw1DarZW&currency=USD`;
     script.async = true;
 
-    document.body.appendChild(script);
+    if(!window.paypal) document.body.appendChild(script);
     setTimeout(() => {
       this.setState({
         paypal: window.paypal
@@ -48,7 +50,8 @@ export default class Checkout extends React.Component {
     }
   }
 
-  generatePaypalButtons(productsList){
+  generatePaypalButtons(cart){
+    const productsList = cart.productsInCart
     const order = new Checkout().generateMessage(productsList);
     const calculations = this.getTotal(productsList)
     const total = calculations.total
@@ -60,20 +63,20 @@ export default class Checkout extends React.Component {
           label: 'paypal',
       },
       createOrder: function(data, actions) {
-          return actions.order.create({
-              purchase_units: [{
-                  amount: {
-                    value: total,
-                    breakdown: {
-                      item_total: {
-                        currency_code: 'USD',
-                        value: total
-                      },
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                  value: total,
+                  breakdown: {
+                    item_total: {
+                      currency_code: 'USD',
+                      value: total
                     },
                   },
-                  items : new Checkout().generateItems(productsList)
-              }]
-          });
+                },
+                items : new Checkout().generateItems(productsList)
+            }]
+        });
       },
       onApprove: function(data, actions) {
         return actions.order.capture().then(async function(details) {
@@ -97,7 +100,15 @@ export default class Checkout extends React.Component {
             }
             new Checkout().sendConfirmationEmailToVendor(checkoutDetails)
             new Checkout().sendConfirmationEmailToAEInc(calculations.ae, checkoutDetails)
-            alert('Transaction successful!');
+            navigate(
+              '/confirmation',
+              {
+                state: {
+                  order: order,
+                  cart: JSON.stringify(cart)
+                }
+              }
+             )
         });
     }
 }).render('#paypal-button-container');
@@ -241,15 +252,14 @@ productsJSX = cart => {
                     {this.state.paypal  ?
                       (
                         <>
-                          {this.generatePaypalButtons(cart.productsInCart)}
+                          {this.generatePaypalButtons(cart)}
                         </>
                       ): <Loading/>
                     }
-                        <div>
-                          {this.generatePaypalButtons(cart.productsInCart)}
-                            <p style={{paddingBottom: '25px', fontSize: '18px', textAlign: 'center'}}>Total: ${this.getTotal(cart.productsInCart).total}</p>                  
-                          {this.state.paypal && <h2 style={{fontSize: '32px', marginTop: '3vh', marginBottom: '3vh', color: 'black', textAlign: 'center'}}>Cart</h2>}
-                        </div>
+                    <div>
+                        <p style={{paddingBottom: '25px', fontSize: '18px', textAlign: 'center'}}>Total: ${this.getTotal(cart.productsInCart).total}</p>                  
+                      {this.state.paypal && <h2 style={{fontSize: '32px', marginTop: '3vh', marginBottom: '3vh', color: 'black', textAlign: 'center'}}>Cart</h2>}
+                    </div>
                     <div className='productWrapper'>
                       {this.productsJSX(cart)}
                     </div>

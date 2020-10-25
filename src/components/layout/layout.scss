@@ -36,14 +36,26 @@ h3 {
 h4 {
   font-size: 30px;
   font-weight: lighter ;
+} 
+h1 {
+  font-family: "greatvibes" !important;
 }
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Ubuntu" !important;
+
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6  {
-  font-family: "greatvibes" !important;
   color: #2f2f2f;
   margin-bottom: 1rem;
 }
@@ -250,7 +262,7 @@ button {
   
   .side-page-design {
     min-height: 100%;
-    width: 10vw !important;
+    width: 100% !important;
     background-color: #2F2E2E;
     display: flex;
     flex-direction: column;
@@ -434,4 +446,8 @@ button {
     justify-content: left;
     margin-bottom: 0;
   }
+}
+
+.text-center {
+  text-align: center;
 }

@@ -64,7 +64,7 @@ const LandingPage = (props) => {
     <Layout 
       sidePageDesign={true} 
       useCart={true}
-      sidePageDesignNumber={3}
+      sidePageDesignNumber={4}
       sideBar={true}
     >
       <Hero/>
@@ -80,7 +80,7 @@ LandingPage.defaultProps = {
       show: true,
       heading: 'Our Barbers',
       subtitleHeading: '',
-      jsx: <Barbers/>
+      jsx: <Barbers limit={3}/>
     },
     seamoss: {
       show: true,
