@@ -42,7 +42,7 @@ export class BarberCard extends React.Component {
               <>
               { barber.serviceList
               .map(service => <li key={service}>{service}</li>)
-              .slice(this.props.serviceListLimit)
+              .slice(0, this.props.serviceListLimit)
               }
               </> :
                <>
@@ -59,10 +59,16 @@ export class BarberCard extends React.Component {
           </ul>
         </div>
         </div>
-
-        <a href={barber.bookLink}>
+        {barber.name === 'Tyreese' ? (
+          <a href={`sms:${barber.bookLink}`}>
+          Text {barber.bookLink}
+          </a> 
+        ) : (
+          <a href={barber.bookLink}>
           Book
         </a> 
+        )}
+        
       </div>
     )
   }

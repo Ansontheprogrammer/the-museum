@@ -6,8 +6,10 @@ import { formatPrice } from "../components/products/components/productCard"
 import { SpacingSm } from "../components/typographics"
 
 export default ({ location }) => {
-    const order = location.state.order
-    const cart = JSON.parse(location.state.cart)
+    // const order = location.state.order
+    let cart;
+    if(location.state)  cart = JSON.parse(location.state.cart)
+
   const getTotal = (productsList) => {
     let total = 0;
     productsList.forEach(product => {
@@ -52,7 +54,7 @@ export default ({ location }) => {
     return (
       <Layout useCart={false}>
         <PageLayout title='Confirmation'>
-            {!order? (
+            {!cart? (
                 <div style={{ display: "block"}}>
                     <div style={{display: 'flex', padding: '15px', justifyContent: 'center', height: '50vh', alignItems: 'center'}}>
                         <p style={{textAlign: 'center', fontSize: '20px'}}>No Products Cart</p>

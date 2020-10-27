@@ -9,9 +9,9 @@ import { SpacingSm } from "../components/typographics"
 // list of items
 const categoryList = [
   { name: 'all' },
-  { name: 'shirts' },
-  { name: 'brushs' },
-  { name: 'hats' },
+  { name: 'apparel' },
+  { name: 'hair' },
+  { name: 'misc.' },
 ];
 
 // list of items
@@ -96,7 +96,7 @@ class ShopPageComponent extends Component {
                 return (
                   <>
                     <button 
-                      className={(btn.name === this.state.category || (btn.name === 'all' && this.state.category === '')) ? 'active-selection' : ''} 
+                      className={(btn.name === this.state.category || (btn.name.toLowerCase()  === 'all' && this.state.category === '')) ? 'active-selection' : ''} 
                       onClick={this.onSelectorChoice({name: 'category', btnName: btn.name}).bind(this)}
                     >
                       {btn.name}
@@ -115,7 +115,7 @@ class ShopPageComponent extends Component {
             {
               vendorList.map(btn => (
                 <button 
-                  className={(btn.name === this.state.vendor || (btn.name === 'all' && this.state.vendor === '')) ? 'active-selection' : ''} 
+                  className={(btn.name === this.state.vendor || (btn.name.toLowerCase() === 'all' && this.state.vendor === '')) ? 'active-selection' : ''} 
                   onClick={this.onSelectorChoice({name: 'vendor', btnName: btn.name}).bind(this)}
                 >
                   {btn.name}
