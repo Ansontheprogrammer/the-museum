@@ -61,9 +61,9 @@ export const SideBar = (props) => {
       const productsJSX =  Object.values(products).map((product, index) => (
           <div key={index} style={{display: 'block'}}>
             <div style={{padding: '15px', paddingBottom: '20px'}}>
-              {/* { product.images &&
+              { product.images.length &&
                 <img style={{height: '150px', width:'150px'}} src={product.images[0].originalSrc}/>
-              } */}
+              }
               <button onClick={props.cart.removeItemFromCart(product.cartID)}>
                 <FaEraser/>
               </button>

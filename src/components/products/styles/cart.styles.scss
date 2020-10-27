@@ -18,3 +18,32 @@
         margin-top: 10px;
     }
 }
+
+.add-cart {
+	position: absolute;
+	display: block;
+	height: 10px;
+	width: 10px;
+	background-color: #66fc66;
+	border-radius: 100%;
+	top: 50%;
+	left: 50%;
+	z-index: -1;
+	animation: add-to-cart .5s forwards ease-out;
+}
+
+@keyframes add-to-cart {
+	0% {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(1);
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(6);
+	}
+}
