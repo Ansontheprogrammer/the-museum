@@ -1,5 +1,4 @@
 import React from "react"
-import MobileNav from "../navbar/mobile-nav"
 import DesktopNav from "../navbar/desktop-nav"
 import "./layout.scss"
 import PropTypes from "prop-types"
@@ -82,7 +81,6 @@ class Layout extends React.Component{
             }
     
             </div>
-            <MobileNav />
           </>
         )
     }      

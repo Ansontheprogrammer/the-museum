@@ -1,17 +1,20 @@
-.nav {
+.header {
+  background: #2f2f2f ;
   position: sticky;
   top: 0;
   left: 0;
-  padding-left: 6vw;
-  padding-top: 0.5vh;
-  padding-bottom: 0.5vh;
+  z-index: 1000;
+}
+
+.nav {
+  padding: 0.5vh 100px 0.5vh 6vw;
+  background: #2f2f2f ;
   width: 100%;
   background: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background: #2f2f2f ;
-  z-index: 1000;
+
   a:not(.logo) {
     color: #fff;
     font-weight: lighter;
@@ -29,9 +32,56 @@
   border-bottom: 2px solid #2980b9;
 }
 
+.toggle {
+  display: none;
+}
+
 @media only screen and (max-width: 900px) {
-  .nav,
-  .nav-background {
-    display: none;
+
+  .header {
+    padding: 16px 0;
   }
+
+  .nav {
+    padding: 0 20px;
+    position: absolute;
+    flex-direction: column;
+    background: #2f2f2f;
+    min-height: calc(100vh - 50px);
+    justify-content: center;
+    overflow: scroll;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s;
+
+    a:not(.logo) {
+      padding: 10px;
+      margin: 10px auto;
+    }
+
+  }
+
+  .open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .toggle {
+    display: block;
+    position: relative;
+    z-index: 2000;
+    padding: 8px 12px;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    margin-right: 140px;
+    
+    svg {
+      margin-left: 10px;
+    }
+  }
+
 }
