@@ -24,22 +24,23 @@ export default class Checkout extends React.Component {
     }
     this.generatePaypalButtons = this.generatePaypalButtons.bind(this)
     this.setPaypalScripts = this.setPaypalScripts.bind(this)
-
-    this.setPaypalScripts()
   }
 
   componentDidMount() {
+    this.setPaypalScripts()
     this.setState({
       paypal: window.paypal
     })
   }
 
   setPaypalScripts() {
-    const script = document.createElement("script");
-    script.src = `https://www.paypal.com/sdk/js?client-id=AZswhoudLfZvanXDERMGG-oA1yXUvo3C0v4co0E-uUIrp8qAfPUS_RcYpxXjodM57c4nHyn2cw1DarZW&currency=USD`;
-    script.async = true;
+    if(!window.paypal){
+      const script = document.createElement("script");
+      script.src = `https://www.paypal.com/sdk/js?client-id=AZswhoudLfZvanXDERMGG-oA1yXUvo3C0v4co0E-uUIrp8qAfPUS_RcYpxXjodM57c4nHyn2cw1DarZW&currency=USD`;
+      script.async = true;
 
-    if(!window.paypal) document.body.appendChild(script);
+     document.body.appendChild(script);
+    }
   }
 
   getTotal(productsList){
