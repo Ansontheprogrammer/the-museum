@@ -192,7 +192,7 @@ button {
 .left-category-menu {
   position: sticky;
   position: -webkit-sticky;
-  top: 6vh;
+  top: 60px;
   margin-bottom: 35px;
   padding: 30px 0 16px;
   button {
@@ -258,6 +258,7 @@ button {
     display: flex;
     flex-direction: row;
     min-width: 100%;
+    margin-top: 70px;
   }
   
   .side-page-design {
@@ -404,6 +405,10 @@ button {
       margin-top: 0;
       margin-bottom: 20px;
     }
+  }
+
+  .desktop-layout {
+    margin-top: 50px;
   }
 
   .top-category-menu {
