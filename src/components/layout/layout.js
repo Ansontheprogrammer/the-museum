@@ -38,12 +38,12 @@ class Layout extends React.Component{
       showCart: this.props.useCart ? false : true
     }
     this.toggleCheckoutComponent =  this.toggleCheckoutComponent.bind(this)
-    // Set timeout to avoid ui issues with safari browser
-    setTimeout(() => {
-      this.setState({
-        showCart: true
-      })
-    }, 2000)
+  }
+
+  componentDidMount() {
+    this.setState({
+      showCart: true
+    })
   }
 
   toggleCheckoutComponent(){
