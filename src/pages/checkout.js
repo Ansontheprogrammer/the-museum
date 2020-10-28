@@ -209,7 +209,7 @@ productsJSX = cart => {
   return Object.values(products).map(product => (
     <div style={{display: 'block'}}>
       <div style={{padding: '15px', paddingBottom: '20px'}}>
-        { product.images &&
+        { product.images.length &&
           <img style={{height: '150px', width:'150px'}} src={product.images[0].originalSrc}/>
         }
         <p>{product.title}</p>
