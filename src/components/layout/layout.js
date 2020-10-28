@@ -1,5 +1,4 @@
 import React from "react"
-import MobileNav from "../navbar/mobile-nav"
 import DesktopNav from "../navbar/desktop-nav"
 import "./layout.scss"
 import PropTypes from "prop-types"
@@ -39,12 +38,12 @@ class Layout extends React.Component{
       showCart: this.props.useCart ? false : true
     }
     this.toggleCheckoutComponent =  this.toggleCheckoutComponent.bind(this)
-    // Set timeout to avoid ui issues with safari browser
-    setTimeout(() => {
-      this.setState({
-        showCart: true
-      })
-    }, 2000)
+  }
+
+  componentDidMount() {
+    this.setState({
+      showCart: true
+    })
   }
 
   toggleCheckoutComponent(){
@@ -82,7 +81,6 @@ class Layout extends React.Component{
             }
     
             </div>
-            <MobileNav />
           </>
         )
     }      

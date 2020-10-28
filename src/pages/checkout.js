@@ -23,19 +23,24 @@ export default class Checkout extends React.Component {
       products: null,
     }
     this.generatePaypalButtons = this.generatePaypalButtons.bind(this)
+    this.setPaypalScripts = this.setPaypalScripts.bind(this)
   }
 
   componentDidMount() {
-    const script = document.createElement("script");
-    script.src = `https://www.paypal.com/sdk/js?client-id=AZswhoudLfZvanXDERMGG-oA1yXUvo3C0v4co0E-uUIrp8qAfPUS_RcYpxXjodM57c4nHyn2cw1DarZW&currency=USD`;
-    script.async = true;
+    this.setPaypalScripts()
+    this.setState({
+      paypal: window.paypal
+    })
+  }
 
-    if(!window.paypal) document.body.appendChild(script);
-    setTimeout(() => {
-      this.setState({
-        paypal: window.paypal
-      })
-    }, 2000 ) 
+  setPaypalScripts() {
+    if(!window.paypal){
+      const script = document.createElement("script");
+      script.src = `https://www.paypal.com/sdk/js?client-id=AZswhoudLfZvanXDERMGG-oA1yXUvo3C0v4co0E-uUIrp8qAfPUS_RcYpxXjodM57c4nHyn2cw1DarZW&currency=USD`;
+      script.async = true;
+
+     document.body.appendChild(script);
+    }
   }
 
   getTotal(productsList){
@@ -209,7 +214,7 @@ productsJSX = cart => {
   return Object.values(products).map(product => (
     <div style={{display: 'block'}}>
       <div style={{padding: '15px', paddingBottom: '20px'}}>
-        { product.images &&
+        { product.images.length &&
           <img style={{height: '150px', width:'150px'}} src={product.images[0].originalSrc}/>
         }
         <p>{product.title}</p>
