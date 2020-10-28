@@ -30,6 +30,7 @@ class Barbers extends Component {
                   bio
                   pics
                   serviceList
+                  bookLink
                 }
               }
             }
