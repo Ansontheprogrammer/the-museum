@@ -1,4 +1,4 @@
 ---
-image: assets/zooty-work1.jpeg
+image: assets/img_2964.jpg
 imageTitle: examplePic
 ---
