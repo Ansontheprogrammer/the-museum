@@ -88,7 +88,7 @@ LandingPage.defaultProps = {
       subtitleHeading: 'W.Y.N (What You Need)',
       jsx: <>
         <SeaMossHeading/>
-        <Link to='/seamoss'><button className='section-button'>Read More</button></Link>
+        <Link to='/seamoss'><button className='section-button'>View Page</button></Link>
         <Fade>
           <Products category='seamoss' limit={1}/>
         </Fade>
@@ -107,7 +107,7 @@ LandingPage.defaultProps = {
       jsx: <>
         <ArtHeroSection />
         <SpacingSm/>
-        <Link to='/art'><button className='section-button'>Read More</button></Link>
+        <Link to='/art'><button className='section-button'>View Page</button></Link>
         <Fade>
         <Products category='art' limit={4}/>
         </Fade>

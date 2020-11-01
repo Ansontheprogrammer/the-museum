@@ -101,7 +101,6 @@ class Products extends Component {
             return variantsToList
           }
 
-          console.log(products, 'products')
           return (
           <div className={`productWrapper ${this.props.perRow === 2 ? 'productWrapper--2' : ''}`}>
             {products
