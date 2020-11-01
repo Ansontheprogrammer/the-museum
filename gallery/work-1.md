@@ -1,4 +1,4 @@
 ---
-image: assets/img_2964.jpg
+=image: assets/customer-cut-1.JPG
 imageTitle: examplePic
 ---

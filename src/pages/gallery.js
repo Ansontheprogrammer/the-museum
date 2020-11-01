@@ -41,7 +41,7 @@ const Gallery = () => {
   return (
   <Layout designNumber={1} displayAddToCartBtn={true} >
     <PageLayout title="Our Gallery">
-      <div className="Gallery-images">
+      <div className="Gallery-images no-margin">
         {generateGallery()}
       </div>
       <SpacingSm/>

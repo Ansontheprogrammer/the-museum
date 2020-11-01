@@ -10,7 +10,7 @@ const Shop = () => (
     <PageLayout title="Sea Moss">
       <SeaMossHeading />
       <div className='spacing'/>
-      <h1>Seamoss Products</h1>
+      <h2>Seamoss Products</h2>
       <Products category='seamoss' displayAddToCartBtn={true} />
       <SpacingSm/>
     </PageLayout>
