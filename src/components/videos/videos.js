@@ -4,8 +4,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import "../products/styles/Card.styles.scss"
 import '../products/styles/ProductWrapper.styles.scss'
 
-
-
 const VideosComponent = () => {
   const data = useStaticQuery(graphql`
     query getPosts {
@@ -37,19 +35,9 @@ const VideosComponent = () => {
           id={title.replace(/ /g, "")}
           key={title + index}
         >
-          <iframe
-          className=""
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          frameBorder="0"
-          webkitallowfullscreen="true"
-          mozallowfullscreen="true"
-          allowFullScreen
-          width="300"
-          height="200"
-          // Requires youtube embed link
-          src={url}
-          title={title}
-        />
+          <video width="300" height='200' controls>
+            <source src={'/'+url} type="video/mp4"/>
+        </video>
         </div>
       </Fade>
       <div className="text video-text">

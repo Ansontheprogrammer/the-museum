@@ -53,6 +53,8 @@ class Products extends Component {
         `}
         render={({ allShopifyProduct }) => {
           let products = allShopifyProduct.edges
+          // remove products without pics
+          .filter((product) => !!product.node.images.length)
           // Filter products by vendor
           .filter(product => {
             return this.props.vendor && this.props.vendor !== 'all' ? product.node.vendor.toLowerCase() === this.props.vendor.toLowerCase() : true
@@ -99,9 +101,11 @@ class Products extends Component {
             return variantsToList
           }
 
+          console.log(products, 'products')
           return (
           <div className={`productWrapper ${this.props.perRow === 2 ? 'productWrapper--2' : ''}`}>
-            {products.map((product, i) => {
+            {products
+            .map((product, i) => {
               const productNode = product.node;
               productNode._price = productNode.priceRange.minVariantPrice.amount
               productNode._variants = mapVariations(productNode)

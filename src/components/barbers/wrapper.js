@@ -39,7 +39,6 @@ class Barbers extends Component {
         `}
         render={({allMarkdownRemark}) => {
           let barbers = allMarkdownRemark.edges
-          console.log(this.props, 'slice')
           return (
           <div className="productWrapper barbersWrapperGrid">
             {barbers.map((barber, i) => {
