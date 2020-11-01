@@ -1,13 +1,14 @@
 .About {
-  display: flex;
-  flex-direction: row;
   margin: 0;
+  width: 100%;
 }
 
 .About-img {
-  width: 50%;
+  width: 40%;
   order: 2;
+  margin-right: 25px;
   z-index: -1;
+  float: right;
   background: #ccc;
   justify-content: center;
   height: calc(100vh - 75px);
@@ -21,22 +22,20 @@
   border-style: none;
 }
 .About-text {
-  width: 60%;
+  width: 100%;
   order: 1;
-  padding: 0 75px;
 }
 
 .About-text p {
   line-height: 1.5;
+  padding-top: 10px;
   color: #555;
 }
 
 @media only screen and (max-width: 950px) {
   .About {
     flex-direction: column;
-    padding: 25px 15px 75px;
     margin: 0;
-    text-align: center;
   }
 
   .About-image-wrapper {
@@ -45,8 +44,8 @@
 
   .About-img {
     margin:  auto;
-    height: 300px;
     min-width: 100%;
+    margin-bottom: 25px;
   }
 
   .About-text {

@@ -20,7 +20,7 @@ const AboutSection = () => {
           }
         }
       }
-      aboutImage: file(relativePath: { eq: "logo.png" }) {
+      aboutImage: file(relativePath: { eq: "museum.jpg" }) {
         childImageSharp {
           fluid(quality: 90, maxWidth: 1920) {
             ...GatsbyImageSharpFluid_withWebp
