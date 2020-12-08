@@ -1,22 +1,21 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import BackgroundImage from "gatsby-background-image"
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import BackgroundImage from "gatsby-background-image";
 
-import "./about.styles.scss"
+import "./about.styles.scss";
 
 const AboutSection = () => {
-  
   const data = useStaticQuery(graphql`
-    query {
-      allMarkdownRemark(
-        filter: { 
-          fileAbsolutePath: { regex: "/(content)/" },
-          frontmatter: {page: {eq: "about" }}
-        }
-      ) {
+    {
+      allFile(filter: { name: { eq: "about" } }) {
         edges {
           node {
-            html
+            childMarkdownRemark {
+              html
+              frontmatter {
+                title
+              }
+            }
           }
         }
       }
@@ -28,10 +27,10 @@ const AboutSection = () => {
         }
       }
     }
-  `)
+  `);
 
-  const imageData = data.aboutImage.childImageSharp.fluid
-  const aboutContent = data.allMarkdownRemark.edges[0].node.html
+  const imageData = data.aboutImage.childImageSharp.fluid;
+  const aboutContent = data.allFile.edges[0].node.childMarkdownRemark.html;
   return (
     <div className="About" id="about">
       <BackgroundImage
@@ -39,9 +38,12 @@ const AboutSection = () => {
         fluid={imageData}
         className="About-img"
       ></BackgroundImage>
-      <div className="About-text" dangerouslySetInnerHTML={{__html: aboutContent}} />
+      <div
+        className="About-text"
+        dangerouslySetInnerHTML={{ __html: aboutContent }}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default AboutSection
+export default AboutSection;

@@ -13,7 +13,7 @@ collections:
     fields:
       - { name: title, label: Title }
       - { name: description, label: Description, widget: markdown }
-      - { name: url, label: Url}
+      - { name: url, label: Url }
   - label: Barbers
     name: barbers
     folder: barbers
@@ -21,8 +21,8 @@ collections:
     fields:
       - { name: name, label: Name }
       - { name: bio, label: Bio, widget: markdown }
-      - { name: pics, label: Pics, widget: image}
-      - { name: links, label: Links, widget: "list"}
+      - { name: pics, label: Pics, widget: image }
+      - { name: links, label: Links, widget: "list" }
   - label: Seamoss
     name: clients
     folder: seamoss_clients
@@ -30,8 +30,17 @@ collections:
     fields:
       - { name: name, label: Name }
       - { name: bio, label: Bio, widget: markdown }
-      - { name: links, label: Links}
-  - label: "Gallery Image"
+      - { name: links, label: Links }
+  - label: Background Image
+    name: background
+    folder: gallery
+    create: true
+    identifier_field: imageTitle
+    widget: "list"
+    fields:
+      - { label: Image, name: image, widget: image }
+      - { label: "Image Title", name: imageTitle, widget: string }
+  - label: Gallery
     name: gallery
     folder: gallery
     create: true
@@ -41,11 +50,26 @@ collections:
       - { label: Image, name: image, widget: image }
       - { label: "Image Title", name: imageTitle, widget: string }
   - label: Page Content
-    name: content
-    folder: content
-    create: true
-    fields:
-      - { name: page, label: Page Name }
-      - { name: paragraphOne, label: Paragraph One }
-      - { name: paragraphTwo, label: Paragraph Two }
-  
+    name: pages
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "content/home.md"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subheading, name: subHeading, widget: string }
+      - label: "About"
+        name: "home"
+        file: "content/about.md"
+        fields:
+          - { label: Title, name: title, widget: string }
+      - label: "Art"
+        name: "art"
+        file: "content/art.md"
+        fields:
+          - { label: Title, name: title, widget: string }
+      - label: "Seamoss"
+        name: "seamoss"
+        file: "content/seamoss.md"
+        fields:
+          - { label: Title, name: title, widget: string }

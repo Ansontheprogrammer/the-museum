@@ -1,27 +1,34 @@
 import { useStaticQuery } from "gatsby";
-import React from "react"
+import React from "react";
 
 const ArtHeroSection = () => {
   const data = useStaticQuery(graphql`
-    query getArtPageContent {
-      allMarkdownRemark(
-        filter: { 
-          fileAbsolutePath: { regex: "/(content)/" },
-          frontmatter: {page: {eq: "art" }}
-        }
+    {
+      allFile(
+        filter: { sourceInstanceName: { eq: "content" }, name: { eq: "art" } }
       ) {
         edges {
           node {
-            html
+            childMarkdownRemark {
+              html
+              frontmatter {
+                title
+              }
+            }
           }
         }
       }
     }
-  `)
+  `);
 
-  const artContent = data.allMarkdownRemark.edges[0].node.html
+  // const artContent = data.allMarkdownRemark.edges[0].node.html;
 
-  return <div className='section-text' dangerouslySetInnerHTML={{__html: artContent}}/>
-}
+  return (
+    <div
+      className="section-text"
+      dangerouslySetInnerHTML={{ __html: "artContent" }}
+    />
+  );
+};
 
-export default ArtHeroSection
+export default ArtHeroSection;
