@@ -56,6 +56,7 @@ class Layout extends React.Component {
       <CartContext.Consumer>
         {(cart) => (
           <>
+          
             {this.props.useCart && cart && this.state.showCart && (
               <Cart quantity={cart.productsInCart.length} />
             )}
