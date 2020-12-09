@@ -35,11 +35,9 @@ collections:
     name: background
     folder: gallery
     create: true
-    identifier_field: imageTitle
     widget: "list"
     fields:
-      - { label: Image, name: image, widget: image }
-      - { label: "Image Title", name: imageTitle, widget: string }
+      - { label: Background Image, name: image, widget: image }
   - label: Gallery
     name: gallery
     folder: gallery
@@ -49,7 +47,7 @@ collections:
     fields:
       - { label: Image, name: image, widget: image }
       - { label: "Image Title", name: imageTitle, widget: string }
-  - label: Page Content
+  - label: Pages
     name: pages
     files:
       - label: "Home Page"

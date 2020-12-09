@@ -7,7 +7,6 @@ const SeaMossHeading = () => {
     {
       allFile(
         filter: {
-          sourceInstanceName: { eq: "content" }
           name: { eq: "seamoss" }
         }
       ) {
@@ -25,8 +24,7 @@ const SeaMossHeading = () => {
     }
   `);
 
-  const seamossContent = "data.allMarkdownRemark.edges[0].node.html";
-
+  const seamossContent = data.allFile.edges[0].node.childMarkdownRemark.html;
   return (
     <div
       className="section-text"

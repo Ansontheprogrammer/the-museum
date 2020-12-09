@@ -5,7 +5,7 @@ const ArtHeroSection = () => {
   const data = useStaticQuery(graphql`
     {
       allFile(
-        filter: { sourceInstanceName: { eq: "content" }, name: { eq: "art" } }
+        filter: { name: { eq: "art" } }
       ) {
         edges {
           node {
@@ -21,12 +21,11 @@ const ArtHeroSection = () => {
     }
   `);
 
-  // const artContent = data.allMarkdownRemark.edges[0].node.html;
-
+  const artContent = data.allFile.edges[0].node.childMarkdownRemark.html;
   return (
     <div
       className="section-text"
-      dangerouslySetInnerHTML={{ __html: "artContent" }}
+      dangerouslySetInnerHTML={{ __html: artContent }}
     />
   );
 };
