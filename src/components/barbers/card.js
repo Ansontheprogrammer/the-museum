@@ -1,5 +1,5 @@
 import React from "react";
-import "./barberCard.styles.scss";
+import "./barber-card.styles.scss";
 import { FaCut } from "react-icons/fa";
 import clip from "text-clipper";
 
