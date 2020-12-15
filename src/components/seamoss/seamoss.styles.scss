@@ -1,28 +1,27 @@
-.section-text {    
-    h4 {
-        margin-top: 10px;
-        text-align: center;
+.section-text {
+  h4 {
+    margin-top: 10px;
+    text-align: center;
+  }
+  @media only screen and (max-width: 900px) {
+    p {
+      line-height: 1.75em;
     }
-    @media only screen and (max-width: 900px) {        
-        p {
-            line-height: 1.75em;
-        }
-    }  
+  }
 }
 
 .clients {
-    display: flex;
-    justify-content: space-around;
-    
+  display: flex;
+  justify-content: space-around;
 }
 
 @media only screen and (max-width: 900px) {
-    .clients {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    h1 {
-        margin-left: 5vw;
-    }
-}  
+  .clients {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // h1 {
+  //     margin-left: 5vw;
+  // }
+}
