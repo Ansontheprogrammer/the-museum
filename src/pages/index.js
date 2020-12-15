@@ -78,9 +78,10 @@ LandingPage.defaultProps = {
   page: {
     users: {
       show: true,
+
       heading: "Our Barbers",
       subtitleHeading: "",
-      jsx: <Barbers limit={3} />
+      jsx: <Barbers onLandingPage={true} limit={3} />
     },
     seamoss: {
       show: true,
