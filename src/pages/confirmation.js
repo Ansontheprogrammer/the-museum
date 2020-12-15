@@ -1,5 +1,5 @@
 import React from "react"
-import "../components/products/styles/ProductWrapper.styles.scss"
+import "../components/products/styles/product-wrapper.styles.scss"
 import Layout from "../components/layout/layout"
 import PageLayout from "../components/layout/page-layout"
 import { formatPrice } from "../components/products/components/productCard"

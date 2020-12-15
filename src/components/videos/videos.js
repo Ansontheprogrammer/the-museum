@@ -1,7 +1,7 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
 import { useStaticQuery, graphql } from "gatsby";
-import "../products/styles/ProductWrapper.styles.scss";
+import "../products/styles/product-wrapper.styles.scss";
 
 const VideosComponent = () => {
   const data = useStaticQuery(graphql`

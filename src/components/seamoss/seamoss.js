@@ -1,6 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import "../products/styles/ProductWrapper.styles.scss";
+import "../products/styles/product-wrapper.styles.scss";
 
 const SeaMoss = () => {
   const data = useStaticQuery(graphql`

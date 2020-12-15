@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react"
 import { graphql, StaticQuery } from "gatsby"
 import SkuCard from "../components/productCard"
-import "../styles/ProductWrapper.styles.scss"
+import "../styles/product-wrapper.styles.scss"
 
 
 class Products extends Component {

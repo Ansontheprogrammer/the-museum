@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import "../components/products/styles/ProductWrapper.styles.scss"
+import "../components/products/styles/product-wrapper.styles.scss"
 import { CartContext } from "../components/products/context/cart.context"
 import Layout from "../components/layout/layout"
 import { Loading } from "../components/products/components/loading"

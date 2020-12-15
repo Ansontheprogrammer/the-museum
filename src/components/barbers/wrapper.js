@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import Fade from "react-reveal/Fade";
 import { graphql, StaticQuery } from "gatsby";
-import "../products/styles/ProductWrapper.styles.scss";
+import "../products/styles/product-wrapper.styles.scss";
 import BarberCard from "./card";
 
 class Barbers extends Component {
