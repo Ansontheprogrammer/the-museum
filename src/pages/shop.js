@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import Layout from "../components/layout/layout"
 import PageLayout from "../components/layout/page-layout"
 import Products from "../components/products/components/products"
-import "../components/products/styles/ProductWrapper.styles.scss"
+import "../components/products/styles/product-wrapper.styles.scss"
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import { SpacingSm } from "../components/typographics"
  

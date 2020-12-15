@@ -6,14 +6,14 @@ import Products from "../components/products/components/products";
 import VideosComponent from "../components/videos/videos";
 import Barbers from "../components/barbers/wrapper";
 import { Hero } from "../components/hero/hero";
-import ArtHeroSection from "../components/art/artHero";
+import ArtHeroSection from "../components/art/art-hero";
 import {
   Section,
   SectionHeader,
   OffSection,
   SpacingSm
 } from "../components/typographics";
-import SeaMossHeading from "../components/seamoss/seamossHeading";
+import SeaMossHeading from "../components/seamoss/seamoss-heading";
 import Proptypes from "prop-types";
 import { Link } from "gatsby";
 

@@ -10,7 +10,7 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "yarn run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "export NODE_ENV=test && mocha --recursive tests/ --exit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
@@ -26,8 +26,6 @@
     "gatsby-plugin-sass": "^2.1.4",
     "gatsby-plugin-sharp": "^2.2.19",
     "gatsby-plugin-sitemap": "^2.2.10",
-    "gatsby-plugin-square-payment-form": "^1.0.3",
-    "gatsby-plugin-stripe": "^1.2.3",
     "gatsby-remark-relative-images": "^0.2.3",
     "gatsby-source-filesystem": "^2.1.19",
     "gatsby-source-shopify": "^3.2.25",
@@ -45,13 +43,14 @@
     "react-icons": "^3.7.0",
     "react-reveal": "^1.2.2",
     "react-sidebar": "^3.0.2",
-    "react-stripe-checkout": "^2.6.3",
     "shopify-buy": "^2.11.0",
     "styled-components": "^5.1.1",
     "text-clipper": "^2.1.0"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",
+    "mocha": "^8.2.1",
+    "nock": "^13.0.5",
     "prettier": "^1.18.2"
   },
   "repository": {
