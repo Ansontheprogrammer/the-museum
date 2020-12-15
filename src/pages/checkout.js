@@ -4,10 +4,12 @@ import { CartContext } from "../components/products/context/cart.context";
 import Layout from "../components/layout/layout";
 import { Loading } from "../components/products/components/loading";
 import PageLayout from "../components/layout/page-layout";
-import axios from "axios";
 import { formatPrice } from "../components/products/components/product-card";
-import config from "../../config/config";
 import { navigate } from "gatsby";
+import {
+  sendConfirmationEmailToVendor,
+  sendConfirmationEmailToAEInc
+} from "../api/email";
 
 export default class Checkout extends React.Component {
   constructor(props) {
@@ -112,11 +114,8 @@ export default class Checkout extends React.Component {
                   order
                 }
               };
-              new Checkout().sendConfirmationEmailToVendor(checkoutDetails);
-              new Checkout().sendConfirmationEmailToAEInc(
-                calculations.ae,
-                checkoutDetails
-              );
+              sendConfirmationEmailToVendor(checkoutDetails);
+              sendConfirmationEmailToAEInc(calculations.ae, checkoutDetails);
               navigate("/confirmation", {
                 state: {
                   order: order,
@@ -128,39 +127,6 @@ export default class Checkout extends React.Component {
         })
         .render("#paypal-button-container");
     return <div />;
-  }
-
-  async sendConfirmationEmailToVendor(customerDetails) {
-    return await this.sendEmail(customerDetails, config.vendorEmail);
-  }
-
-  async sendConfirmationEmailToAEInc(ourIncome, checkoutDetails) {
-    const messageBody = {
-      checkoutDetails,
-      message: "Customer just checked and we made for $" + ourIncome
-    };
-    return await this.sendEmail(messageBody, config.aeEmail);
-  }
-
-  async sendEmail(messageBody, toEmail) {
-    const url = `${config.aeSystemURL}/api/send/email`;
-    try {
-      await axios({
-        url,
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        data: JSON.stringify({
-          ...messageBody,
-          to: toEmail
-        })
-      });
-      return Promise.resolve();
-    } catch (err) {
-      return Promise.reject(err);
-    }
   }
 
   generateItems(productList) {
