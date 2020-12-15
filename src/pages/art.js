@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/layout/layout";
 import PageLayout from "../components/layout/page-layout";
 import Products from "../components/products/components/products";
-import ArtHeroSection from "../components/art/artHero";
+import ArtHeroSection from "../components/art/art-hero";
 import { SpacingSm } from "../components/typographics";
 
 const Shop = () => (
