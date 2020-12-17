@@ -56,7 +56,7 @@ class Layout extends React.Component {
       <CartContext.Consumer>
         {(cart) => (
           <>
-          
+
             {this.props.useCart && cart && this.state.showCart && (
               <Cart quantity={cart.productsInCart.length} />
             )}
@@ -81,6 +81,11 @@ class Layout extends React.Component {
                       />
                     )}
                     {this.props.children}
+                  </div>
+                  <div className='footer' style={{padding: '25px', backgroundColor: '#2f2f2f'}}>
+                      <div style={{ maxWidth: '1300px', display: 'flex', justifyContent: 'space-between'}}>
+                        <p>&c; AnsonErvin Inc. 2020</p>
+                      </div>
                   </div>
                 </>
               }
