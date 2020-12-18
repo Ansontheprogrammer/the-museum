@@ -23,5 +23,5 @@ serviceList:
     "*Holiday* Haircut / Beard Trim",
   ]
 bio: Born in Flint, Michigan. I'm a master barber with over 25 years in the industry. I specialize in bald fades, hair units, and color.
-bookLink: booksy.com/en-us/103220_cutz-by-odie_barber-shop_27100_raleigh
+bookLink: https://booksy.com/en-us/103220_cutz-by-odie_barber-shop_27100_raleigh
 ---
