@@ -8,21 +8,16 @@ import { formatPrice } from "../components/products/components/product-card";
 import { navigate } from "gatsby";
 import {
   sendConfirmationEmailToVendor,
-  sendConfirmationEmailToAEInc
+  sendConfirmationEmailToAEInc,
 } from "../api/email";
 
 export default class Checkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardBrand: "",
-      nonce: undefined,
-      paymentFormLoaded: false,
-      paymentForm: null,
       paypal: null,
-      showSquareCheckoutForm: null,
       checkoutSuccess: false,
-      products: null
+      products: null,
     };
     this.generatePaypalButtons = this.generatePaypalButtons.bind(this);
     this.setPaypalScripts = this.setPaypalScripts.bind(this);
@@ -31,7 +26,7 @@ export default class Checkout extends React.Component {
   componentDidMount() {
     this.setPaypalScripts();
     this.setState({
-      paypal: window.paypal
+      paypal: window.paypal,
     });
   }
 
@@ -47,13 +42,13 @@ export default class Checkout extends React.Component {
 
   getTotal(productsList) {
     let total = 0;
-    productsList.forEach(product => {
+    productsList.forEach((product) => {
       total += parseFloat(product._price);
     });
 
     return {
       total: total.toFixed(2),
-      ae: (total * 0.02).toFixed(2)
+      ae: (total * 0.02).toFixed(2),
     };
   }
 
@@ -62,6 +57,7 @@ export default class Checkout extends React.Component {
     const order = new Checkout().generateMessage(productsList);
     const calculations = this.getTotal(productsList);
     const total = calculations.total;
+
     if (this.state.paypal)
       this.state.paypal
         .Buttons({
@@ -69,7 +65,7 @@ export default class Checkout extends React.Component {
             shape: "rect",
             color: "gold",
             layout: "vertical",
-            label: "paypal"
+            label: "paypal",
           },
           createOrder: function(data, actions) {
             return actions.order.create({
@@ -80,13 +76,13 @@ export default class Checkout extends React.Component {
                     breakdown: {
                       item_total: {
                         currency_code: "USD",
-                        value: total
-                      }
-                    }
+                        value: total,
+                      },
+                    },
                   },
-                  items: new Checkout().generateItems(productsList)
-                }
-              ]
+                  items: new Checkout().generateItems(productsList),
+                },
+              ],
             });
           },
           onApprove: function(data, actions) {
@@ -98,7 +94,7 @@ export default class Checkout extends React.Component {
                 address_line_1: street,
                 admin_area_1: state,
                 admin_area_2: city,
-                postal_code: zipcode
+                postal_code: zipcode,
               } = shipping.address;
               const { full_name: name } = shipping.name;
               const checkoutDetails = {
@@ -109,21 +105,21 @@ export default class Checkout extends React.Component {
                     street,
                     state,
                     city,
-                    zipcode
+                    zipcode,
                   },
-                  order
-                }
+                  order,
+                },
               };
               sendConfirmationEmailToVendor(checkoutDetails);
               sendConfirmationEmailToAEInc(calculations.ae, checkoutDetails);
               navigate("/confirmation", {
                 state: {
                   order: order,
-                  cart: JSON.stringify(cart)
-                }
+                  cart: JSON.stringify(cart),
+                },
               });
             });
-          }
+          },
         })
         .render("#paypal-button-container");
     return <div />;
@@ -131,7 +127,7 @@ export default class Checkout extends React.Component {
 
   generateItems(productList) {
     const products = {};
-    productList.forEach(product => {
+    productList.forEach((product) => {
       const productID = `${product.title} ${product._selectedVariant}`;
       if (!products[productID]) {
         products[productID] = product;
@@ -141,15 +137,15 @@ export default class Checkout extends React.Component {
       }
     });
 
-    return Object.keys(products).map(product => {
+    return Object.keys(products).map((product) => {
       return {
         name: product,
         unit_amount: {
           value: products[product]._price,
-          currency_code: "USD"
+          currency_code: "USD",
         },
         description: products[product].body_html,
-        quantity: products[product].quantity.toString()
+        quantity: products[product].quantity.toString(),
       };
     });
   }
@@ -157,7 +153,7 @@ export default class Checkout extends React.Component {
   generateMessage(productList) {
     let message = "Checkout details: ";
     const products = {};
-    productList.forEach(product => {
+    productList.forEach((product) => {
       const productID = `${product.title} ${product._selectedVariant}`;
       if (!products[productID]) {
         products[productID] = product;
@@ -173,11 +169,10 @@ export default class Checkout extends React.Component {
     return message;
   }
 
-  productsJSX = cart => {
+  productsJSX = (cart) => {
     if (!this.state.paypal) return;
     const products = {};
-    cart.productsInCart.forEach(product => {
-      // generate option string
+    cart.productsInCart.forEach((product) => {
       const productID = `${product.title} ${product._selectedVariant}`;
       if (!products[productID]) {
         products[productID] = product;
@@ -187,7 +182,7 @@ export default class Checkout extends React.Component {
       }
     });
 
-    return Object.values(products).map(product => (
+    return Object.values(products).map((product) => (
       <div style={{ display: "block" }}>
         <div style={{ padding: "15px", paddingBottom: "20px" }}>
           {product.images.length && (
@@ -211,7 +206,7 @@ export default class Checkout extends React.Component {
       <Layout useCart={false}>
         <PageLayout title="Checkout">
           <CartContext.Consumer>
-            {cart => {
+            {(cart) => {
               if (!cart) return <Loading />;
               if (cart.productsInCart.length === 0) {
                 return (
@@ -221,7 +216,7 @@ export default class Checkout extends React.Component {
                       padding: "15px",
                       justifyContent: "center",
                       height: "50vh",
-                      alignItems: "center"
+                      alignItems: "center",
                     }}
                   >
                     <p style={{ textAlign: "center", fontSize: "20px" }}>
@@ -237,7 +232,7 @@ export default class Checkout extends React.Component {
                         textAlign: "center",
                         minWidth: "300px",
                         maxWidth: "300px",
-                        margin: "auto"
+                        margin: "auto",
                       }}
                       id="paypal-button-container"
                     />
@@ -248,7 +243,7 @@ export default class Checkout extends React.Component {
                           padding: "15px",
                           justifyContent: "center",
                           height: "50vh",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <p style={{ textAlign: "center", fontSize: "20px" }}>
@@ -266,7 +261,7 @@ export default class Checkout extends React.Component {
                         style={{
                           paddingBottom: "25px",
                           fontSize: "18px",
-                          textAlign: "center"
+                          textAlign: "center",
                         }}
                       >
                         Total: ${this.getTotal(cart.productsInCart).total}
@@ -278,7 +273,7 @@ export default class Checkout extends React.Component {
                             marginTop: "3vh",
                             marginBottom: "3vh",
                             color: "black",
-                            textAlign: "center"
+                            textAlign: "center",
                           }}
                         >
                           Cart

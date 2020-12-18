@@ -1,6 +1,6 @@
 import React from "react";
 import "./barber-card.styles.scss";
-import { FaCut } from "react-icons/fa";
+import { FaCut, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import clip from "text-clipper";
 
 export class BarberCard extends React.Component {
@@ -8,8 +8,20 @@ export class BarberCard extends React.Component {
     super(props);
   }
 
+  getIcon(link) {
+    if (link.includes("instagram")) {
+      return <FaInstagram />;
+    } else if (link.includes("facebook")) {
+      return <FaFacebook />;
+    } else if (link.includes("twitter")) {
+      return <FaTwitter />;
+    } else {
+      return <span>Booksy</span>;
+    }
+  }
   render() {
     const barber = this.props.barber;
+
     return (
       <div className="barber-card">
         <div className="row-card">
@@ -52,7 +64,7 @@ export class BarberCard extends React.Component {
             <ul className="links-list">
               {barber.links.map((link) => (
                 <li className="link-btn">
-                  <a href={"https://" + link}>{link}</a>
+                  <a href={"https://" + link}>{this.getIcon(link)}</a>
                 </li>
               ))}
             </ul>
@@ -60,7 +72,7 @@ export class BarberCard extends React.Component {
         </div>
         {barber.name === "Tyreese" ? (
           <a className="book-btn" href={`sms:${barber.bookLink}`}>
-            Text {barber.bookLink}
+            Text
           </a>
         ) : (
           <a className="book-btn" href={barber.bookLink}>
