@@ -6,8 +6,8 @@ pics:
   - /assets/nas.jpg
 links:
   [
-    "https://booksy.com/en-us/13143_ballistic-barber_barber-shop_27100_raleigh",
-    "https://www.instagram.com/eskobars/?hl=en",
+    "booksy.com/en-us/13143_ballistic-barber_barber-shop_27100_raleigh",
+    "instagram.com/eskobars",
   ]
 serviceList:
   [
