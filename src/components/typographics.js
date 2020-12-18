@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Section = props => (
+export const Section = (props) => (
   <SectionWrapper>{props.children}</SectionWrapper>
 );
 
-export const SectionRow = props => (
+export const SectionRow = (props) => (
   <SectionWrapperRow>{props.children}</SectionWrapperRow>
 );
 
-export const SectionColumn = props => (
+export const SectionColumn = (props) => (
   <SectionWrapperColumn>{props.children}</SectionWrapperColumn>
 );
 
@@ -165,7 +165,7 @@ export const Card = styled.div`
 `;
 
 export const HeroWrapper = styled.div`
-  height: 95vh;
+  height: 80vh;
   width: 100%;
   padding-left: 7vw;
   padding-top: 15vh;
