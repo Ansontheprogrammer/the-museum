@@ -55,20 +55,26 @@ const LandingPage = (props) => {
   };
 
   const generateLandingPage = () => {
-    return Object.keys(props.page)
-      .filter((section) => {
-        return props.page[section].show;
-      })
-      .map((section, index) => {
-        const heading = props.page[section].heading;
-        const subtitleHeading = props.page[section].subtitleHeading;
-        return generateSection(
-          index,
-          { heading, subtitleHeading },
-          props.page[section].jsx
-        );
-      })
-      .map((jsx) => jsx);
+    return (
+      <div id="gjs">
+        <h1>Hello World Component!</h1>
+      </div>
+    );
+
+    // return Object.keys(props.page)
+    //   .filter((section) => {
+    //     return props.page[section].show;
+    //   })
+    //   .map((section, index) => {
+    //     const heading = props.page[section].heading;
+    //     const subtitleHeading = props.page[section].subtitleHeading;
+    //     return generateSection(
+    //       index,
+    //       { heading, subtitleHeading },
+    //       props.page[section].jsx
+    //     );
+    //   })
+    //   .map((jsx) => jsx);
   };
 
   return (
@@ -81,6 +87,20 @@ const LandingPage = (props) => {
       <Hero />
       <Gallery />
       {generateLandingPage()}
+      {grapesjs.init({
+        // Indicate where to init the editor. You can also pass an HTMLElement
+        container: "#gjs",
+        // Get the content for the canvas directly from the element
+        // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
+        fromElement: true,
+        // Size of the editor
+        height: "300px",
+        width: "auto",
+        // Disable the storage manager for the moment
+        storageManager: false,
+        // Avoid any default panel
+        panels: { defaults: [] },
+      })}
     </Layout>
   );
 };
