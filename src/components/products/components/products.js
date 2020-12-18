@@ -4,13 +4,41 @@ import SkuCard from "./product-card";
 import "../styles/product-wrapper.styles.scss";
 
 class Products extends Component {
-  state = {
-    stripe: null
-  };
-
   constructor(props) {
     super(props);
   }
+
+  mapVariations = (node) => {
+    const variants = {};
+    node.variants.forEach((variant) => {
+      /* Convert variants to object
+                {
+                  variantName : string[]
+                }
+              */
+      variant.selectedOptions.forEach((option) => {
+        if (option.name.toLowerCase() === "title") return;
+        if (variants[option.name]) {
+          if (
+            !variants[option.name].find((variant) => variant === option.value)
+          ) {
+            variants[option.name].push(option.value);
+          }
+        } else {
+          variants[option.name] = [option.value];
+        }
+      });
+    });
+    // Convert variants to list
+    const variantsToList = Object.keys(variants).map((optionName) => {
+      return {
+        name: optionName,
+        variants: variants[optionName],
+        default: variants[optionName][0],
+      };
+    });
+    return variantsToList;
+  };
 
   render() {
     return (
@@ -53,16 +81,16 @@ class Products extends Component {
         render={({ allShopifyProduct }) => {
           let products = allShopifyProduct.edges
             // remove products without pics
-            .filter(product => !!product.node.images.length)
+            .filter((product) => !!product.node.images.length)
             // Filter products by vendor
-            .filter(product => {
+            .filter((product) => {
               return this.props.vendor && this.props.vendor !== "all"
                 ? product.node.vendor.toLowerCase() ===
                     this.props.vendor.toLowerCase()
                 : true;
             })
             // Filter for product type. if none passed don't show art or seamoss
-            .filter(product => {
+            .filter((product) => {
               if (this.props.category && this.props.category !== "all") {
                 return (
                   product.node.productType.toLowerCase() ===
@@ -76,44 +104,19 @@ class Products extends Component {
                 );
               }
             });
+          if (this.props.multiVendor)
+            products = [].concat.apply(this.props.multiVendor);
+          console.log(
+            this.props.multiVendor,
+            "multivendor",
+            products,
+            "all proudct"
+          );
+
           // Limit products returned
           products = this.props.limit
             ? products.slice(0, this.props.limit)
             : products;
-
-          const mapVariations = node => {
-            const variants = {};
-            node.variants.forEach(variant => {
-              /* Convert variants to object
-                {
-                  variantName : string[]
-                }
-              */
-              variant.selectedOptions.forEach(option => {
-                if (option.name.toLowerCase() === "title") return;
-                if (variants[option.name]) {
-                  if (
-                    !variants[option.name].find(
-                      variant => variant === option.value
-                    )
-                  ) {
-                    variants[option.name].push(option.value);
-                  }
-                } else {
-                  variants[option.name] = [option.value];
-                }
-              });
-            });
-            // Convert variants to list
-            const variantsToList = Object.keys(variants).map(optionName => {
-              return {
-                name: optionName,
-                variants: variants[optionName],
-                default: variants[optionName][0]
-              };
-            });
-            return variantsToList;
-          };
 
           return (
             <div
@@ -122,10 +125,10 @@ class Products extends Component {
               }`}
             >
               {products.map((product, i) => {
-                const productNode = product.node;
+                const productNode = product.node ? product.node : product;
                 productNode._price =
                   productNode.priceRange.minVariantPrice.amount;
-                productNode._variants = mapVariations(productNode);
+                productNode._variants = this.mapVariations(productNode);
 
                 return (
                   <div className="variations">

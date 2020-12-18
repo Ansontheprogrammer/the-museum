@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Fade from "react-reveal/Fade";
 import Layout from "../components/layout/layout";
 import Gallery from "../components/gallery/gallery";
@@ -11,11 +11,12 @@ import {
   Section,
   SectionHeader,
   OffSection,
-  SpacingSm
+  SpacingSm,
 } from "../components/typographics";
 import SeaMossHeading from "../components/seamoss/seamoss-heading";
 import Proptypes from "prop-types";
 import { Link } from "gatsby";
+import { getKbuttaProducts } from "../api/multiVendor";
 
 const generateSection = (index, headings, contents) => {
   const offSection = (index + 1) % 2;
@@ -37,15 +38,17 @@ const generateSection = (index, headings, contents) => {
   );
 };
 
-const LandingPage = props => {
+const LandingPage = (props) => {
   const [showServicesModal, setShowServicesModal] = useState(false);
   const toggleServicesModal = () => {
-    setShowServicesModal(prevState => !prevState);
+    setShowServicesModal((prevState) => !prevState);
   };
+
+  useEffect(() => {});
 
   const generateLandingPage = () => {
     return Object.keys(props.page)
-      .filter(section => {
+      .filter((section) => {
         return props.page[section].show;
       })
       .map((section, index) => {
@@ -57,7 +60,7 @@ const LandingPage = props => {
           props.page[section].jsx
         );
       })
-      .map(jsx => jsx);
+      .map((jsx) => jsx);
   };
 
   return (
@@ -81,7 +84,7 @@ LandingPage.defaultProps = {
 
       heading: "Our Barbers",
       subtitleHeading: "",
-      jsx: <Barbers onLandingPage={true} limit={3} />
+      jsx: <Barbers onLandingPage={true} limit={3} />,
     },
     seamoss: {
       show: true,
@@ -97,13 +100,13 @@ LandingPage.defaultProps = {
             <Products category="seamoss" limit={1} />
           </Fade>
         </>
-      )
+      ),
     },
     videos: {
       show: true,
       heading: "Videos",
       subtitleHeading: "",
-      jsx: <VideosComponent />
+      jsx: <VideosComponent />,
     },
     art: {
       show: true,
@@ -120,7 +123,7 @@ LandingPage.defaultProps = {
             <Products category="art" limit={4} />
           </Fade>
         </>
-      )
+      ),
     },
     shop: {
       show: true,
@@ -130,9 +133,9 @@ LandingPage.defaultProps = {
         <Fade>
           <Products limit={4} />
         </Fade>
-      )
-    }
-  }
+      ),
+    },
+  },
 };
 
 LandingPage.propTypes = {
@@ -141,45 +144,45 @@ LandingPage.propTypes = {
       show: Proptypes.bool,
       heading: Proptypes.string,
       subtitleHeading: Proptypes.string,
-      jsx: Proptypes.element
+      jsx: Proptypes.element,
     },
     gallery: {
       show: Proptypes.bool,
       heading: Proptypes.string,
       subtitleHeading: Proptypes.string,
-      jsx: Proptypes.element
+      jsx: Proptypes.element,
     },
     users: {
       show: Proptypes.bool,
       heading: Proptypes.string,
       subtitleHeading: Proptypes.string,
-      jsx: Proptypes.element
+      jsx: Proptypes.element,
     },
     seamoss: {
       show: Proptypes.bool,
       heading: Proptypes.string,
       subtitleHeading: Proptypes.string,
-      jsx: Proptypes.element
+      jsx: Proptypes.element,
     },
     videos: {
       show: Proptypes.bool,
       heading: Proptypes.string,
       subtitleHeading: Proptypes.string,
-      jsx: Proptypes.element
+      jsx: Proptypes.element,
     },
     art: {
       show: Proptypes.bool,
       heading: Proptypes.string,
       subtitleHeading: Proptypes.string,
-      jsx: Proptypes.element
+      jsx: Proptypes.element,
     },
     shop: {
       show: Proptypes.bool,
       heading: Proptypes.string,
       subtitleHeading: Proptypes.string,
-      jsx: Proptypes.element
-    }
-  }
+      jsx: Proptypes.element,
+    },
+  },
 };
 
 export default LandingPage;

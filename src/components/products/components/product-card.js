@@ -4,12 +4,12 @@ import { CartContext } from "../context/cart.context";
 import { Card } from "../../typographics";
 import clip from "text-clipper";
 
-export const formatPrice = amount => {
+export const formatPrice = (amount) => {
   let price = amount;
   let numberFormat = new Intl.NumberFormat(["en-US"], {
     style: "currency",
     currency: "USD",
-    currencyDisplay: "symbol"
+    currencyDisplay: "symbol",
   });
   return numberFormat.format(price);
 };
@@ -36,9 +36,9 @@ const SkuCard = class extends React.Component {
       let selectedVariantString = "";
 
       this.product._variants.forEach((option, index) => {
-        Object.keys(this.state).forEach(optionInState => {
+        Object.keys(this.state).forEach((optionInState) => {
           const findOptionInState = Object.keys(this.state).find(
-            optionInState => optionInState === option.name
+            (optionInState) => optionInState === option.name
           );
           if (!findOptionInState) {
             selectedVariantString += this.generateOptionString(
@@ -74,9 +74,9 @@ const SkuCard = class extends React.Component {
   };
 
   toggleSelectedVariation(attribute) {
-    return e => {
+    return (e) => {
       this.setState({
-        [attribute]: e.target.value
+        [attribute]: e.target.value,
       });
     };
   }
@@ -92,7 +92,7 @@ const SkuCard = class extends React.Component {
           className="image"
           style={{
             backgroundImage: `${productImage ? `url(${productImage})` : ""}`,
-            background: `${!productImage ? "#eee;" : null}`
+            background: `${!productImage ? "#eee;" : null}`,
           }}
         />
         <div className="text">
@@ -125,7 +125,7 @@ const SkuCard = class extends React.Component {
           ))}
         {
           <CartContext.Consumer>
-            {cart => {
+            {(cart) => {
               if (!cart) return;
               return (
                 <button
@@ -134,7 +134,7 @@ const SkuCard = class extends React.Component {
                     // set variants equal to default if state is set
                     // if state set reset current state
                     ...product,
-                    _selectedVariant: this.getVariations()
+                    _selectedVariant: this.getVariations(),
                   })}
                 >
                   Add To Cart
