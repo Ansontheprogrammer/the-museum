@@ -89,7 +89,7 @@ const SkuCard = class extends React.Component {
     return (
       <Card>
         <div
-          className="image"
+          className="card-image image"
           style={{
             backgroundImage: `${productImage ? `url(${productImage})` : ""}`,
             background: `${!productImage ? "#eee;" : null}`,
