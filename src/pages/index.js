@@ -45,7 +45,8 @@ const LandingPage = (props) => {
   };
   const [kButtaProducts, setKbuttaProducts] = useState([]);
   useEffect(() => {
-    getKbuttaProducts().then((products) => setKbuttaProducts(products));
+    if (kButtaProducts.length <= 0)
+      getKbuttaProducts().then((products) => setKbuttaProducts(products));
   });
 
   const generateLandingPage = () => {

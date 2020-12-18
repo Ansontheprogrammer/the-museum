@@ -82,8 +82,6 @@ class Products extends Component {
           let products;
 
           products = allShopifyProduct.edges.map((edge) => edge.node);
-          // remove products without pics
-          products = products.filter((product) => !!product.images.length);
           if (this.props.multiVendor)
             products = [].concat.apply(products, this.props.multiVendor);
           // Filter products by vendor
@@ -110,6 +108,8 @@ class Products extends Component {
               }
             });
 
+          // remove products without pics
+          products = products.filter((product) => !!product.images.length);
           // Limit products returned
           products = this.props.limit
             ? products.slice(0, this.props.limit)

@@ -13,19 +13,29 @@
 
   .row-card {
     display: flex;
-    min-width: 100%;
   }
   @media only screen and (max-width: 700px) {
     .row-card {
       flex-direction: column;
     }
+    .image {
+      min-height: 200px !important;
+    }
+
+    .book-btn {
+      position: relative !important;
+      width: auto !important;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
+
   .image-wrapper {
     display: block;
     min-width: 30%;
   }
   .image {
-    min-height: 400px;
+    min-height: 100%;
     min-width: 100%;
     max-width: 150px;
     margin-left: auto;
@@ -92,7 +102,6 @@
 
   .text {
     padding: 25px;
-    min-width: 100%;
   }
 
   .link-btn {
