@@ -39,7 +39,7 @@ class Barbers extends Component {
         render={({ allMarkdownRemark }) => {
           let barbers = allMarkdownRemark.edges;
           return (
-            <div className="productWrapper barbersWrapperGrid">
+            <div className="">
               {barbers.map((barber, i) => {
                 return (
                   <Fade key={i}>

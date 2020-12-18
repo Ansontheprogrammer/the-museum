@@ -12,14 +12,14 @@ export class BarberCard extends React.Component {
     const barber = this.props.barber;
     return (
       <div className="barber-card">
-        <div>
+        <div className="row-card">
           <div className="image-wrapper">
             <div
               className="image"
               style={{
                 backgroundImage: `${
                   barber.pics ? `url(${barber.pics[0]})` : ""
-                }`
+                }`,
               }}
             />
           </div>
@@ -28,34 +28,29 @@ export class BarberCard extends React.Component {
               <h4>{barber.name}</h4>
             </div>
             <p>
-              {this.props.onLandingPage ? clip(barber.bio, 50) : barber.bio}
+              {this.props.onLandingPage ? clip(barber.bio, 300) : barber.bio}
             </p>
 
             <div className="services">
               <div className="services-title">
-                <FaCut />
-                <p>My Services</p>
-                <FaCut />
+                <button
+                  onClick={() => {
+                    alert(
+                      barber.serviceList
+                        .map((service) => `${service} \n`)
+                        .reduce((a, b) => (a += b))
+                    );
+                  }}
+                >
+                  <FaCut />
+                  <p>My Services</p>
+                  <FaCut />
+                </button>
               </div>
-              <ul className="services-list">
-                {this.props.onLandingPage ? (
-                  <>
-                    {barber.serviceList
-                      .map(service => <li key={service}>{service}</li>)
-                      .slice(0, this.props.serviceListLimit)}
-                  </>
-                ) : (
-                  <>
-                    {barber.serviceList.map(service => (
-                      <li key={service}>{service}</li>
-                    ))}
-                  </>
-                )}
-              </ul>
             </div>
 
             <ul className="links-list">
-              {barber.links.map(link => (
+              {barber.links.map((link) => (
                 <li className="link-btn">
                   <a href={"https://" + link}>{link}</a>
                 </li>
@@ -64,9 +59,13 @@ export class BarberCard extends React.Component {
           </div>
         </div>
         {barber.name === "Tyreese" ? (
-          <a href={`sms:${barber.bookLink}`}>Text {barber.bookLink}</a>
+          <a className="book-btn" href={`sms:${barber.bookLink}`}>
+            Text {barber.bookLink}
+          </a>
         ) : (
-          <a href={barber.bookLink}>Book</a>
+          <a className="book-btn" href={barber.bookLink}>
+            Book
+          </a>
         )}
       </div>
     );

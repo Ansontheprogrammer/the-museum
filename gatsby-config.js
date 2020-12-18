@@ -1,18 +1,17 @@
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`
+  path: `.env.${process.env.NODE_ENV}`,
 });
 
 module.exports = {
   siteMetadata: {
     title: "The Museum",
     author: "AE Inc",
-    siteUrl: "https://the1museum.com"
+    siteUrl: "https://the1museum.com",
   },
   plugins: [
     `gatsby-plugin-sass`,
     `gatsby-plugin-netlify-cms`,
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-stripe",
     `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -26,43 +25,43 @@ module.exports = {
         theme_color: "#fff``",
         display: "standalone",
         icon: "src/images/logo.png", // This path is relative to the root of the site.
-        crossOrigin: `use-credentials`
-      }
+        crossOrigin: `use-credentials`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `videos`,
-        path: `${__dirname}/videos`
-      }
+        path: `${__dirname}/videos`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `events`,
-        path: `${__dirname}/content`
-      }
+        path: `${__dirname}/content`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `events`,
-        path: `${__dirname}/barbers`
-      }
+        path: `${__dirname}/barbers`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `gallery`,
-        path: `${__dirname}/gallery`
-      }
+        path: `${__dirname}/gallery`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`
-      }
+        path: `${__dirname}/src/images`,
+      },
     },
     {
       resolve: "gatsby-source-shopify",
@@ -102,8 +101,8 @@ module.exports = {
         // List of collections you want to fetch.
         // Possible values are: 'shop' and 'content'.
         // Defaults to ['shop', 'content'].
-        includeCollections: ["shop", "content"]
-      }
+        includeCollections: ["shop", "content"],
+      },
     },
     {
       resolve: `gatsby-plugin-remote-images`,
@@ -112,8 +111,8 @@ module.exports = {
         imagePath: "imageUrl",
         // OPTIONAL: Name you want to give new image field on the node.
         // Defaults to 'localImage'.
-        name: "allItemImages"
-      }
-    }
-  ]
+        name: "allItemImages",
+      },
+    },
+  ],
 };

@@ -1,3 +1,4 @@
+import { config } from "@fortawesome/fontawesome-svg-core";
 import axios from "axios";
 
 export async function sendEmail(messageBody, toEmail) {
@@ -8,12 +9,12 @@ export async function sendEmail(messageBody, toEmail) {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       data: JSON.stringify({
         ...messageBody,
-        to: toEmail
-      })
+        to: toEmail,
+      }),
     });
     return;
   } catch (err) {
@@ -28,7 +29,7 @@ export async function sendConfirmationEmailToVendor(customerDetails) {
 export async function sendConfirmationEmailToAEInc(ourIncome, checkoutDetails) {
   const messageBody = {
     checkoutDetails,
-    message: "Customer just checked and we made for $" + ourIncome
+    message: "Customer just checked and we made for $" + ourIncome,
   };
   return await sendEmail(messageBody, config.aeEmail);
 }

@@ -1,12 +1,14 @@
 .About {
+  flex-direction: column;
   margin: 0;
-  width: 100%;
+  display: flex;
+  padding-top: 0px !important;
+  padding: 75px;
+  align-items: center;
 }
 
 .About-img {
   width: 40%;
-  order: 2;
-  margin-right: 25px;
   z-index: -1;
   float: right;
   background: #ccc;
@@ -15,6 +17,7 @@
   background-size: cover;
   background-position: top;
   max-height: 350px;
+  margin-bottom: 25px;
 }
 
 .About-img img {
@@ -23,7 +26,6 @@
 }
 .About-text {
   width: 100%;
-  order: 1;
 }
 
 .About-text p {
@@ -36,6 +38,7 @@
   .About {
     flex-direction: column;
     margin: 0;
+    padding: 25px;
   }
 
   .About-image-wrapper {
@@ -43,14 +46,12 @@
   }
 
   .About-img {
-    margin:  auto;
+    margin: auto;
     min-width: 100%;
     margin-bottom: 25px;
   }
 
   .About-text {
-    padding: 15px;
-    max-width: 500px;
     width: 100%;
   }
 }
