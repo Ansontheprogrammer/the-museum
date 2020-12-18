@@ -4,7 +4,36 @@ bio: Affectionately referred to as “Your Barber’s Favorite Barber,” Nasif 
 
 pics:
   - /assets/nas.jpg
-links: [ "youtube.com", "ansonervin.com" ]
-serviceList: ["Shape up/Taper with Beard Sculpture", "Ceaser", "Kids Haircut", "Life Advice 🤔", "HUGS 🤗", "Fade", "Afro", "Bald head", "Coloring --or-- Dye job + haricut", "Ladies Undercut w/design 30+", "Ladies undercut", "Designs 50+", "Nu Jeruz Wave Treatment", "Ballistic Beard Sculptures", "Talk of NY fade", "Hawk/S.O.F./Burst fade", "Eyebrows", "Ceaser w/ wash", "Fade w/wash", "Chi town / Women Only", "Facials", "VIP Ballistic Cut", "Father and Son Combo 🤜🏾🤛🏾(full-cuts)" ]
+links:
+  [
+    "https://booksy.com/en-us/13143_ballistic-barber_barber-shop_27100_raleigh",
+    "https://www.instagram.com/eskobars/?hl=en",
+  ]
+serviceList:
+  [
+    "Shape up/Taper with Beard Sculpture",
+    "Ceaser",
+    "Kids Haircut",
+    "Life Advice 🤔",
+    "HUGS 🤗",
+    "Fade",
+    "Afro",
+    "Bald head",
+    "Coloring --or-- Dye job + haricut",
+    "Ladies Undercut w/design 30+",
+    "Ladies undercut",
+    "Designs 50+",
+    "Nu Jeruz Wave Treatment",
+    "Ballistic Beard Sculptures",
+    "Talk of NY fade",
+    "Hawk/S.O.F./Burst fade",
+    "Eyebrows",
+    "Ceaser w/ wash",
+    "Fade w/wash",
+    "Chi town / Women Only",
+    "Facials",
+    "VIP Ballistic Cut",
+    "Father and Son Combo 🤜🏾🤛🏾(full-cuts)",
+  ]
 bookLink: https://booksy.com/en-us/13143_ballistic-barber_barber-shop_27100_raleigh
 ---

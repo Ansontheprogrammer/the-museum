@@ -29,19 +29,22 @@ const VideosComponent = () => {
         <>
           <Fade>
             <div id={title.replace(/ /g, "")} key={title + index}>
-              <video width="300" height="200" controls>
+              <video
+                style={{
+                  objectFit: "cover",
+                }}
+                width="100%"
+                height="450"
+                controls
+              >
                 <source src={"/" + url} type="video/mp4" />
               </video>
             </div>
           </Fade>
-          <div className="text video-text">
-            <h3 className="title video-title">{title}</h3>
-            <p className="video-description">{description}</p>
-          </div>
         </>
       );
     })
-    .map(post => post);
+    .map((post) => post);
 
   return <div className="productWrapper videoWrapperGrid">{eventPosts}</div>;
 };

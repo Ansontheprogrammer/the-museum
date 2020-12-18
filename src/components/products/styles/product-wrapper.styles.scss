@@ -2,11 +2,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 35px;
-  max-width: 1200px;
   z-index: 1100;
   width: 100%;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  // padding-left: 5vw;
+  // padding-right: 5vw;
   &--2 {
     grid-template-columns: repeat(2, 1fr);
     padding: 0;
@@ -16,9 +15,12 @@
     }
   }
 }
+.kjCnuH .image {
+  min-height: 400px !important;
+}
 
 .barbersWrapperGrid {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .videoWrapperGrid {

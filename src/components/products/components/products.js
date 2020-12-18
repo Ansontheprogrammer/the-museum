@@ -79,13 +79,18 @@ class Products extends Component {
           }
         `}
         render={({ allShopifyProduct }) => {
-          let products = allShopifyProduct.edges
-            // remove products without pics
-            .filter((product) => !!product.node.images.length)
-            // Filter products by vendor
+          let products;
+
+          products = allShopifyProduct.edges.map((edge) => edge.node);
+          // remove products without pics
+          products = products.filter((product) => !!product.images.length);
+          if (this.props.multiVendor)
+            products = [].concat.apply(products, this.props.multiVendor);
+          // Filter products by vendor
+          products = products
             .filter((product) => {
               return this.props.vendor && this.props.vendor !== "all"
-                ? product.node.vendor.toLowerCase() ===
+                ? product.vendor.toLowerCase() ===
                     this.props.vendor.toLowerCase()
                 : true;
             })
@@ -93,25 +98,17 @@ class Products extends Component {
             .filter((product) => {
               if (this.props.category && this.props.category !== "all") {
                 return (
-                  product.node.productType.toLowerCase() ===
+                  product.productType.toLowerCase() ===
                   this.props.category.toLowerCase()
                 );
               } else {
                 // return false
                 return (
-                  product.node.productType.toLowerCase() !== "art" &&
-                  product.node.productType.toLowerCase() !== "seamoss"
+                  product.productType.toLowerCase() !== "art" &&
+                  product.productType.toLowerCase() !== "seamoss"
                 );
               }
             });
-          if (this.props.multiVendor)
-            products = [].concat.apply(this.props.multiVendor);
-          console.log(
-            this.props.multiVendor,
-            "multivendor",
-            products,
-            "all proudct"
-          );
 
           // Limit products returned
           products = this.props.limit
@@ -135,6 +132,7 @@ class Products extends Component {
                     <SkuCard
                       key={i}
                       product={productNode}
+                      useMultiVendor={this.props.multiVendor ? true : false}
                       displayAddToCart={this.props.displayAddToCartBtn}
                     />
                   </div>

@@ -11,8 +11,8 @@ export async function getKbuttaProducts() {
         "Content-Type": "application/json",
       },
     });
+
     const products = resp.data.items.map((item) => {
-      console.log(item, "item");
       return {
         id: item._id,
         title: item.name,
@@ -37,7 +37,8 @@ export async function getKbuttaProducts() {
 
     return products;
   } catch (err) {
-    return Promise.reject(err);
+    console.error(err);
+    return [];
   }
 }
 

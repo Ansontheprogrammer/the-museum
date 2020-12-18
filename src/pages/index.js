@@ -43,8 +43,10 @@ const LandingPage = (props) => {
   const toggleServicesModal = () => {
     setShowServicesModal((prevState) => !prevState);
   };
-
-  useEffect(() => {});
+  const [kButtaProducts, setKbuttaProducts] = useState([]);
+  useEffect(() => {
+    getKbuttaProducts().then((products) => setKbuttaProducts(products));
+  });
 
   const generateLandingPage = () => {
     return Object.keys(props.page)
@@ -73,6 +75,18 @@ const LandingPage = (props) => {
       <Hero />
       <Gallery />
       {generateLandingPage()}
+      <Section>
+        <div className={`section ${"off-section"}`}>
+          <SectionHeader>
+            <Fade bottom cascade distance={"50px"}>
+              <h1>Shop</h1>
+            </Fade>
+          </SectionHeader>
+          <Fade>
+            <Products multiVendor={kButtaProducts} limit={3} />
+          </Fade>
+        </div>
+      </Section>
     </Layout>
   );
 };
@@ -125,16 +139,16 @@ LandingPage.defaultProps = {
         </>
       ),
     },
-    shop: {
-      show: true,
-      heading: "Shop",
-      subtitleHeading: "",
-      jsx: (
-        <Fade>
-          <Products limit={4} />
-        </Fade>
-      ),
-    },
+    // shop: {
+    //   show: true,
+    //   heading: "Shop",
+    //   subtitleHeading: "",
+    //   jsx: (
+    //     <Fade>
+    //       <Products multiVendor={kButtaProducts} limit={4} />
+    //     </Fade>
+    //   ),
+    // },
   },
 };
 

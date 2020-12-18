@@ -99,7 +99,17 @@ const SkuCard = class extends React.Component {
           <div className="title">
             <h4 style={{ color: "#333" }}>{product.title}</h4>
           </div>
-          <p>{clip(product.description, 175) || "No description available"}</p>
+          {!this.props.useMultiVendor ? (
+            <p>
+              {clip(product.description, 175) || "No description available"}
+            </p>
+          ) : (
+            <p
+              dangerouslySetInnerHTML={{
+                __html: clip(product.description, 175) + "</p>",
+              }}
+            ></p>
+          )}
           <p className="price">
             {formatPrice(product._price, product.currency)}
           </p>

@@ -7,7 +7,7 @@ import { Cart } from "../products/components/cart";
 import { SideBar } from "../products/components/sidebar";
 import Footer from "../footer/footer";
 
-const generateDesign = numberOfDesigns => {
+const generateDesign = (numberOfDesigns) => {
   const designJSX = [];
   for (let i = 0; i <= numberOfDesigns - 1; i++) {
     designJSX.push(
@@ -20,7 +20,7 @@ const generateDesign = numberOfDesigns => {
       </>
     );
   }
-  return designJSX.map(jsx => jsx);
+  return designJSX.map((jsx) => jsx);
 };
 
 class Layout extends React.Component {
@@ -36,26 +36,26 @@ class Layout extends React.Component {
     super(props);
     this.state = {
       showCheckoutComponent: false,
-      showCart: this.props.useCart ? false : true
+      showCart: this.props.useCart ? false : true,
     };
     this.toggleCheckoutComponent = this.toggleCheckoutComponent.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      showCart: true
+      showCart: true,
     });
   }
 
   toggleCheckoutComponent() {
     this.setState({
-      showCheckoutComponent: !this.state.showCheckoutComponent
+      showCheckoutComponent: !this.state.showCheckoutComponent,
     });
   }
   render() {
     return (
       <CartContext.Consumer>
-        {cart => (
+        {(cart) => (
           <>
             {this.props.useCart && cart && this.state.showCart && (
               <Cart quantity={cart.productsInCart.length} />
@@ -82,11 +82,11 @@ class Layout extends React.Component {
                     )}
                     {this.props.children}
                   </div>
-                  {this.props.sidePageDesign && (
+                  {/* {this.props.sidePageDesign && (
                     <div className="side-page-design">
                       {generateDesign(this.props.sidePageDesignNumber)}
                     </div>
-                  )}
+                  )} */}
                 </>
               }
             </div>
@@ -103,14 +103,14 @@ Layout.defaultProps = {
   useCart: true,
   sidePageDesign: false,
   sidePageDesignNumber: 0,
-  sideBar: true
+  sideBar: true,
 };
 
 Layout.propTypes = {
   useCart: PropTypes.bool,
   sidePageDesign: PropTypes.bool,
   sidePageDesignNumber: PropTypes.number,
-  sideBar: PropTypes.bool
+  sideBar: PropTypes.bool,
 };
 
 export default Layout;

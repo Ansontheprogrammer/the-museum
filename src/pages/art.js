@@ -7,12 +7,6 @@ import { SpacingSm } from "../components/typographics";
 import { getKbuttaProducts } from "../api/multiVendor";
 
 const Shop = () => {
-  const [kButtaProducts, setkButtaProducts] = useState([]);
-  useEffect(() => {
-    getKbuttaProducts().then((products) => {
-      setkButtaProducts(products);
-    });
-  }, []);
   return (
     <Layout designNumber={0} displayAddToCartBtn={true}>
       <PageLayout title="Art">
@@ -20,11 +14,7 @@ const Shop = () => {
           <ArtHeroSection />
           <SpacingSm />
         </div>
-        <Products
-          multiVendor={kButtaProducts}
-          category="art"
-          displayAddToCartBtn={true}
-        />
+        <Products category="art" displayAddToCartBtn={true} />
         <SpacingSm />
       </PageLayout>
     </Layout>
