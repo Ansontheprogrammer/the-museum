@@ -5,7 +5,7 @@
  */
 
 const { fmImagesToRelative } = require("gatsby-remark-relative-images");
-const { getKbuttaProducts } = require("./src/api/multiVendor");
+const { getKbuttaProducts } = require("./src/api/");
 
 exports.onCreateNode = ({ node }) => {
   fmImagesToRelative(node);
