@@ -65,6 +65,9 @@ export default class Footer extends Component {
               <li>
                 <p className="white-text">Saturday: 9:00 AM - 6:00 PM</p>
               </li>
+              <li>
+                <p className="white-text">Sunday: Closed</p>
+              </li>
             </ul>
           </div>
           <div>

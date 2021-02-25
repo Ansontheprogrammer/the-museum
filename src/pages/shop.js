@@ -5,7 +5,6 @@ import Products from "../components/products/components/products";
 import "../components/products/styles/product-wrapper.styles.scss";
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import { SpacingSm } from "../components/typographics";
-import { getKbuttaProducts } from "../api/multiVendor";
 
 // list of items
 const categoryList = [
@@ -25,21 +24,6 @@ const vendorList = [
 class ShopPageComponent extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    console.log(
-      "IN SIDE COMPONENT DID MOUNT",
-      this.state.kButtaProducts,
-      "this.state.kButtaProducts"
-    );
-    if (!this.state.kButtaProducts.length) {
-      getKbuttaProducts().then((products) => {
-        this.setState({
-          kButtaProducts: products,
-        });
-      });
-    }
   }
 
   toggleSelectorMenus = (selector, value) => {

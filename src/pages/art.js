@@ -4,7 +4,6 @@ import PageLayout from "../components/layout/page-layout";
 import Products from "../components/products/components/products";
 import ArtHeroSection from "../components/art/art-hero";
 import { SpacingSm } from "../components/typographics";
-import { getKbuttaProducts } from "../api/multiVendor";
 
 const Shop = () => {
   return (

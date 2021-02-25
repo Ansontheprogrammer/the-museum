@@ -10,7 +10,7 @@ const SeaMoss = () => {
           node {
             html
             frontmatter {
-              url
+              
               title
               description
             }

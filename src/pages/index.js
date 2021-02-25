@@ -16,7 +16,8 @@ import {
 import SeaMossHeading from "../components/seamoss/seamoss-heading";
 import Proptypes from "prop-types";
 import { Link } from "gatsby";
-import { getKbuttaProducts } from "../api/multiVendor";
+import PageLayout from "../components/layout/page-layout";
+import { Helmet } from "react-helmet";
 
 const generateSection = (index, headings, contents) => {
   const offSection = (index + 1) % 2;
@@ -43,11 +44,6 @@ const LandingPage = (props) => {
   const toggleServicesModal = () => {
     setShowServicesModal((prevState) => !prevState);
   };
-  const [kButtaProducts, setKbuttaProducts] = useState([]);
-  useEffect(() => {
-    if (kButtaProducts.length <= 0)
-      getKbuttaProducts().then((products) => setKbuttaProducts(products));
-  });
 
   const generateLandingPage = () => {
     return Object.keys(props.page)
@@ -73,6 +69,11 @@ const LandingPage = (props) => {
       sidePageDesignNumber={3}
       sideBar={true}
     >
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>Home | The One Museum</title>
+          <link rel="canonical" href="https://the1museum.com" />
+      </Helmet>
       <Hero />
       <Gallery />
       {generateLandingPage()}
@@ -84,7 +85,7 @@ const LandingPage = (props) => {
             </Fade>
           </SectionHeader>
           <Fade>
-            <Products multiVendor={kButtaProducts} limit={3} />
+            <Products limit={3} />
           </Fade>
         </div>
       </Section>
